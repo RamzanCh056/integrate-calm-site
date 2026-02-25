@@ -1,21 +1,24 @@
 import { motion } from "framer-motion";
-import { DollarSign, Mail, Radio } from "lucide-react";
+import { DollarSign, Mail, Radio, ArrowRight } from "lucide-react";
 
 const steps = [
   {
     icon: DollarSign,
     title: "Donate $20 or more",
     description: "Choose your contribution amount and support the movement.",
+    color: "bg-primary",
   },
   {
     icon: Mail,
     title: "Receive confirmation",
     description: "Get an email with your message submission link.",
+    color: "bg-sky-blue",
   },
   {
     icon: Radio,
     title: "Featured on livestream",
     description: "Selected community voices are shared during the global broadcast.",
+    color: "bg-soft-green",
   },
 ];
 
@@ -32,9 +35,14 @@ const HowItWorks = () => {
           How It Works
         </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-border" />
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto relative">
+          {/* Connector arrows */}
+          <div className="hidden md:flex absolute top-14 left-[33%] w-[34%] items-center justify-center">
+            <ArrowRight className="w-6 h-6 text-border" />
+          </div>
+          <div className="hidden md:flex absolute top-14 right-[10%] w-[10%] items-center justify-center">
+            <ArrowRight className="w-6 h-6 text-border" />
+          </div>
 
           {steps.map((step, i) => (
             <motion.div
@@ -43,14 +51,18 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
-              className="text-center relative"
+              className="text-center relative bg-card rounded-3xl p-8 shadow-calm hover:shadow-calm-lg transition-shadow"
             >
-              <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6 relative z-10 shadow-calm">
-                <step.icon className="w-10 h-10 text-primary" />
+              <div className="relative mx-auto mb-6 w-fit">
+                <div
+                  className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center shadow-calm rotate-3 hover:rotate-0 transition-transform`}
+                >
+                  <step.icon className="w-9 h-9 text-primary-foreground" />
+                </div>
+                <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-card border-2 border-border flex items-center justify-center font-body text-xs font-bold text-foreground shadow-sm">
+                  {i + 1}
+                </span>
               </div>
-              <span className="inline-block font-body text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-2">
-                Step {i + 1}
-              </span>
               <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                 {step.title}
               </h3>
