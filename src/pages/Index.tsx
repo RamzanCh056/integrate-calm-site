@@ -4,6 +4,7 @@ import DonateSection from "@/components/DonateSection";
 import HowItWorks from "@/components/HowItWorks";
 import SolutionSection from "@/components/SolutionSection";
 import SpeakersSection from "@/components/SpeakersSection";
+import JoinLivestream from "@/components/JoinLivestream";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <HowItWorks />
       <SolutionSection />
       <SpeakersSection />
+      <JoinLivestream />
       <FinalCTA />
       <Footer />
     </div>
