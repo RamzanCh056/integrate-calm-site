@@ -1,6 +1,7 @@
 import StickyHeader from "@/components/StickyHeader";
 import HeroSection from "@/components/HeroSection";
 import DonateSection from "@/components/DonateSection";
+import DonationProgress from "@/components/DonationProgress";
 import HowItWorks from "@/components/HowItWorks";
 import SolutionSection from "@/components/SolutionSection";
 import SpeakersSection from "@/components/SpeakersSection";
@@ -14,6 +15,7 @@ const Index = () => {
       <StickyHeader />
       <HeroSection />
       <DonateSection />
+      <DonationProgress />
       <HowItWorks />
       <SolutionSection />
       <SpeakersSection />

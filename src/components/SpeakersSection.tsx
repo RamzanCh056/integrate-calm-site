@@ -139,7 +139,7 @@ const SpeakersSection = () => {
   const regularSpeakers = speakers.filter((s) => !s.isHost);
 
   return (
-    <section className="py-24 md:py-32 bg-background overflow-hidden">
+    <section id="speakers" className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

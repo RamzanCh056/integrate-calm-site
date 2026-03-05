@@ -24,22 +24,34 @@ const StickyHeader = () => {
             <span className="font-display text-lg font-semibold text-foreground">
               Day of Calm 2026
             </span>
-            <nav className="flex items-center gap-3">
+            <nav className="flex items-center gap-2 md:gap-3">
               <a
                 href="#register"
-                className="px-5 py-2 rounded-full bg-primary text-primary-foreground font-body text-sm font-medium hover:opacity-90 transition-opacity"
+                className="px-4 py-2 rounded-full bg-primary text-primary-foreground font-body text-sm font-medium hover:opacity-90 transition-opacity"
               >
                 Register
               </a>
               <a
+                href="#speakers"
+                className="px-4 py-2 rounded-full text-foreground font-body text-sm font-medium hover:bg-secondary transition-colors"
+              >
+                Speakers
+              </a>
+              <a
+                href="#donors"
+                className="px-4 py-2 rounded-full text-foreground font-body text-sm font-medium hover:bg-secondary transition-colors"
+              >
+                Donors
+              </a>
+              <a
                 href="#donate"
-                className="px-5 py-2 rounded-full bg-donate text-donate-foreground font-body text-sm font-medium hover:opacity-90 transition-opacity"
+                className="px-4 py-2 rounded-full bg-donate text-donate-foreground font-body text-sm font-medium hover:opacity-90 transition-opacity"
               >
                 Donate
               </a>
               <a
                 href="#sponsor"
-                className="px-5 py-2 rounded-full border border-primary text-primary font-body text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="px-4 py-2 rounded-full border border-primary text-primary font-body text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 Sponsor
               </a>
