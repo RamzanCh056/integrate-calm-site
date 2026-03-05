@@ -10,11 +10,12 @@ const donors: { name: string; amount: number }[] = [];
 
 const DonationProgress = () => {
   const [raised, setRaised] = useState(0);
-  const totalRaised = mockDonors.reduce((sum, d) => sum + d.amount, 0);
+  const totalRaised = donors.reduce((sum, d) => sum + d.amount, 0);
   const percentage = Math.min((raised / GOAL) * 100, 100);
 
   // Animate the counter on mount
   useEffect(() => {
+    if (totalRaised === 0) return;
     const duration = 2000;
     const steps = 60;
     const increment = totalRaised / steps;
@@ -34,8 +35,9 @@ const DonationProgress = () => {
   // Rotating latest donor highlight
   const [highlightIdx, setHighlightIdx] = useState(0);
   useEffect(() => {
+    if (donors.length === 0) return;
     const interval = setInterval(() => {
-      setHighlightIdx((prev) => (prev + 1) % mockDonors.length);
+      setHighlightIdx((prev) => (prev + 1) % donors.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -92,7 +94,7 @@ const DonationProgress = () => {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Users className="w-4 h-4" />
                 <span className="font-body text-sm font-medium">
-                  {mockDonors.length} donors
+                  {donors.length} donors
                 </span>
               </div>
               <span className="font-body text-sm font-semibold text-primary">
@@ -101,30 +103,40 @@ const DonationProgress = () => {
             </div>
 
             {/* Latest donor highlight */}
-            <div className="mt-6 pt-5 border-t border-border">
-              <p className="font-body text-xs text-muted-foreground mb-2 uppercase tracking-wider">
-                Latest supporters
-              </p>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={highlightIdx}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-soft-green flex items-center justify-center">
-                    <Heart className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                  <span className="font-body text-base font-semibold text-card-foreground">
-                    {mockDonors[highlightIdx].name}
-                  </span>
-                  <span className="font-body text-sm text-primary font-medium">
-                    donated ${mockDonors[highlightIdx].amount}
-                  </span>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {donors.length > 0 && (
+              <div className="mt-6 pt-5 border-t border-border">
+                <p className="font-body text-xs text-muted-foreground mb-2 uppercase tracking-wider">
+                  Latest supporters
+                </p>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={highlightIdx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-soft-green flex items-center justify-center">
+                      <Heart className="w-4 h-4 text-primary-foreground" />
+                    </div>
+                    <span className="font-body text-base font-semibold text-card-foreground">
+                      {donors[highlightIdx]?.name}
+                    </span>
+                    <span className="font-body text-sm text-primary font-medium">
+                      donated ${donors[highlightIdx]?.amount}
+                    </span>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            )}
+
+            {donors.length === 0 && (
+              <div className="mt-6 pt-5 border-t border-border text-center">
+                <p className="font-body text-sm text-muted-foreground">
+                  Be the first to donate and appear here!
+                </p>
+              </div>
+            )}
           </div>
         </motion.div>
 
@@ -137,27 +149,33 @@ const DonationProgress = () => {
           <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
             Our $20+ Donors Wall
           </h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {mockDonors.map((donor, i) => (
-              <motion.div
-                key={donor.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.03 }}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-card shadow-calm border border-primary/5 hover:shadow-calm-lg hover:-translate-y-0.5 transition-all"
-              >
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-sky-blue flex items-center justify-center shrink-0">
-                  <span className="font-display text-[10px] font-bold text-primary-foreground">
-                    {donor.name.split(" ").map((n) => n[0]).join("")}
+          {donors.length > 0 ? (
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+              {donors.map((donor, i) => (
+                <motion.div
+                  key={donor.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.03 }}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-card shadow-calm border border-primary/5 hover:shadow-calm-lg hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-sky-blue flex items-center justify-center shrink-0">
+                    <span className="font-display text-[10px] font-bold text-primary-foreground">
+                      {donor.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  </div>
+                  <span className="font-body text-sm font-medium text-card-foreground">
+                    {donor.name}
                   </span>
-                </div>
-                <span className="font-body text-sm font-medium text-card-foreground">
-                  {donor.name}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <p className="font-body text-muted-foreground text-center">
+              No donors yet — be the first to join the wall!
+            </p>
+          )}
           <div className="text-center mt-8">
             <a
               href="#donate"
