@@ -5,34 +5,8 @@ import { Progress } from "@/components/ui/progress";
 
 const GOAL = 30000;
 
-// Mock donors — replace with real data from your backend
-const mockDonors = [
-  { name: "Sarah M.", amount: 100 },
-  { name: "James L.", amount: 50 },
-  { name: "Priya K.", amount: 250 },
-  { name: "Carlos R.", amount: 20 },
-  { name: "Amina D.", amount: 75 },
-  { name: "David W.", amount: 100 },
-  { name: "Li Chen", amount: 50 },
-  { name: "Rachel G.", amount: 30 },
-  { name: "Omar F.", amount: 200 },
-  { name: "Sophia T.", amount: 25 },
-  { name: "Marcus J.", amount: 50 },
-  { name: "Elena V.", amount: 100 },
-  { name: "Noah B.", amount: 40 },
-  { name: "Fatima A.", amount: 150 },
-  { name: "Tyler S.", amount: 20 },
-  { name: "Yuki N.", amount: 75 },
-  { name: "Hannah P.", amount: 60 },
-  { name: "Ravi M.", amount: 500 },
-  { name: "Grace O.", amount: 35 },
-  { name: "Ahmed Z.", amount: 100 },
-  { name: "Chloe D.", amount: 20 },
-  { name: "Daniel K.", amount: 50 },
-  { name: "Mia W.", amount: 25 },
-  { name: "Liam H.", amount: 100 },
-  { name: "Zara I.", amount: 200 },
-];
+// TODO: Replace with real-time data from Stripe via Lovable Cloud
+const donors: { name: string; amount: number }[] = [];
 
 const DonationProgress = () => {
   const [raised, setRaised] = useState(0);
