@@ -9,21 +9,28 @@ serve(async (req) => {
 
   const signature = req.headers.get("stripe-signature");
   const body = await req.text();
+  const webhookSecret = Deno.env.get("STRIPE_WEBHOOK_SECRET");
 
   let event: Stripe.Event;
   try {
-    // For now, parse without webhook secret verification
-    // TODO: Add STRIPE_WEBHOOK_SECRET for production
-    event = JSON.parse(body) as Stripe.Event;
+    if (webhookSecret && signature) {
+      event = await stripe.webhooks.constructEventAsync(body, signature, webhookSecret);
+    } else {
+      event = JSON.parse(body) as Stripe.Event;
+    }
   } catch (err) {
-    console.error("Webhook parse error:", err);
-    return new Response("Invalid payload", { status: 400 });
+    console.error("Webhook verification error:", err);
+    return new Response("Invalid signature", { status: 400 });
   }
+
+  console.log(`Received event: ${event.type}`);
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     const metadata = session.metadata || {};
     const amountTotal = session.amount_total || 0;
+
+    console.log(`Checkout completed: ${metadata.donor_name} - $${amountTotal / 100}`);
 
     if (amountTotal >= 2000) {
       const supabase = createClient(
@@ -41,7 +48,7 @@ serve(async (req) => {
       if (error) {
         console.error("Error inserting donation:", error);
       } else {
-        console.log(`Donation recorded: ${metadata.donor_name} - $${amountTotal / 100}`);
+        console.log(`Donation recorded successfully`);
       }
     }
   }
