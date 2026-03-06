@@ -2,35 +2,65 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, TrendingUp, Users } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 const GOAL = 30000;
 
-// TODO: Replace with real-time data from Stripe via Lovable Cloud
-const donors: { name: string; amount: number }[] = [];
+interface Donor {
+  name: string;
+  amount: number;
+  created_at: string;
+}
 
 const DonationProgress = () => {
   const [raised, setRaised] = useState(0);
-  const totalRaised = donors.reduce((sum, d) => sum + d.amount, 0);
-  const percentage = Math.min((raised / GOAL) * 100, 100);
+  const [donors, setDonors] = useState<Donor[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [displayRaised, setDisplayRaised] = useState(0);
 
-  // Animate the counter on mount
+  // Fetch donations from Supabase via edge function
+  const fetchDonations = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke("get-donations");
+      if (error) throw error;
+      if (data) {
+        setRaised(data.totalRaised || 0);
+        setDonors(data.donors || []);
+      }
+    } catch (err) {
+      console.error("Error fetching donations:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    if (totalRaised === 0) return;
+    fetchDonations();
+    // Poll every 30 seconds for real-time updates
+    const interval = setInterval(fetchDonations, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Animate the counter
+  useEffect(() => {
+    if (raised === 0) return;
     const duration = 2000;
     const steps = 60;
-    const increment = totalRaised / steps;
+    const increment = raised / steps;
     let current = 0;
     const timer = setInterval(() => {
       current += increment;
-      if (current >= totalRaised) {
-        setRaised(totalRaised);
+      if (current >= raised) {
+        setDisplayRaised(raised);
         clearInterval(timer);
       } else {
-        setRaised(Math.round(current));
+        setDisplayRaised(Math.round(current));
       }
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [totalRaised]);
+  }, [raised]);
+
+  const percentage = Math.min((displayRaised / GOAL) * 100, 100);
 
   // Rotating latest donor highlight
   const [highlightIdx, setHighlightIdx] = useState(0);
@@ -40,12 +70,11 @@ const DonationProgress = () => {
       setHighlightIdx((prev) => (prev + 1) % donors.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [donors.length]);
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-secondary/50 to-background overflow-hidden">
+    <section id="donors" className="py-20 md:py-28 bg-gradient-to-b from-secondary/50 to-background overflow-hidden">
       <div className="container mx-auto px-6">
-        {/* Progress Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +106,7 @@ const DonationProgress = () => {
               <div>
                 <p className="font-body text-sm text-muted-foreground mb-1">Raised so far</p>
                 <p className="font-display text-4xl md:text-5xl font-bold text-primary">
-                  ${raised.toLocaleString()}
+                  ${displayRaised.toLocaleString()}
                 </p>
               </div>
               <div className="text-right">
@@ -133,7 +162,7 @@ const DonationProgress = () => {
             {donors.length === 0 && (
               <div className="mt-6 pt-5 border-t border-border text-center">
                 <p className="font-body text-sm text-muted-foreground">
-                  Be the first to donate and appear here!
+                  {loading ? "Loading donations..." : "Be the first to donate and appear here!"}
                 </p>
               </div>
             )}
@@ -153,7 +182,7 @@ const DonationProgress = () => {
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
               {donors.map((donor, i) => (
                 <motion.div
-                  key={donor.name}
+                  key={`${donor.name}-${i}`}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -168,12 +197,15 @@ const DonationProgress = () => {
                   <span className="font-body text-sm font-medium text-card-foreground">
                     {donor.name}
                   </span>
+                  <span className="font-body text-xs text-primary font-semibold">
+                    ${donor.amount}
+                  </span>
                 </motion.div>
               ))}
             </div>
           ) : (
             <p className="font-body text-muted-foreground text-center">
-              No donors yet — be the first to join the wall!
+              {loading ? "Loading..." : "No donors yet — be the first to join the wall!"}
             </p>
           )}
           <div className="text-center mt-8">
