@@ -96,7 +96,7 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#register"
+            href="#register-form"
             className="group px-8 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-semibold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
             Register Now

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Heart, Play, Award, Film, Shield, CreditCard } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const presetAmounts = [20, 50, 100, 250];
 
@@ -15,12 +17,48 @@ const DonateSection = () => {
   const [amount, setAmount] = useState(20);
   const [custom, setCustom] = useState("");
   const [recurring, setRecurring] = useState(false);
+  const [donorName, setDonorName] = useState("");
+  const [donorEmail, setDonorEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const isCustom = !presetAmounts.includes(amount);
 
   const handleCustom = (val: string) => {
     setCustom(val);
     const num = parseInt(val);
     if (!isNaN(num) && num >= 20) setAmount(num);
+  };
+
+  const handleDonate = async () => {
+    if (!donorName.trim() || !donorEmail.trim()) {
+      toast.error("Please enter your name and email");
+      return;
+    }
+    if (amount < 20) {
+      toast.error("Minimum donation is $20");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-donation", {
+        body: {
+          amount: amount * 100, // cents
+          donor_name: donorName.trim(),
+          donor_email: donorEmail.trim(),
+          recurring,
+        },
+      });
+
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, "_blank");
+      }
+    } catch (err) {
+      console.error("Donation error:", err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -74,6 +112,24 @@ const DonateSection = () => {
             transition={{ duration: 0.6 }}
             className="bg-card rounded-3xl p-8 shadow-calm-lg"
           >
+            {/* Name & Email */}
+            <div className="space-y-3 mb-6">
+              <input
+                type="text"
+                placeholder="Your full name"
+                value={donorName}
+                onChange={(e) => setDonorName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-input bg-background font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <input
+                type="email"
+                placeholder="Your email address"
+                value={donorEmail}
+                onChange={(e) => setDonorEmail(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-input bg-background font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+            </div>
+
             {/* Toggle */}
             <div className="flex items-center justify-center gap-1 mb-8 bg-secondary rounded-full p-1 max-w-xs mx-auto">
               <button
@@ -134,8 +190,12 @@ const DonateSection = () => {
             </div>
 
             {/* CTA */}
-            <button className="w-full py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-lg hover:scale-[1.02] transition-transform shadow-calm-lg mb-3">
-              Donate ${amount} &amp; Join the Livestream
+            <button
+              onClick={handleDonate}
+              disabled={loading}
+              className="w-full py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-lg hover:scale-[1.02] transition-transform shadow-calm-lg mb-3 disabled:opacity-50"
+            >
+              {loading ? "Processing..." : `Donate $${amount} & Join the Livestream`}
             </button>
 
             <p className="font-body text-xs text-muted-foreground text-center mb-6">
@@ -147,7 +207,7 @@ const DonateSection = () => {
               <Shield className="w-4 h-4" />
               <span className="font-body text-xs">Secure Payment</span>
               <CreditCard className="w-4 h-4" />
-              <span className="font-body text-xs">256-bit SSL</span>
+              <span className="font-body text-xs">Powered by Stripe</span>
             </div>
           </motion.div>
         </div>

@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Mic2, Star } from "lucide-react";
+import { Mic2, Star, Heart } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Speaker {
   name: string;
@@ -134,9 +136,33 @@ const speakers: Speaker[] = [
   },
 ];
 
+interface DonorSpeaker {
+  name: string;
+  amount: number;
+}
+
 const SpeakersSection = () => {
   const hosts = speakers.filter((s) => s.isHost);
   const regularSpeakers = speakers.filter((s) => !s.isHost);
+  const [donorSpeakers, setDonorSpeakers] = useState<DonorSpeaker[]>([]);
+
+  // Fetch $20+ donors to show in speakers section
+  useEffect(() => {
+    const fetchDonors = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke("get-donations");
+        if (error) throw error;
+        if (data?.donors) {
+          setDonorSpeakers(data.donors.filter((d: DonorSpeaker) => d.amount >= 20));
+        }
+      } catch (err) {
+        console.error("Error fetching donor speakers:", err);
+      }
+    };
+    fetchDonors();
+    const interval = setInterval(fetchDonors, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="speakers" className="py-24 md:py-32 bg-background overflow-hidden">
@@ -223,6 +249,50 @@ const SpeakersSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* $20+ Donor Community Speakers */}
+        {donorSpeakers.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16"
+          >
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-donate/10 text-donate font-body text-sm font-semibold mb-4">
+                <Heart className="w-4 h-4" />
+                Community Voices — $20+ Donors
+              </div>
+              <p className="font-body text-muted-foreground">
+                These generous supporters have earned their place on stage
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+              {donorSpeakers.map((donor, i) => (
+                <motion.div
+                  key={`${donor.name}-${i}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.03 }}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-card shadow-calm border border-donate/10 hover:shadow-calm-lg hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-donate to-soft-green flex items-center justify-center shrink-0">
+                    <span className="font-display text-[10px] font-bold text-primary-foreground">
+                      {donor.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  </div>
+                  <span className="font-body text-sm font-medium text-card-foreground">
+                    {donor.name}
+                  </span>
+                  <span className="font-body text-xs text-donate font-semibold">
+                    ${donor.amount}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

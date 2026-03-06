@@ -1,1 +1,10 @@
 project_id = "bwipjtycrvpnybmyqlvi"
+
+[functions.create-donation]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.get-donations]
+verify_jwt = false
