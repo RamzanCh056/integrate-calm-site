@@ -16,7 +16,7 @@ const perks = [
 ];
 
 const DonateSection = () => {
-  const [amount, setAmount] = useState(20);
+  const [amount, setAmount] = useState(1);
   const [custom, setCustom] = useState("");
   const [recurring, setRecurring] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -93,9 +93,9 @@ const DonateSection = () => {
               Support the Movement.{" "}
               <span className="text-gradient-calm">Share Your Voice.</span>
             </h2>
-            <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto">
-              Donate $20 or more to receive:
-            </p>
+          <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto">
+            Every dollar makes a difference. Donate to receive:
+          </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-start">
