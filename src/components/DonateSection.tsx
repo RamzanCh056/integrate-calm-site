@@ -45,8 +45,8 @@ const DonateSection = () => {
   };
 
   const handleDonateClick = () => {
-    if (amount < 20) {
-      toast.error("Minimum donation is $20");
+    if (amount < 1) {
+      toast.error("Minimum donation is $1");
       return;
     }
     setShowDonorDialog(true);
@@ -181,8 +181,8 @@ const DonateSection = () => {
                 </span>
                 <input
                   type="number"
-                  min={20}
-                  placeholder="Custom amount (min $20)"
+                  min={1}
+                  placeholder="Custom amount"
                   value={custom}
                   onChange={(e) => handleCustom(e.target.value)}
                   className="w-full pl-8 pr-4 py-3 rounded-xl border border-input bg-background font-body text-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
