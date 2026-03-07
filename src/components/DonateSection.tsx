@@ -49,6 +49,15 @@ const DonateSection = () => {
       toast.error("Minimum donation is $1");
       return;
     }
+    // Check if user already registered — skip donor dialog
+    const stored = localStorage.getItem("registered_user");
+    if (stored) {
+      try {
+        const { name, email } = JSON.parse(stored);
+        handleProceedToPayment(name || "Anonymous", email || "anonymous@donor.com");
+        return;
+      } catch {}
+    }
     setShowDonorDialog(true);
   };
 

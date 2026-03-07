@@ -29,6 +29,7 @@ const RegistrationForm = () => {
         email: email.trim(),
         registeredAt: new Date().toISOString(),
       });
+      localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
       setSubmitted(true);
     } catch (err) {
       console.error("Registration error:", err);
