@@ -18,9 +18,6 @@ serve(async (req) => {
     if (!amount || amount < 2000) {
       throw new Error("Minimum donation is $20");
     }
-    if (!donor_name || !donor_email) {
-      throw new Error("Name and email are required");
-    }
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
       apiVersion: "2025-08-27.basil",
