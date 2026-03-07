@@ -32,7 +32,7 @@ serve(async (req) => {
 
     console.log(`Checkout completed: ${metadata.donor_name} - $${amountTotal / 100}`);
 
-    if (amountTotal >= 2000) {
+    if (amountTotal >= 100) {
       const supabase = createClient(
         Deno.env.get("SUPABASE_URL") ?? "",
         Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
