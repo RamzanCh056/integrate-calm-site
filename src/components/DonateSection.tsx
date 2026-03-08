@@ -54,13 +54,28 @@ const DonateSection = () => {
       if (sessionId) {
         supabase.functions.invoke("verify-donation", {
           body: { session_id: sessionId },
-        }).then(({ data, error }) => {
+        }).then(async ({ data, error }) => {
           if (error) {
             console.error("Verify donation error:", error);
           } else {
             console.log("Donation verified:", data);
             if (data?.amount) {
               setSuccessAmount(data.amount);
+            }
+            // Also save to Firebase donations collection
+            if (data?.saved) {
+              try {
+                const registeredUser = getRegisteredUser();
+                await addDoc(collection(db, "donations"), {
+                  name: registeredUser?.name || data.donor_name || "Anonymous",
+                  email: registeredUser?.email || data.donor_email || "",
+                  amount: data.amount || 0,
+                  donatedAt: new Date().toISOString(),
+                });
+                console.log("Donation saved to Firebase");
+              } catch (fbErr) {
+                console.error("Firebase donation save error:", fbErr);
+              }
             }
           }
           setShowSuccessDialog(true);
