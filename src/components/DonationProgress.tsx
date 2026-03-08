@@ -38,7 +38,13 @@ const DonationProgress = () => {
     fetchDonations();
     // Poll every 30 seconds for real-time updates
     const interval = setInterval(fetchDonations, 30000);
-    return () => clearInterval(interval);
+    // Listen for immediate refresh after a new donation
+    const handleNewDonation = () => fetchDonations();
+    window.addEventListener("donation-completed", handleNewDonation);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("donation-completed", handleNewDonation);
+    };
   }, []);
 
   // Animate the counter
