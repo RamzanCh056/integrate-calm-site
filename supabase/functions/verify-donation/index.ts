@@ -68,7 +68,7 @@ serve(async (req) => {
 
     console.log(`Donation verified and saved: ${metadata.donor_name} - $${amountTotal / 100}`);
 
-    return new Response(JSON.stringify({ saved: true, amount: amountTotal / 100 }), {
+    return new Response(JSON.stringify({ saved: true, amount: amountTotal / 100, donor_name: metadata.donor_name || "Anonymous", donor_email: metadata.donor_email || "" }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
