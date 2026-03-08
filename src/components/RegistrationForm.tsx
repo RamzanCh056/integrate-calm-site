@@ -39,8 +39,8 @@ const RegistrationForm = () => {
     if (!name.trim() || !email.trim()) return;
     setLoading(true);
     try {
-      // Store locally FIRST so donation flow can skip the dialog
       localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
+      window.dispatchEvent(new Event("user-registered"));
       setSubmitted(true);
       await addDoc(collection(db, "registrations"), {
         name: name.trim(),
