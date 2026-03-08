@@ -79,6 +79,8 @@ const DonateSection = () => {
             }
           }
           setShowSuccessDialog(true);
+          // Trigger immediate refresh of donation progress
+          window.dispatchEvent(new Event("donation-completed"));
         });
       } else {
         setShowSuccessDialog(true);
