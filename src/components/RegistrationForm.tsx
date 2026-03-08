@@ -43,27 +43,37 @@ const RegistrationForm = () => {
       // Check for duplicate email in Firebase
       const q = query(collection(db, "registrations"));
       const snapshot = await getDocs(q);
-      const alreadyExists = snapshot.docs.some(
-        (doc) => doc.data().email?.toLowerCase() === email.trim().toLowerCase()
+      const existingDoc = snapshot.docs.find(
+        (doc) => {
+          const data = doc.data();
+          return data.email && data.email.toLowerCase() === email.trim().toLowerCase();
+        }
       );
 
-      if (alreadyExists) {
-        // Already registered — just restore local state
-        localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
+      if (existingDoc) {
+        const existingData = existingDoc.data();
+        // Already registered — restore local state with the original name
+        localStorage.setItem("registered_user", JSON.stringify({ 
+          name: existingData.name || name.trim(), 
+          email: email.trim() 
+        }));
         window.dispatchEvent(new Event("user-registered"));
+        setName(existingData.name || name.trim());
         setSubmitted(true);
-        toast.info("You're already registered! Welcome back.");
+        toast.info("This email is already registered! Welcome back.");
+        setLoading(false);
         return;
       }
 
-      localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
-      window.dispatchEvent(new Event("user-registered"));
-      setSubmitted(true);
+      // New registration
       await addDoc(collection(db, "registrations"), {
         name: name.trim(),
         email: email.trim(),
         registeredAt: new Date().toISOString(),
       });
+      localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
+      window.dispatchEvent(new Event("user-registered"));
+      setSubmitted(true);
       toast.success("Registration successful!");
     } catch (err) {
       console.error("Registration error:", err);
