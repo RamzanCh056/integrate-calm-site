@@ -37,15 +37,36 @@ const DonateSection = () => {
   const [registeredUser, setRegisteredUser] = useState<{ name: string; email: string } | null>(getRegisteredUser);
   const isCustom = !presetAmounts.includes(amount);
 
-  // Check for donation success from Stripe redirect
+  // Check for donation success from Stripe redirect and verify/save donation
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("donation") === "success") {
-      setShowSuccessDialog(true);
+      const sessionId = params.get("session_id");
+      
+      // Clean URL immediately
       const url = new URL(window.location.href);
       url.searchParams.delete("donation");
       url.searchParams.delete("session_id");
       window.history.replaceState({}, "", url.pathname);
+
+      // Verify and save the donation via edge function
+      if (sessionId) {
+        supabase.functions.invoke("verify-donation", {
+          body: { session_id: sessionId },
+        }).then(({ data, error }) => {
+          if (error) {
+            console.error("Verify donation error:", error);
+          } else {
+            console.log("Donation verified:", data);
+            if (data?.amount) {
+              setSuccessAmount(data.amount);
+            }
+          }
+          setShowSuccessDialog(true);
+        });
+      } else {
+        setShowSuccessDialog(true);
+      }
     }
   }, []);
 
