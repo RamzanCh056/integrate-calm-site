@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import RegistrationForm from "@/components/RegistrationForm";
 import DonateSection from "@/components/DonateSection";
 import DonationProgress from "@/components/DonationProgress";
+import SchoolStory from "@/components/SchoolStory";
 import HowItWorks from "@/components/HowItWorks";
 import SolutionSection from "@/components/SolutionSection";
 import SpeakersSection from "@/components/SpeakersSection";
@@ -28,6 +29,7 @@ const Index = () => {
           <RegistrationForm />
         </div>
       </section>
+      <SchoolStory />
       <DonateSection />
       <DonationProgress />
       <HowItWorks />
