@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Heart, School, CloudRain, Wind, Footprints } from "lucide-react";
 
@@ -13,6 +14,54 @@ const challenges = [
   { icon: Footprints, text: "Children walk 7–8 km barefoot just to reach school" },
   { icon: School, text: "Children deserve a safe, dry space to learn and grow" },
 ];
+
+const AutoPlayVideo = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="max-w-3xl mx-auto mb-14"
+    >
+      <video
+        ref={videoRef}
+        controls
+        muted
+        playsInline
+        preload="metadata"
+        className="w-full rounded-2xl shadow-calm-lg"
+        poster="/images/calm-logo-poster.jpg"
+      >
+        <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/introductoin.mp4?alt=media&token=9338ddc6-ec34-4191-b02c-3548ab9a616f" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <p className="font-body text-sm text-muted-foreground text-center mt-3">
+        A view from inside our school — see what our children endure daily
+      </p>
+    </motion.div>
+  );
+};
 
 const SchoolStory = () => {
   return (
@@ -62,26 +111,8 @@ const SchoolStory = () => {
           ))}
         </div>
 
-        {/* Video */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-14"
-        >
-          <video
-            controls
-            preload="metadata"
-            className="w-full rounded-2xl shadow-calm-lg"
-            poster="/images/school-outside.jpg"
-          >
-            <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/introductoin.mp4?alt=media&token=9338ddc6-ec34-4191-b02c-3548ab9a616f" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <p className="font-body text-sm text-muted-foreground text-center mt-3">
-            A view from inside our school — see what our children endure daily
-          </p>
-        </motion.div>
+        {/* Video - auto plays on scroll */}
+        <AutoPlayVideo />
 
         {/* Challenges */}
         <motion.div
