@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Heart, School, CloudRain, Wind, Footprints } from "lucide-react";
 
