@@ -10,6 +10,21 @@ const RegistrationForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [regCount, setRegCount] = useState(0);
 
+  // Check if already registered on mount
+  useEffect(() => {
+    const stored = localStorage.getItem("registered_user");
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        if (data.name && data.email) {
+          setName(data.name);
+          setEmail(data.email);
+          setSubmitted(true);
+        }
+      } catch {}
+    }
+  }, []);
+
   // Real-time registration count from Firebase
   useEffect(() => {
     const q = query(collection(db, "registrations"));
