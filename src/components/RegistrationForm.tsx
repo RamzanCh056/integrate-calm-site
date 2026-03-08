@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { UserPlus, Users, CheckCircle } from "lucide-react";
-import { db, collection, addDoc, onSnapshot, query } from "@/lib/firebase";
+import { UserPlus, Users, CheckCircle, LogOut } from "lucide-react";
+import { db, collection, addDoc, onSnapshot, query, getDocs } from "@/lib/firebase";
+import { toast } from "sonner";
 
 const RegistrationForm = () => {
   const [name, setName] = useState("");
@@ -39,6 +40,22 @@ const RegistrationForm = () => {
     if (!name.trim() || !email.trim()) return;
     setLoading(true);
     try {
+      // Check for duplicate email in Firebase
+      const q = query(collection(db, "registrations"));
+      const snapshot = await getDocs(q);
+      const alreadyExists = snapshot.docs.some(
+        (doc) => doc.data().email?.toLowerCase() === email.trim().toLowerCase()
+      );
+
+      if (alreadyExists) {
+        // Already registered — just restore local state
+        localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
+        window.dispatchEvent(new Event("user-registered"));
+        setSubmitted(true);
+        toast.info("You're already registered! Welcome back.");
+        return;
+      }
+
       localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
       window.dispatchEvent(new Event("user-registered"));
       setSubmitted(true);
@@ -47,11 +64,22 @@ const RegistrationForm = () => {
         email: email.trim(),
         registeredAt: new Date().toISOString(),
       });
+      toast.success("Registration successful!");
     } catch (err) {
       console.error("Registration error:", err);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleUnregister = () => {
+    localStorage.removeItem("registered_user");
+    window.dispatchEvent(new Event("user-registered"));
+    setName("");
+    setEmail("");
+    setSubmitted(false);
+    toast.success("You've been unregistered. You can register again.");
   };
 
   if (submitted) {
@@ -72,6 +100,13 @@ const RegistrationForm = () => {
           <Users className="w-4 h-4" />
           {regCount} people registered
         </div>
+        <button
+          onClick={handleUnregister}
+          className="mt-4 flex items-center gap-2 mx-auto px-4 py-2 rounded-full text-muted-foreground hover:text-foreground font-body text-xs transition-colors"
+        >
+          <LogOut className="w-3.5 h-3.5" />
+          Register with a different email
+        </button>
       </motion.div>
     );
   }
