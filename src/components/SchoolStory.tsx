@@ -63,26 +63,8 @@ const SchoolStory = () => {
           ))}
         </div>
 
-        {/* Video */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-14"
-        >
-          <video
-            controls
-            preload="metadata"
-            className="w-full rounded-2xl shadow-calm-lg"
-            poster="/images/school-outside.jpg"
-          >
-            <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/introductoin.mp4?alt=media&token=9338ddc6-ec34-4191-b02c-3548ab9a616f" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <p className="font-body text-sm text-muted-foreground text-center mt-3">
-            A view from inside our school — see what our children endure daily
-          </p>
-        </motion.div>
+        {/* Video - auto plays on scroll */}
+        <AutoPlayVideo />
 
         {/* Challenges */}
         <motion.div
