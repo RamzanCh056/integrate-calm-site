@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, School, CloudRain, Wind } from "lucide-react";
+import { Heart, School, CloudRain, Wind, Footprints } from "lucide-react";
 
 const images = [
   { src: "/images/school-outside.jpg", alt: "Outside view of the school building made of logs", caption: "Our school from the outside" },
@@ -7,9 +7,17 @@ const images = [
   { src: "/images/school-inside-2.jpg", alt: "Classroom interior with learning materials on fragile walls", caption: "Learners' work blown away when it rains" },
 ];
 
+const videos = [
+  { src: "/images/school-video.mp4", caption: "A view from inside our school — see what our children endure daily" },
+  { src: "/images/school-video-2.mp4", caption: "The conditions children face every single day" },
+  { src: "/images/school-video-3.mp4", caption: "Rain and wind destroy the learning environment" },
+  { src: "/images/school-video-4.mp4", caption: "Help us change this reality for these children" },
+];
+
 const challenges = [
   { icon: CloudRain, text: "When it rains, the classroom feels like being outside" },
   { icon: Wind, text: "Wind blows off the learners' work every time it storms" },
+  { icon: Footprints, text: "Children walk 7–8 km barefoot just to reach school" },
   { icon: School, text: "Children deserve a safe, dry space to learn and grow" },
 ];
 
@@ -29,10 +37,10 @@ const SchoolStory = () => {
             Why Your Donation Matters
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Help Us <span className="text-gradient-calm">Rebuild This School</span>
+            Help Us <span className="text-gradient-calm">Rebuild This School</span> in Uganda
           </h2>
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-            This is the reality our children face every day. Your donation will help us build a safe, proper school where they can learn without fear of rain and wind.
+            These children walk 7–8 kilometres barefoot every day just to reach a school that can barely protect them from rain and wind. Your donation will help us build a safe, proper school where they can learn without fear.
           </p>
         </motion.div>
 
@@ -61,35 +69,40 @@ const SchoolStory = () => {
           ))}
         </div>
 
-        {/* Video */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-14"
-        >
-          <video
-            controls
-            preload="metadata"
-            className="w-full rounded-2xl shadow-calm-lg"
-            poster="/images/school-outside.jpg"
-          >
-            <source src="/images/school-video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <p className="font-body text-sm text-muted-foreground text-center mt-3">
-            A view from inside our school — see what our children endure daily
-          </p>
-        </motion.div>
+        {/* Videos */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-14">
+          {videos.map((video, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <video
+                controls
+                preload="metadata"
+                className="w-full rounded-2xl shadow-calm-lg"
+                poster="/images/school-outside.jpg"
+              >
+                <source src={video.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <p className="font-body text-sm text-muted-foreground text-center mt-3">
+                {video.caption}
+              </p>
+            </motion.div>
+          ))}
+        </div>
 
         {/* Challenges */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-12"
+          className="max-w-4xl mx-auto mb-12"
         >
-          <div className="grid sm:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
             {challenges.map((item, i) => (
               <div
                 key={i}
