@@ -15,6 +15,17 @@ const perks = [
   { icon: Film, text: "Access to event recordings" },
 ];
 
+const getRegisteredUser = (): { name: string; email: string } | null => {
+  try {
+    const stored = localStorage.getItem("registered_user");
+    if (stored) {
+      const data = JSON.parse(stored);
+      if (data.name && data.email) return data;
+    }
+  } catch {}
+  return null;
+};
+
 const DonateSection = () => {
   const [amount, setAmount] = useState(1);
   const [custom, setCustom] = useState("");
@@ -23,6 +34,7 @@ const DonateSection = () => {
   const [showDonorDialog, setShowDonorDialog] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [successAmount, setSuccessAmount] = useState(0);
+  const [registeredUser, setRegisteredUser] = useState<{ name: string; email: string } | null>(getRegisteredUser);
   const isCustom = !presetAmounts.includes(amount);
 
   // Check for donation success from Stripe redirect
@@ -30,13 +42,29 @@ const DonateSection = () => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("donation") === "success") {
       setShowSuccessDialog(true);
-      // Clean URL
       const url = new URL(window.location.href);
       url.searchParams.delete("donation");
       url.searchParams.delete("session_id");
       window.history.replaceState({}, "", url.pathname);
     }
   }, []);
+
+  // Listen for registration events from RegistrationForm
+  useEffect(() => {
+    const handleRegistration = () => {
+      setRegisteredUser(getRegisteredUser());
+    };
+    window.addEventListener("user-registered", handleRegistration);
+    // Also poll localStorage in case event was missed
+    const interval = setInterval(() => {
+      const user = getRegisteredUser();
+      if (user && !registeredUser) setRegisteredUser(user);
+    }, 1000);
+    return () => {
+      window.removeEventListener("user-registered", handleRegistration);
+      clearInterval(interval);
+    };
+  }, [registeredUser]);
 
   const handleCustom = (val: string) => {
     setCustom(val);
@@ -49,14 +77,11 @@ const DonateSection = () => {
       toast.error("Minimum donation is $1");
       return;
     }
-    // Check if user already registered — skip donor dialog
-    const stored = localStorage.getItem("registered_user");
-    if (stored) {
-      try {
-        const { name, email } = JSON.parse(stored);
-        handleProceedToPayment(name || "Anonymous", email || "anonymous@donor.com");
-        return;
-      } catch {}
+    // Re-check localStorage in case state is stale
+    const user = registeredUser || getRegisteredUser();
+    if (user) {
+      handleProceedToPayment(user.name, user.email);
+      return;
     }
     setShowDonorDialog(true);
   };
