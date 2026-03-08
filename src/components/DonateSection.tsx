@@ -6,9 +6,6 @@ import { toast } from "sonner";
 import { db, collection, addDoc } from "@/lib/firebase";
 import DonorInfoDialog from "./DonorInfoDialog";
 import DonationSuccessDialog from "./DonationSuccessDialog";
-import { toast } from "sonner";
-import DonorInfoDialog from "./DonorInfoDialog";
-import DonationSuccessDialog from "./DonationSuccessDialog";
 
 const presetAmounts = [20, 50, 100, 250];
 
