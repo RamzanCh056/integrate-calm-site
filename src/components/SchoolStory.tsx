@@ -7,13 +7,6 @@ const images = [
   { src: "/images/school-inside-2.jpg", alt: "Classroom interior with learning materials on fragile walls", caption: "Learners' work blown away when it rains" },
 ];
 
-const videos = [
-  { src: "/images/school-video.mp4", caption: "A view from inside our school — see what our children endure daily" },
-  { src: "/images/school-video-2.mp4", caption: "The conditions children face every single day" },
-  { src: "/images/school-video-3.mp4", caption: "Rain and wind destroy the learning environment" },
-  { src: "/images/school-video-4.mp4", caption: "Help us change this reality for these children" },
-];
-
 const challenges = [
   { icon: CloudRain, text: "When it rains, the classroom feels like being outside" },
   { icon: Wind, text: "Wind blows off the learners' work every time it storms" },
@@ -45,7 +38,7 @@ const SchoolStory = () => {
         </motion.div>
 
         {/* Image Gallery */}
-        <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto mb-14">
           {images.map((img, i) => (
             <motion.div
               key={i}
@@ -69,31 +62,26 @@ const SchoolStory = () => {
           ))}
         </div>
 
-        {/* Videos */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-14">
-          {videos.map((video, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <video
-                controls
-                preload="metadata"
-                className="w-full rounded-2xl shadow-calm-lg"
-                poster="/images/school-outside.jpg"
-              >
-                <source src={video.src} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <p className="font-body text-sm text-muted-foreground text-center mt-3">
-                {video.caption}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto mb-14"
+        >
+          <video
+            controls
+            preload="metadata"
+            className="w-full rounded-2xl shadow-calm-lg"
+            poster="/images/school-outside.jpg"
+          >
+            <source src="/images/school-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p className="font-body text-sm text-muted-foreground text-center mt-3">
+            A view from inside our school — see what our children endure daily
+          </p>
+        </motion.div>
 
         {/* Challenges */}
         <motion.div
@@ -104,9 +92,13 @@ const SchoolStory = () => {
         >
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
             {challenges.map((item, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-card shadow-calm border border-primary/5"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-card shadow-calm border border-primary/5 hover:shadow-calm-lg hover:-translate-y-1 transition-all"
               >
                 <div className="w-12 h-12 rounded-full bg-donate/10 flex items-center justify-center">
                   <item.icon className="w-6 h-6 text-donate" />
@@ -114,7 +106,7 @@ const SchoolStory = () => {
                 <p className="font-body text-sm text-card-foreground font-medium">
                   {item.text}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

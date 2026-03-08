@@ -9,25 +9,30 @@ const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <motion.div
-        initial={{ scale: 1.1 }}
+        initial={{ scale: 1.15 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 8, ease: "easeOut" }}
+        transition={{ duration: 12, ease: "easeOut" }}
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div className="absolute inset-0 bg-gradient-hero" />
 
-      {/* Floating decorative elements */}
+      {/* Floating orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-[10%] w-32 h-32 rounded-full bg-sky-blue/10 blur-2xl"
+          animate={{ y: [0, -30, 0], x: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-[8%] w-48 h-48 rounded-full bg-sky-blue/8 blur-3xl"
         />
         <motion.div
-          animate={{ y: [0, 20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/3 right-[15%] w-40 h-40 rounded-full bg-soft-green/10 blur-2xl"
+          animate={{ y: [0, 25, 0], x: [0, -15, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-[12%] w-56 h-56 rounded-full bg-soft-green/8 blur-3xl"
+        />
+        <motion.div
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/5 blur-3xl"
         />
       </div>
 
@@ -35,8 +40,8 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-8"
+          transition={{ delay: 0.3 }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/15 mb-8"
         >
           <Sparkles className="w-4 h-4 text-primary-foreground/80" />
           <span className="font-body text-sm tracking-wide text-primary-foreground/90">
@@ -45,10 +50,10 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-foreground leading-[1.1] max-w-5xl mx-auto mb-8"
+          transition={{ delay: 0.5, duration: 0.9 }}
+          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-foreground leading-[1.08] max-w-5xl mx-auto mb-8"
         >
           This World Needs More{" "}
           <span className="italic">Calm</span> — And It Starts With You
@@ -57,8 +62,8 @@ const HeroSection = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="font-body text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto mb-3 font-light"
+          transition={{ delay: 0.8 }}
+          className="font-body text-xl md:text-2xl text-primary-foreground/85 max-w-2xl mx-auto mb-4 font-light leading-relaxed"
         >
           Join the International Day of Calm Summit
         </motion.p>
@@ -66,14 +71,14 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="flex items-center justify-center gap-4 text-primary-foreground/70 font-body text-base mb-4"
+          transition={{ delay: 0.9 }}
+          className="flex items-center justify-center gap-4 text-primary-foreground/65 font-body text-base mb-4"
         >
           <span className="flex items-center gap-1.5">
             <CalendarDays className="w-4 h-4" />
             April 3–6, 2026
           </span>
-          <span className="w-1 h-1 rounded-full bg-primary-foreground/40" />
+          <span className="w-1 h-1 rounded-full bg-primary-foreground/30" />
           <span className="flex items-center gap-1.5">
             <Globe className="w-4 h-4" />
             Global Hybrid Event
@@ -83,8 +88,8 @@ const HeroSection = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-          className="font-display text-lg italic text-primary-foreground/50 mb-12"
+          transition={{ delay: 1 }}
+          className="font-display text-lg italic text-primary-foreground/40 mb-14"
         >
           Different disciplines. One goal.
         </motion.p>
@@ -92,24 +97,24 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
+          transition={{ delay: 1.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="#register-form"
-            className="group px-8 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-semibold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
+            className="group px-10 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
             Register Now
           </a>
           <a
             href="#donate"
-            className="px-8 py-4 rounded-full bg-donate text-donate-foreground font-body font-semibold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
+            className="px-10 py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
-            Donate &amp; Share Your Voice
+            Donate & Share Your Voice
           </a>
           <a
             href="#sponsor"
-            className="px-8 py-4 rounded-full border-2 border-primary-foreground/50 text-primary-foreground font-body font-semibold text-lg hover:bg-primary-foreground/10 transition-colors backdrop-blur-sm"
+            className="px-10 py-4 rounded-full border-2 border-primary-foreground/40 text-primary-foreground font-body font-semibold text-lg hover:bg-primary-foreground/10 transition-colors backdrop-blur-sm"
           >
             Become a Sponsor
           </a>
@@ -117,7 +122,7 @@ const HeroSection = () => {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

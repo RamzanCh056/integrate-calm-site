@@ -16,6 +16,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <StickyHeader />
       <HeroSection />
+
+      {/* Registration */}
       <section id="register-form" className="py-20 md:py-28 bg-secondary/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
@@ -29,6 +31,7 @@ const Index = () => {
           <RegistrationForm />
         </div>
       </section>
+
       <SchoolStory />
       <DonateSection />
       <DonationProgress />
