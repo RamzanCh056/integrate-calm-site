@@ -32,12 +32,19 @@ serve(async (req) => {
 
     console.log(`Checkout completed: ${metadata.donor_name} - $${amountTotal / 100}`);
 
-    if (amountTotal >= 100) {
-      const supabase = createClient(
-        Deno.env.get("SUPABASE_URL") ?? "",
-        Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
-      );
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
 
+    // Check if already saved (idempotent with verify-donation)
+    const { data: existing } = await supabase
+      .from("donations")
+      .select("id")
+      .eq("stripe_session_id", session.id)
+      .maybeSingle();
+
+    if (!existing) {
       const { error } = await supabase.from("donations").insert({
         donor_name: metadata.donor_name || "Anonymous",
         donor_email: metadata.donor_email || session.customer_email || "",
@@ -50,6 +57,8 @@ serve(async (req) => {
       } else {
         console.log(`Donation recorded successfully`);
       }
+    } else {
+      console.log("Donation already recorded via verify-donation");
     }
   }
 
