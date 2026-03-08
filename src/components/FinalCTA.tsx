@@ -3,8 +3,12 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const FinalCTA = () => {
   return (
-    <section id="sponsor" className="relative py-28 md:py-36 overflow-hidden">
-      <div
+    <section id="sponsor" className="relative py-32 md:py-40 overflow-hidden">
+      <motion.div
+        initial={{ scale: 1.05 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 8 }}
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
@@ -26,7 +30,7 @@ const FinalCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-12"
+          className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-14 leading-relaxed"
         >
           Together, we can build a calmer, more connected world. Choose how you'd
           like to participate.
@@ -41,19 +45,19 @@ const FinalCTA = () => {
         >
           <a
             href="#register"
-            className="px-8 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-semibold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
+            className="px-10 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
             Register Now
           </a>
           <a
             href="#donate"
-            className="px-8 py-4 rounded-full bg-donate text-donate-foreground font-body font-semibold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
+            className="px-10 py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
-            Donate &amp; Speak
+            Donate & Speak
           </a>
           <a
             href="#sponsor"
-            className="px-8 py-4 rounded-full border-2 border-primary-foreground/50 text-primary-foreground font-body font-semibold text-lg hover:bg-primary-foreground/10 transition-colors backdrop-blur-sm"
+            className="px-10 py-4 rounded-full border-2 border-primary-foreground/40 text-primary-foreground font-body font-bold text-lg hover:bg-primary-foreground/10 transition-colors backdrop-blur-sm"
           >
             Sponsor the Summit
           </a>

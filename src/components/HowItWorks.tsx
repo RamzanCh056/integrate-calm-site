@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { DollarSign, Mail, Radio, ArrowRight } from "lucide-react";
+import { DollarSign, Mail, Radio } from "lucide-react";
 
 const steps = [
   {
@@ -26,23 +26,23 @@ const HowItWorks = () => {
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-6">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display text-4xl md:text-5xl font-bold text-center text-foreground mb-20"
+          className="text-center mb-16"
         >
-          How It Works
-        </motion.h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            How It Works
+          </h2>
+          <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto">
+            Three simple steps to make your voice heard on the global stage.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto relative">
-          {/* Connector arrows */}
-          <div className="hidden md:flex absolute top-14 left-[33%] w-[34%] items-center justify-center">
-            <ArrowRight className="w-6 h-6 text-border" />
-          </div>
-          <div className="hidden md:flex absolute top-14 right-[10%] w-[10%] items-center justify-center">
-            <ArrowRight className="w-6 h-6 text-border" />
-          </div>
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
+          {/* Connector line */}
+          <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-primary/20 via-sky-blue/20 to-soft-green/20" />
 
           {steps.map((step, i) => (
             <motion.div
@@ -51,11 +51,11 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
-              className="text-center relative bg-card rounded-3xl p-8 shadow-calm hover:shadow-calm-lg transition-shadow"
+              className="text-center relative bg-card rounded-3xl p-8 shadow-calm hover:shadow-calm-lg hover:-translate-y-1 transition-all"
             >
               <div className="relative mx-auto mb-6 w-fit">
                 <div
-                  className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center shadow-calm rotate-3 hover:rotate-0 transition-transform`}
+                  className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center shadow-calm`}
                 >
                   <step.icon className="w-9 h-9 text-primary-foreground" />
                 </div>
