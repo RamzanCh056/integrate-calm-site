@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, TrendingUp, Users } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { supabase } from "@/integrations/supabase/client";
+import { db, collection, query, orderBy, onSnapshot } from "@/lib/firebase";
 
 const GOAL = 30000;
 
 interface Donor {
   name: string;
   amount: number;
-  created_at: string;
+  donatedAt: string;
 }
 
 const DonationProgress = () => {
@@ -18,33 +18,30 @@ const DonationProgress = () => {
   const [loading, setLoading] = useState(true);
   const [displayRaised, setDisplayRaised] = useState(0);
 
-  // Fetch donations from Supabase via edge function
-  const fetchDonations = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke("get-donations");
-      if (error) throw error;
-      if (data) {
-        setRaised(data.totalRaised || 0);
-        setDonors(data.donors || []);
-      }
-    } catch (err) {
-      console.error("Error fetching donations:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Real-time listener on Firebase donations collection
   useEffect(() => {
-    fetchDonations();
-    // Poll every 30 seconds for real-time updates
-    const interval = setInterval(fetchDonations, 30000);
-    // Listen for immediate refresh after a new donation
-    const handleNewDonation = () => fetchDonations();
-    window.addEventListener("donation-completed", handleNewDonation);
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener("donation-completed", handleNewDonation);
-    };
+    const q = query(collection(db, "donations"), orderBy("donatedAt", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const donorList: Donor[] = [];
+      let total = 0;
+      snapshot.forEach((doc) => {
+        const d = doc.data();
+        donorList.push({
+          name: d.name || "Anonymous",
+          amount: d.amount || 0,
+          donatedAt: d.donatedAt || "",
+        });
+        total += d.amount || 0;
+      });
+      setDonors(donorList);
+      setRaised(total);
+      setLoading(false);
+    }, (err) => {
+      console.error("Error listening to donations:", err);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   // Animate the counter
