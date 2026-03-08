@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, TrendingUp, Users } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { supabase } from "@/integrations/supabase/client";
+import { db, collection, query, orderBy, onSnapshot } from "@/lib/firebase";
 
 const GOAL = 30000;
 
 interface Donor {
   name: string;
   amount: number;
-  created_at: string;
+  donatedAt: string;
 }
 
 const DonationProgress = () => {
