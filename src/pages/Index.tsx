@@ -29,6 +29,7 @@ const Index = () => {
           <RegistrationForm />
         </div>
       </section>
+      <SchoolStory />
       <DonateSection />
       <DonationProgress />
       <HowItWorks />
