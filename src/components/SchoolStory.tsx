@@ -53,8 +53,7 @@ const AutoPlayVideo = () => {
         className="w-full max-h-[400px] rounded-2xl shadow-calm-lg object-cover"
         poster="/images/calm-logo-poster.jpg"
       >
-        <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/Day%20of%20Calm.mov?alt=media&token=4ff56f5d-a9ce-433e-b713-e782926ed62d" type="video/quicktime" />
-        <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/Day%20of%20Calm.mov?alt=media&token=4ff56f5d-a9ce-433e-b713-e782926ed62d" type="video/mp4" />
+        <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <p className="font-body text-sm text-muted-foreground text-center mt-3">
