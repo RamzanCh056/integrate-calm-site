@@ -1,69 +1,12 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Heart, School, CloudRain, Wind, Footprints } from "lucide-react";
+import { Heart, School } from "lucide-react";
 
 const images = [
-  { src: "/images/school-outside.jpg", alt: "Outside view of the school building made of logs", caption: "Our school from the outside" },
-  { src: "/images/school-inside-1.jpg", alt: "Inside the classroom with light coming through wall gaps", caption: "Light and rain seep through the walls" },
-  { src: "/images/school-inside-2.jpg", alt: "Classroom interior with learning materials on fragile walls", caption: "Learners' work blown away when it rains" },
+  { src: "/images/school-condition.png", alt: "Current condition of school — logs with gaps, leaky roof, unsafe environment" },
+  { src: "/images/school-rain.png", alt: "Rain pouring into the classroom — wind blows learners' work away" },
+  { src: "/images/school-desks.png", alt: "Broken school desks that need constant repairs" },
+  { src: "/images/school-kitchen.png", alt: "Unsafe school kitchen that needs rebuilding" },
 ];
-
-const challenges = [
-  { icon: CloudRain, text: "When it rains, the classroom feels like being outside" },
-  { icon: Wind, text: "Wind blows off the learners' work every time it storms" },
-  { icon: Footprints, text: "Children walk 7–8 km barefoot just to reach school" },
-  { icon: School, text: "Children deserve a safe, dry space to learn and grow" },
-];
-
-const AutoPlayVideo = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.4 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="max-w-md mx-auto mb-14"
-    >
-      <div className="relative w-full rounded-2xl overflow-hidden shadow-calm-lg bg-black aspect-[9/16] max-h-[480px]">
-        <video
-          ref={videoRef}
-          controls
-          muted
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-contain"
-          poster="/images/calm-logo-poster.jpg"
-        >
-          <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <p className="font-body text-sm text-muted-foreground text-center mt-3">
-        A view from inside our school — see what our children endure daily
-      </p>
-    </motion.div>
-  );
-};
 
 const SchoolStory = () => {
   return (
@@ -88,60 +31,49 @@ const SchoolStory = () => {
           </p>
         </motion.div>
 
-        {/* Image Gallery */}
-        <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto mb-14">
+        {/* Image Gallery — 2x2 grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-5xl mx-auto mb-14">
           {images.map((img, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
+              transition={{ delay: i * 0.12 }}
               className="group relative rounded-2xl overflow-hidden shadow-calm-lg"
             >
               <img
                 src={img.src}
                 alt={img.alt}
                 loading="lazy"
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <p className="absolute bottom-3 left-4 right-4 font-body text-sm text-white font-medium">
-                {img.caption}
-              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Video - auto plays on scroll */}
-        <AutoPlayVideo />
-
-        {/* Challenges */}
+        {/* Video — manual play only */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto mb-12"
+          className="max-w-md mx-auto mb-14"
         >
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-            {challenges.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center text-center gap-3 p-6 rounded-2xl bg-card shadow-calm border border-primary/5 hover:shadow-calm-lg hover:-translate-y-1 transition-all"
-              >
-                <div className="w-12 h-12 rounded-full bg-donate/10 flex items-center justify-center">
-                  <item.icon className="w-6 h-6 text-donate" />
-                </div>
-                <p className="font-body text-sm text-card-foreground font-medium">
-                  {item.text}
-                </p>
-              </motion.div>
-            ))}
+          <div className="relative w-full rounded-2xl overflow-hidden shadow-calm-lg bg-black aspect-[9/16] max-h-[480px]">
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-contain"
+              poster="/images/calm-logo-poster.jpg"
+            >
+              <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
+          <p className="font-body text-sm text-muted-foreground text-center mt-3">
+            A view from inside our school — see what our children endure daily
+          </p>
         </motion.div>
 
         {/* CTA */}
