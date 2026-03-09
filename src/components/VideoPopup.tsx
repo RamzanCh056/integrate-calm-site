@@ -23,8 +23,7 @@ const VideoPopup = () => {
         <div className="relative w-full rounded-xl overflow-hidden aspect-[9/16] max-h-[70vh]">
           <video
             controls
-            autoPlay
-            muted
+           autoPlay
             playsInline
             preload="metadata"
             className="w-full h-full object-cover rounded-xl"
