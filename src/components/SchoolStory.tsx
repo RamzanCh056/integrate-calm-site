@@ -31,8 +31,8 @@ const SchoolStory = () => {
           </p>
         </motion.div>
 
-        {/* Image Gallery — 2x2 grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-5xl mx-auto mb-14">
+        {/* Image Gallery — 2x2 grid, smaller */}
+        <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto mb-14">
           {images.map((img, i) => (
             <motion.div
               key={i}
@@ -40,7 +40,7 @@ const SchoolStory = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.12 }}
-              className="group relative rounded-2xl overflow-hidden shadow-calm-lg"
+              className="group relative rounded-xl overflow-hidden shadow-calm border border-border"
             >
               <img
                 src={img.src}
@@ -52,19 +52,19 @@ const SchoolStory = () => {
           ))}
         </div>
 
-        {/* Video — manual play only */}
+        {/* Video — no black bg, clean card style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-md mx-auto mb-14"
+          className="max-w-xs mx-auto mb-14"
         >
-          <div className="relative w-full rounded-2xl overflow-hidden shadow-calm-lg bg-black aspect-[9/16] max-h-[480px]">
+          <div className="relative w-full rounded-xl overflow-hidden shadow-calm border border-border bg-card aspect-[9/16] max-h-[420px]">
             <video
               controls
               playsInline
               preload="metadata"
-              className="absolute inset-0 w-full h-full object-contain"
+              className="absolute inset-0 w-full h-full object-cover"
               poster="/images/calm-logo-poster.jpg"
             >
               <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
