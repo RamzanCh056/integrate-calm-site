@@ -12,13 +12,13 @@ const VideoPopup = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-sm p-2 overflow-hidden rounded-2xl border border-border bg-card [&>button]:hidden">
+      <DialogContent className="sm:max-w-sm p-2 overflow-visible rounded-2xl border border-border bg-card [&>button]:hidden">
         <DialogTitle className="sr-only">School Video</DialogTitle>
         <button
           onClick={() => setOpen(false)}
-          className="absolute -top-2 -right-2 z-20 w-8 h-8 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+          className="absolute -top-3 -right-3 z-50 w-9 h-9 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
         <div className="relative w-full rounded-xl overflow-hidden aspect-[9/16] max-h-[70vh]">
           <video
