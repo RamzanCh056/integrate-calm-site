@@ -10,10 +10,12 @@ import SpeakersSection from "@/components/SpeakersSection";
 import JoinLivestream from "@/components/JoinLivestream";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import VideoPopup from "@/components/VideoPopup";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <VideoPopup />
       <StickyHeader />
       <HeroSection />
 
