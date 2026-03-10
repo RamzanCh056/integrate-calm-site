@@ -30,11 +30,11 @@ const speakers: Speaker[] = [
     isHost: true,
   },
   {
-    name: "Maddi Cheers",
-    role: "Storyteller & Wisdom Activist",
-    topic: "Timeless Tales, Tranquil Hearts: Storytelling as a Path to Wisdom & Peace",
-    initials: "MC",
-    gradient: "from-soft-green to-sky-blue",
+    name: "Dr. Scott Lawry",
+    role: "Family Medicine",
+    topic: "Alternative Wellness for Age Management",
+    initials: "SL",
+    gradient: "from-primary to-soft-green",
   },
   {
     name: "Ernalee Shannon",
