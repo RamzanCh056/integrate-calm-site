@@ -1,14 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 
 const VideoPopup = () => {
   const [open, setOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setOpen(true), 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (open && videoRef.current) {
+      // Try playing with sound; if blocked by browser, fall back to muted
+      videoRef.current.muted = false;
+      videoRef.current.play().catch(() => {
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          videoRef.current.play();
+        }
+      });
+    }
+  }, [open]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -20,14 +34,13 @@ const VideoPopup = () => {
         >
           <X className="w-4 h-4" strokeWidth={3} />
         </button>
-        <div className="relative w-full rounded-xl overflow-hidden aspect-[9/16] max-h-[75vh]">
+        <div className="relative w-full rounded-xl overflow-hidden max-h-[80vh]">
           <video
+            ref={videoRef}
             controls
-            autoPlay
-            muted
             playsInline
-            preload="metadata"
-            className="w-full h-full object-cover rounded-xl"
+            preload="auto"
+            className="w-full h-full rounded-xl"
             poster="/images/calm-poster-thumbnail.png"
           >
             <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
