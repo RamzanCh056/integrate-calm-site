@@ -28,7 +28,7 @@ const VideoPopup = () => {
             playsInline
             preload="metadata"
             className="w-full h-full object-cover rounded-xl"
-            poster="/images/calm-logo-poster.jpg"
+            poster="/images/calm-poster-thumbnail.png"
           >
             <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
           </video>
