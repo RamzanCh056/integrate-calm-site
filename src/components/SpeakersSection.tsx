@@ -37,6 +37,13 @@ const speakers: Speaker[] = [
     gradient: "from-primary to-soft-green",
   },
   {
+    name: "Janet Juricic",
+    role: "Health Educator, RN",
+    topic: "TBA",
+    initials: "JJ",
+    gradient: "from-soft-green to-sky-blue",
+  },
+  {
     name: "Ernalee Shannon",
     role: "ADHD Thrive Coach",
     topic: "Unleash Your Inner Happy",
