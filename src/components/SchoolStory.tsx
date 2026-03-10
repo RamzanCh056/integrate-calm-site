@@ -57,7 +57,7 @@ const SchoolStory = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-sm md:max-w-md mx-auto mb-14"
+          className="max-w-md md:max-w-xl lg:max-w-2xl mx-auto mb-14"
         >
           <div className="relative w-full rounded-xl overflow-hidden shadow-calm border border-border bg-card aspect-[9/16] max-h-[420px]">
             <video
