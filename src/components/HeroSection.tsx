@@ -63,7 +63,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="font-body text-xl md:text-2xl text-primary-foreground/85 max-w-2xl mx-auto mb-4 font-light leading-relaxed"
+          className="font-body text-2xl md:text-3xl text-primary-foreground max-w-2xl mx-auto mb-4 font-medium leading-relaxed"
         >
           Join the International Day of Calm Summit
         </motion.p>
