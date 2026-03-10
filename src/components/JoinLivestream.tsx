@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Video, Youtube, Facebook, Instagram, Twitter, MonitorPlay, ExternalLink } from "lucide-react";
+import { Video, Youtube, Facebook, Instagram, MonitorPlay, ExternalLink } from "lucide-react";
 
 const platforms = [
   {
@@ -29,10 +29,9 @@ const platforms = [
 ];
 
 const socials = [
-  { name: "YouTube", icon: Youtube, href: "#" },
-  { name: "Facebook", icon: Facebook, href: "#" },
-  { name: "Instagram", icon: Instagram, href: "#" },
-  { name: "Twitter / X", icon: Twitter, href: "#" },
+  { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@beabetterparentdotcom" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/share/18KHYGWdZ4/?mibextid=wwXIfr" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/dayofcalm?igsh=MWZwcXl4N2trZWR4dw==" },
 ];
 
 const JoinLivestream = () => {
