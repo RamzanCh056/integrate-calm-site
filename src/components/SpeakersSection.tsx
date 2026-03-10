@@ -30,10 +30,17 @@ const speakers: Speaker[] = [
     isHost: true,
   },
   {
-    name: "Maddi Cheers",
-    role: "Storyteller & Wisdom Activist",
-    topic: "Timeless Tales, Tranquil Hearts: Storytelling as a Path to Wisdom & Peace",
-    initials: "MC",
+    name: "Dr. Scott Lawry",
+    role: "Family Medicine",
+    topic: "Alternative Wellness for Age Management",
+    initials: "SL",
+    gradient: "from-primary to-soft-green",
+  },
+  {
+    name: "Janet Juricic",
+    role: "Health Educator, RN",
+    topic: "TBA",
+    initials: "JJ",
     gradient: "from-soft-green to-sky-blue",
   },
   {
@@ -114,13 +121,6 @@ const speakers: Speaker[] = [
     gradient: "from-sky-blue to-deep-green",
   },
   {
-    name: "Dr. Scott Lawry",
-    role: "Family Medicine",
-    topic: "Alternative Wellness for Age Management",
-    initials: "SL",
-    gradient: "from-primary to-soft-green",
-  },
-  {
     name: "Wendy Ologe",
     role: "Intentional Parents Academy",
     topic: "TBA",
@@ -128,10 +128,10 @@ const speakers: Speaker[] = [
     gradient: "from-donate to-primary",
   },
   {
-    name: "Janet Juricic",
-    role: "Health Educator, RN",
-    topic: "TBA",
-    initials: "JJ",
+    name: "Maddi Cheers",
+    role: "Storyteller & Wisdom Activist",
+    topic: "Timeless Tales, Tranquil Hearts: Storytelling as a Path to Wisdom & Peace",
+    initials: "MC",
     gradient: "from-soft-green to-sky-blue",
   },
 ];
