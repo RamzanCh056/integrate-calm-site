@@ -32,8 +32,9 @@ const FinalCTA = () => {
           transition={{ delay: 0.2 }}
           className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-14 leading-relaxed"
         >
-          Together, we can build a calmer, more connected world. Choose how you'd
-          like to participate.
+          Together, we can build a calmer, more connected world.
+          <br />
+          Choose how you'd like to participate.
         </motion.p>
 
         <motion.div
