@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Heart, School } from "lucide-react";
 
+const YOUTUBE_VIDEO_ID = "jrQRv-gJoqM";
+
 const images = [
   { src: "/images/school-condition.png", alt: "Current condition of school — logs with gaps, leaky roof, unsafe environment" },
   { src: "/images/school-rain.png", alt: "Rain pouring into the classroom — wind blows learners' work away" },
@@ -52,24 +54,21 @@ const SchoolStory = () => {
           ))}
         </div>
 
-        {/* Video — no black bg, clean card style */}
+        {/* YouTube Video */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-md md:max-w-xl lg:max-w-2xl mx-auto mb-14"
         >
-          <div className="relative w-full rounded-xl overflow-hidden shadow-calm border border-border bg-card aspect-[9/16] max-h-[420px]">
-            <video
-              controls
-              playsInline
-              preload="metadata"
-              className="absolute inset-0 w-full h-full object-cover"
-              poster="/images/calm-logo-poster.jpg"
-            >
-              <source src="https://firebasestorage.googleapis.com/v0/b/askstella-5d3d5.appspot.com/o/VIDEO-2026-03-09-10-44-28.mp4?alt=media&token=fa355686-2b46-41c2-9fb7-ebd77be91db6" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+          <div className="relative w-full rounded-xl overflow-hidden shadow-calm border border-border bg-card" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              className="absolute inset-0 w-full h-full rounded-xl"
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?rel=0`}
+              title="Day of Calm Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
           <p className="font-body text-sm text-muted-foreground text-center mt-3">
             A view from inside our school — see what our children endure daily
