@@ -21,7 +21,7 @@ const VideoPopup = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md md:max-w-lg p-3 overflow-visible rounded-3xl border-2 border-primary/20 bg-card shadow-2xl [&>button]:hidden">
+      <DialogContent className="sm:max-w-md md:max-w-lg p-1.5 overflow-visible rounded-2xl border border-border/30 bg-card shadow-2xl [&>button]:hidden">
         <DialogTitle className="sr-only">School Video</DialogTitle>
         <button
           onClick={() => setOpen(false)}
