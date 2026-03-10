@@ -14,24 +14,19 @@ const VideoPopup = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-lg md:max-w-xl lg:max-w-2xl p-0 overflow-visible rounded-2xl border border-border/20 bg-black shadow-2xl [&>button]:hidden">
+      <DialogContent className="sm:max-w-xl md:max-w-2xl lg:max-w-3xl p-0.5 overflow-visible rounded-2xl border-0 bg-card/50 shadow-2xl [&>button]:hidden">
         <DialogTitle className="sr-only">Day of Calm Video</DialogTitle>
-
-        {/* Close button */}
         <button
           onClick={() => setOpen(false)}
-          className="absolute -top-4 -right-4 z-50 w-10 h-10 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-transform border-2 border-background cursor-pointer"
-          aria-label="Close video"
+          className="absolute -top-3 -right-3 z-50 w-9 h-9 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-xl hover:scale-110 transition-transform border-2 border-background"
         >
-          <X className="w-5 h-5" strokeWidth={2.5} />
+          <X className="w-4 h-4" strokeWidth={3} />
         </button>
-
-        {/* Video container — 9:16 vertical aspect ratio to match the video */}
-        <div className="relative w-full rounded-2xl overflow-hidden" style={{ paddingBottom: "177.78%" }}>
+        <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: "56.25%" }}>
           {open && (
             <iframe
-              className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+              className="absolute inset-0 w-full h-full rounded-xl"
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`}
               title="Day of Calm Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
