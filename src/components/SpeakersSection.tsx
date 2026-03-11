@@ -10,6 +10,7 @@ interface Speaker {
   initials: string;
   gradient: string;
   isHost?: boolean;
+  photo?: string;
 }
 
 const speakers: Speaker[] = [
