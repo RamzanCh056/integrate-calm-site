@@ -32,6 +32,7 @@ const speakers: Speaker[] = [
     gradient: "from-sky-blue to-primary",
     isHost: true,
     photo: "/images/speakers/greg-edwards.png",
+    photoPosition: "zoomout",
   },
   {
     name: "Dr. Scott Lawry",
