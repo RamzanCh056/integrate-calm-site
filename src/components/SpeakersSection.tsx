@@ -106,6 +106,7 @@ const speakers: Speaker[] = [
     topic: "TBA",
     initials: "PI",
     gradient: "from-primary to-donate",
+    photo: "/images/speakers/priti-irani.jpg",
   },
   {
     name: "Ernalee Shannon",
