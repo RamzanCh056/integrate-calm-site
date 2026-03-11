@@ -6,7 +6,7 @@ const YOUTUBE_VIDEO_ID = "jrQRv-gJoqM";
 
 const VideoPopup = () => {
   const [open, setOpen] = useState(false);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
