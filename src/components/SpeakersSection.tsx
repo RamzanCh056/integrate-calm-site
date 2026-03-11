@@ -308,6 +308,9 @@ const SpeakersSection = () => {
                     {s.name}
                   </h3>
                   <p className="font-body text-xs text-muted-foreground mt-0.5">{s.role}</p>
+                  {s.location && (
+                    <p className="font-body text-[11px] text-muted-foreground/70">📍 {s.location}</p>
+                  )}
                   <p className="font-body text-xs font-medium text-primary mt-2 leading-snug">
                     {s.topic}
                   </p>
