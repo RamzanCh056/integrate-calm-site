@@ -14,10 +14,21 @@ const VideoPopup = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Try unmuted first; if browser blocks, fall back to muted
+  // Start muted for autoplay (browser requirement), then try to unmute after a short delay
   const handleIframeLoad = () => {
-    // YouTube iframe API doesn't give us direct access, so we start unmuted
-    // and let the browser decide. We show a mute toggle for user control.
+    setTimeout(() => {
+      const iframe = iframeRef.current;
+      if (iframe?.contentWindow) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "unMute", args: [] }),
+          "*"
+        );
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+          "*"
+        );
+      }
+    }, 1000);
   };
 
   const toggleMute = () => {
