@@ -31,6 +31,7 @@ const speakers: Speaker[] = [
     initials: "GE",
     gradient: "from-sky-blue to-primary",
     isHost: true,
+    photo: "/images/speakers/greg-edwards.png",
   },
   {
     name: "Dr. Scott Lawry",
@@ -38,6 +39,7 @@ const speakers: Speaker[] = [
     topic: "Aging Gracefully and Staying Calm Under Fire",
     initials: "SL",
     gradient: "from-primary to-soft-green",
+    photo: "/images/speakers/scott-lawry.png",
   },
   {
     name: "Bernetta Cannon",
@@ -45,6 +47,7 @@ const speakers: Speaker[] = [
     topic: "What Is Calm & How to Get It",
     initials: "BC",
     gradient: "from-soft-green to-sky-blue",
+    photo: "/images/speakers/bernetta-cannon.png",
   },
   {
     name: "Robert Vetter",
@@ -77,6 +80,7 @@ const speakers: Speaker[] = [
     topic: "Breaking the Cycle: Evidence Based Solutions to Prevent Violent Crime",
     initials: "MP",
     gradient: "from-primary to-deep-green",
+    photo: "/images/speakers/minister-peace.png",
   },
   {
     name: "Drasko Raicevic",
@@ -161,6 +165,7 @@ const speakers: Speaker[] = [
     topic: "Chanting Your Way to Calm",
     initials: "HL",
     gradient: "from-sky-blue to-deep-green",
+    photo: "/images/speakers/harry-lopez.png",
   },
 ];
 
