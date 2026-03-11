@@ -26,7 +26,7 @@ const VideoPopup = () => {
           {open && (
             <iframe
               className="absolute inset-0 w-full h-full rounded-xl"
-              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`}
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&rel=0`}
               title="Day of Calm Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
