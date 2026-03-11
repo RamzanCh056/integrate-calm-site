@@ -80,6 +80,7 @@ const speakers: Speaker[] = [
     topic: "Breaking the Cycle: Evidence Based Solutions to Prevent Violent Crime",
     initials: "MP",
     gradient: "from-primary to-deep-green",
+    photo: "/images/speakers/minister-peace.png",
   },
   {
     name: "Drasko Raicevic",
