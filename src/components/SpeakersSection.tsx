@@ -24,6 +24,7 @@ const speakers: Speaker[] = [
     gradient: "from-primary to-soft-green",
     isHost: true,
     photo: "/images/speakers/celia-kibler.jpg",
+    location: "Maryland, USA",
   },
   {
     name: "Greg Edwards",
@@ -34,6 +35,7 @@ const speakers: Speaker[] = [
     isHost: true,
     photo: "/images/speakers/greg-edwards.png",
     photoPosition: "zoomout",
+    location: "California, USA",
   },
   {
     name: "Dr. Scott Lawry",
@@ -42,6 +44,7 @@ const speakers: Speaker[] = [
     initials: "SL",
     gradient: "from-primary to-soft-green",
     photo: "/images/speakers/scott-lawry.png",
+    location: "USA",
   },
   {
     name: "Bernetta Cannon",
@@ -50,6 +53,7 @@ const speakers: Speaker[] = [
     initials: "BC",
     gradient: "from-soft-green to-sky-blue",
     photo: "/images/speakers/bernetta-cannon.png",
+    location: "USA",
   },
   {
     name: "Robert Vetter",
@@ -59,6 +63,7 @@ const speakers: Speaker[] = [
     gradient: "from-deep-green to-soft-green",
     photo: "/images/speakers/robert-vetter.jpeg",
     photoPosition: "object-[center_20%]",
+    location: "New York, USA",
   },
   {
     name: "Wendy Ologe",
@@ -67,6 +72,7 @@ const speakers: Speaker[] = [
     initials: "WO",
     gradient: "from-donate to-primary",
     photo: "/images/speakers/wendy-ologe.png",
+    location: "Nigeria",
   },
   {
     name: "Maddi Cheers",
@@ -75,6 +81,7 @@ const speakers: Speaker[] = [
     initials: "MC",
     gradient: "from-soft-green to-sky-blue",
     photo: "/images/speakers/maddi-cheers.jpg",
+    location: "New York, USA",
   },
   {
     name: "Minister Peace",
@@ -83,6 +90,7 @@ const speakers: Speaker[] = [
     initials: "MP",
     gradient: "from-primary to-deep-green",
     photo: "/images/speakers/minister-peace.png",
+    location: "New York, USA",
   },
   {
     name: "Drasko Raicevic",
@@ -91,6 +99,7 @@ const speakers: Speaker[] = [
     initials: "DR",
     gradient: "from-soft-green to-primary",
     photo: "/images/speakers/drasko-raicevic.png",
+    location: "Canada",
   },
   {
     name: "Yaakov Andrew Cohen",
@@ -98,6 +107,7 @@ const speakers: Speaker[] = [
     topic: "Positive Roots. Unbreakable Future.",
     initials: "YC",
     gradient: "from-primary to-sky-blue",
+    location: "Florida, USA",
   },
   {
     name: "Karyn Melko-Medeiros",
@@ -107,6 +117,7 @@ const speakers: Speaker[] = [
     gradient: "from-donate to-sky-blue",
     photo: "/images/speakers/karyn-melko.jpg",
     photoPosition: "zoom",
+    location: "Canada",
   },
   {
     name: "Czarina Pasculado",
@@ -115,6 +126,7 @@ const speakers: Speaker[] = [
     initials: "CP",
     gradient: "from-soft-green to-deep-green",
     photo: "/images/speakers/czarina-pasculado.jpg",
+    location: "Philippines",
   },
   {
     name: "Priti Irani",
@@ -123,6 +135,7 @@ const speakers: Speaker[] = [
     initials: "PI",
     gradient: "from-primary to-donate",
     photo: "/images/speakers/priti-irani.jpg",
+    location: "India",
   },
   {
     name: "Ernalee Shannon",
@@ -131,6 +144,7 @@ const speakers: Speaker[] = [
     initials: "ES",
     gradient: "from-donate to-soft-green",
     photo: "/images/speakers/ernalee-shannon.png",
+    location: "USA",
   },
   {
     name: "Jennie Potter",
@@ -140,6 +154,7 @@ const speakers: Speaker[] = [
     gradient: "from-sky-blue to-soft-green",
     photo: "/images/speakers/jennie-potter.png",
     photoPosition: "zoom",
+    location: "USA",
   },
   {
     name: "Dr. Kailey Buller",
@@ -147,6 +162,7 @@ const speakers: Speaker[] = [
     topic: "Tired or Hangry? Why Calm Can Feel Out of Reach",
     initials: "KB",
     gradient: "from-sky-blue to-primary",
+    location: "Canada",
   },
   {
     name: "Luke Mickelson",
@@ -154,6 +170,7 @@ const speakers: Speaker[] = [
     topic: "TBA",
     initials: "LM",
     gradient: "from-deep-green to-primary",
+    location: "USA",
   },
   {
     name: "C.L. King",
@@ -162,6 +179,7 @@ const speakers: Speaker[] = [
     initials: "CK",
     gradient: "from-deep-green to-sky-blue",
     photo: "/images/speakers/cl-king.jpg",
+    location: "North Carolina, USA",
   },
   {
     name: "Harry Lopez",
@@ -170,6 +188,7 @@ const speakers: Speaker[] = [
     initials: "HL",
     gradient: "from-sky-blue to-deep-green",
     photo: "/images/speakers/harry-lopez.png",
+    location: "Florida, USA",
   },
 ];
 
