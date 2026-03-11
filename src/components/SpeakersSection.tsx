@@ -107,6 +107,7 @@ const speakers: Speaker[] = [
     topic: "Positive Roots. Unbreakable Future.",
     initials: "YC",
     gradient: "from-primary to-sky-blue",
+    photo: "/images/speakers/yaakov-cohen.jpg",
     location: "Florida, USA",
   },
   {
