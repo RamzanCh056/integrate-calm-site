@@ -117,6 +117,7 @@ const speakers: Speaker[] = [
     topic: "Unleash Your Inner Happy",
     initials: "ES",
     gradient: "from-donate to-soft-green",
+    photo: "/images/speakers/ernalee-shannon.png",
   },
   {
     name: "Jennie Potter",
