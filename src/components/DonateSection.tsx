@@ -128,6 +128,10 @@ const DonateSection = () => {
   const handleProceedToPayment = async (donorName: string, donorEmail: string) => {
     setShowDonorDialog(false);
     setLoading(true);
+    
+    // Open a blank window synchronously (from user gesture context) to avoid popup blockers
+    const paymentWindow = window.open("about:blank", "_blank");
+    
     try {
       const { data, error } = await supabase.functions.invoke("create-donation", {
         body: {
@@ -141,10 +145,18 @@ const DonateSection = () => {
       if (error) throw error;
       if (data?.url) {
         setSuccessAmount(amount);
-        window.location.href = data.url;
+        if (paymentWindow) {
+          paymentWindow.location.href = data.url;
+        } else {
+          // Fallback: redirect current window if popup was still blocked
+          window.location.href = data.url;
+        }
+      } else {
+        paymentWindow?.close();
       }
     } catch (err) {
       console.error("Donation error:", err);
+      paymentWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
