@@ -163,7 +163,7 @@ const speakers: Speaker[] = [
     initials: "KB",
     gradient: "from-sky-blue to-primary",
     photo: "/images/speakers/kailey-buller.jpg",
-    photoPosition: "object-[center_20%]",
+    photoPosition: "zoom",
     location: "Canada",
   },
   {
