@@ -39,6 +39,7 @@ const speakers: Speaker[] = [
     topic: "Aging Gracefully and Staying Calm Under Fire",
     initials: "SL",
     gradient: "from-primary to-soft-green",
+    photo: "/images/speakers/scott-lawry.png",
   },
   {
     name: "Bernetta Cannon",
@@ -46,6 +47,7 @@ const speakers: Speaker[] = [
     topic: "What Is Calm & How to Get It",
     initials: "BC",
     gradient: "from-soft-green to-sky-blue",
+    photo: "/images/speakers/bernetta-cannon.png",
   },
   {
     name: "Robert Vetter",
