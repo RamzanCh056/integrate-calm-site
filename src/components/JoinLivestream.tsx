@@ -48,6 +48,15 @@ const JoinLivestream = () => {
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  const timeUnits = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Minutes", value: timeLeft.minutes },
+    { label: "Seconds", value: timeLeft.seconds },
+  ];
+
+  return (
     <section id="livestream" className="py-24 md:py-32 bg-gradient-sky">
       <div className="container mx-auto px-6">
         <motion.div
@@ -69,7 +78,7 @@ const JoinLivestream = () => {
         </motion.div>
 
         {/* Platform cards */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16">
+        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
           {platforms.map((p, i) => (
             <motion.a
               key={p.name}
@@ -100,6 +109,31 @@ const JoinLivestream = () => {
             </motion.a>
           ))}
         </div>
+
+        {/* Countdown Timer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-card rounded-3xl p-8 max-w-2xl mx-auto shadow-calm text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 text-primary font-body text-sm font-semibold mb-4">
+            <Clock className="w-4 h-4" />
+            Summit starts April 3rd
+          </div>
+          <div className="flex items-center justify-center gap-4 md:gap-8">
+            {timeUnits.map((unit) => (
+              <div key={unit.label} className="flex flex-col items-center">
+                <span className="font-display text-3xl md:text-5xl font-bold text-primary">
+                  {String(unit.value).padStart(2, "0")}
+                </span>
+                <span className="font-body text-xs md:text-sm text-muted-foreground mt-1">
+                  {unit.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Social follow */}
         <motion.div
