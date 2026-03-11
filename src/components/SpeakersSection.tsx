@@ -165,6 +165,7 @@ const speakers: Speaker[] = [
     topic: "Chanting Your Way to Calm",
     initials: "HL",
     gradient: "from-sky-blue to-deep-green",
+    photo: "/images/speakers/harry-lopez.png",
   },
 ];
 
