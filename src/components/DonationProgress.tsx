@@ -173,83 +173,110 @@ const DonationProgress = () => {
           </div>
         </motion.div>
 
-        {/* Donor Wall — ALL donors */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
-            Our Generous Donors
-          </h3>
-          {donors.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {donors.map((donor, i) => {
-                const isFeatured = donor.amount >= 20;
-                return (
-                  <motion.div
-                    key={`${donor.name}-${i}`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.03 }}
-                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-card shadow-calm hover:shadow-calm-lg hover:-translate-y-0.5 transition-all ${
-                      isFeatured
-                        ? "border-2 border-donate/30 ring-1 ring-donate/10"
-                        : "border border-primary/5"
-                    }`}
-                  >
-                    <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
-                        isFeatured
-                          ? "bg-gradient-to-br from-donate to-soft-green"
-                          : "bg-gradient-to-br from-primary to-sky-blue"
-                      }`}
-                    >
-                      {isFeatured ? (
-                        <Heart className="w-3.5 h-3.5 text-primary-foreground fill-current" />
-                      ) : (
-                        <span className="font-display text-[10px] font-bold text-primary-foreground">
-                          {donor.name.split(" ").map((n) => n[0]).join("")}
-                        </span>
-                      )}
-                    </div>
-                    <span className="font-body text-sm font-medium text-card-foreground">
-                      {donor.name}
-                    </span>
-                    <span
-                      className={`font-body text-xs font-semibold ${
-                        isFeatured ? "text-donate" : "text-primary"
-                      }`}
-                    >
-                      ${donor.amount}
-                    </span>
-                    {isFeatured && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-donate/10 text-donate font-body font-bold">
-                        ★
-                      </span>
-                    )}
-                  </motion.div>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="font-body text-muted-foreground text-center">
-              {loading ? "Loading..." : "No donors yet — be the first to support the cause!"}
-            </p>
-          )}
-          <div className="text-center mt-8">
-            <a
-              href="#donate"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-base hover:scale-105 transition-transform shadow-calm-lg"
-            >
-              <Heart className="w-5 h-5" />
-              Donate Now
-            </a>
-          </div>
-        </motion.div>
+        {/* Donor Wall — Top 5 donors */}
+        <DonorWall donors={donors} loading={loading} />
       </div>
     </section>
+  );
+};
+
+const DonorWall = ({ donors, loading }: { donors: Donor[]; loading: boolean }) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const sorted = [...donors].sort((a, b) => b.amount - a.amount);
+  const top5 = sorted.slice(0, 5);
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
+          Our Generous Donors
+        </h3>
+        {top5.length > 0 ? (
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {top5.map((donor, i) => {
+              const isFeatured = donor.amount >= 20;
+              return (
+                <motion.div
+                  key={`${donor.name}-${i}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.03 }}
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-card shadow-calm hover:shadow-calm-lg hover:-translate-y-0.5 transition-all ${
+                    isFeatured
+                      ? "border-2 border-donate/30 ring-1 ring-donate/10"
+                      : "border border-primary/5"
+                  }`}
+                >
+                  <div
+                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
+                      isFeatured
+                        ? "bg-gradient-to-br from-donate to-soft-green"
+                        : "bg-gradient-to-br from-primary to-sky-blue"
+                    }`}
+                  >
+                    {isFeatured ? (
+                      <Heart className="w-3.5 h-3.5 text-primary-foreground fill-current" />
+                    ) : (
+                      <span className="font-display text-[10px] font-bold text-primary-foreground">
+                        {donor.name.split(" ").map((n) => n[0]).join("")}
+                      </span>
+                    )}
+                  </div>
+                  <span className="font-body text-sm font-medium text-card-foreground">
+                    {donor.name}
+                  </span>
+                  <span
+                    className={`font-body text-xs font-semibold ${
+                      isFeatured ? "text-donate" : "text-primary"
+                    }`}
+                  >
+                    ${donor.amount}
+                  </span>
+                  {isFeatured && (
+                    <>
+                      <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full bg-donate/10 text-donate font-body font-bold">
+                        <Mic className="w-2.5 h-2.5" />
+                        Speaker
+                      </span>
+                      <span className="text-[10px]">★</span>
+                    </>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="font-body text-muted-foreground text-center">
+            {loading ? "Loading..." : "No donors yet — be the first to support the cause!"}
+          </p>
+        )}
+
+        <div className="text-center mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="#donate"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-base hover:scale-105 transition-transform shadow-calm-lg"
+          >
+            <Heart className="w-5 h-5" />
+            Donate Now
+          </a>
+          {donors.length > 5 && (
+            <button
+              onClick={() => setDialogOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-primary/20 text-primary font-body font-semibold text-sm hover:bg-primary/5 transition-colors"
+            >
+              View all {donors.length} donors →
+            </button>
+          )}
+        </div>
+      </motion.div>
+
+      <AllDonorsDialog open={dialogOpen} onOpenChange={setDialogOpen} donors={donors} />
+    </>
   );
 };
 
