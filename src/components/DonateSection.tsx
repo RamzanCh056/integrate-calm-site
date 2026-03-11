@@ -162,45 +162,62 @@ const DonateSection = () => {
     <>
       <section id="donate" className="py-24 md:py-32 bg-gradient-sky">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Support the Movement.{" "}
-              <span className="text-gradient-calm">Share Your Voice.</span>
-            </h2>
-          <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto">
-            Every dollar makes a difference. Donate to receive:
-          </p>
-          </motion.div>
-
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-start">
-            {/* Perks */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-5"
-            >
-              {perks.map((perk, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 p-5 rounded-2xl bg-card shadow-calm"
-                >
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                    <perk.icon className="w-5 h-5 text-primary" />
+            {/* Left column: heading + perks */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="mb-10"
+              >
+                <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+                  Support the Movement.{" "}
+                  <span className="text-gradient-calm">Share Your Voice.</span>
+                </h2>
+                <p className="font-body text-lg text-muted-foreground mb-4">
+                  Every dollar makes a difference. Donate to receive:
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="space-y-5 mb-8"
+              >
+                {perks.map((perk, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-4 p-5 rounded-2xl bg-card shadow-calm"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                      <perk.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <p className="font-body text-card-foreground text-base pt-1.5">
+                      {perk.text}
+                    </p>
                   </div>
-                  <p className="font-body text-card-foreground text-base pt-1.5">
-                    {perk.text}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="p-6 rounded-2xl bg-primary/5 border border-primary/10"
+              >
+                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+                  🌍 Calm Voices of the World
+                </h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  Your donation helps amplify voices from every corner of the globe. As part of our mission, community messages submitted by donors are featured during the summit — because true calm begins when everyone is heard.
+                </p>
+              </motion.div>
+            </div>
 
             {/* Donation Card */}
             <motion.div
