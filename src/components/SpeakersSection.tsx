@@ -34,7 +34,7 @@ const speakers: Speaker[] = [
     gradient: "from-sky-blue to-primary",
     isHost: true,
     photo: "/images/speakers/greg-edwards.jpg",
-    photoPosition: "zoomout",
+    photoPosition: "object-[center_20%]",
     location: "California, USA",
   },
   {
