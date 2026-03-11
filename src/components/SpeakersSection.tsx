@@ -98,6 +98,8 @@ const speakers: Speaker[] = [
     topic: "Rich Girl Money: 5 Changes That Increase Money at Home",
     initials: "KM",
     gradient: "from-donate to-sky-blue",
+    photo: "/images/speakers/karyn-melko.jpg",
+    photoPosition: "zoom",
   },
   {
     name: "Czarina Pasculado",
@@ -128,6 +130,8 @@ const speakers: Speaker[] = [
     topic: "Understanding Reactive Emotions",
     initials: "JP",
     gradient: "from-sky-blue to-soft-green",
+    photo: "/images/speakers/jennie-potter.png",
+    photoPosition: "zoom",
   },
   {
     name: "Dr. Kailey Buller",
