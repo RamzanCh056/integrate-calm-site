@@ -162,6 +162,8 @@ const speakers: Speaker[] = [
     topic: "Tired or Hangry? Why Calm Can Feel Out of Reach",
     initials: "KB",
     gradient: "from-sky-blue to-primary",
+    photo: "/images/speakers/kailey-buller.jpg",
+    photoPosition: "object-[center_20%]",
     location: "Canada",
   },
   {
