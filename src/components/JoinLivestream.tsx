@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Youtube, Facebook, Instagram, MonitorPlay, ExternalLink } from "lucide-react";
+import { Youtube, Facebook, Instagram, MonitorPlay, ExternalLink, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const platforms = [
   {
