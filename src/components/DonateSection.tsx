@@ -116,13 +116,9 @@ const DonateSection = () => {
       toast.error("Minimum donation is $1");
       return;
     }
-    // Re-check localStorage in case state is stale
+    // If user is registered, pass their info; otherwise let Stripe collect it
     const user = registeredUser || getRegisteredUser();
-    if (user) {
-      handleProceedToPayment(user.name, user.email);
-      return;
-    }
-    setShowDonorDialog(true);
+    handleProceedToPayment(user?.name || "", user?.email || "");
   };
 
   const handleProceedToPayment = async (donorName: string, donorEmail: string) => {
