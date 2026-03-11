@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, TrendingUp, Users } from "lucide-react";
+import { Heart, TrendingUp, Users, Mic } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { db, collection, query, orderBy, onSnapshot } from "@/lib/firebase";
+import AllDonorsDialog from "./AllDonorsDialog";
 
 const GOAL = 30000;
 
