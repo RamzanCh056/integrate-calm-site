@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import DonorsDropdown from "./DonorsDropdown";
 
 const navLinks = [
   { label: "Register", href: "#register", primary: true },
   { label: "Speakers", href: "#speakers" },
-  { label: "Donors", href: "#donors" },
   { label: "Donate", href: "#donate", donate: true },
   { label: "Sponsor", href: "#sponsor", outline: true },
 ];
@@ -37,23 +37,34 @@ const StickyHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-all ${
-                    link.donate
-                      ? "bg-donate text-donate-foreground hover:opacity-90"
-                      : link.primary
+              {navLinks.map((link) =>
+                link.label === "Donate" ? (
+                  <React.Fragment key="donors-donate">
+                    <DonorsDropdown />
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="px-4 py-2 rounded-full font-body text-sm font-medium transition-all bg-donate text-donate-foreground hover:opacity-90"
+                    >
+                      {link.label}
+                    </a>
+                  </React.Fragment>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-all ${
+                      link.primary
                         ? "bg-primary text-primary-foreground hover:opacity-90"
                         : link.outline
                           ? "border border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                           : "text-foreground hover:bg-secondary"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </nav>
 
             {/* Mobile toggle */}
@@ -91,6 +102,13 @@ const StickyHeader = () => {
                       {link.label}
                     </a>
                   ))}
+                  <a
+                    href="#donors"
+                    onClick={() => setMobileOpen(false)}
+                    className="px-4 py-3 rounded-xl font-body text-sm font-medium text-center transition-all bg-secondary text-secondary-foreground"
+                  >
+                    Donors
+                  </a>
                 </div>
               </motion.div>
             )}
