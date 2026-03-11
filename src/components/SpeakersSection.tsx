@@ -50,6 +50,7 @@ const speakers: Speaker[] = [
     topic: "The Roles Emotions Play in Healing",
     initials: "RV",
     gradient: "from-deep-green to-soft-green",
+    photo: "/images/speakers/robert-vetter.jpeg",
   },
   {
     name: "Wendy Ologe",
@@ -57,6 +58,7 @@ const speakers: Speaker[] = [
     topic: "TBA",
     initials: "WO",
     gradient: "from-donate to-primary",
+    photo: "/images/speakers/wendy-ologe.png",
   },
   {
     name: "Maddi Cheers",
@@ -64,6 +66,7 @@ const speakers: Speaker[] = [
     topic: "The Peacemaker's Journey: Ancient Wisdom for Calm Amid Chaos",
     initials: "MC",
     gradient: "from-soft-green to-sky-blue",
+    photo: "/images/speakers/maddi-cheers.jpg",
   },
   {
     name: "Minister Peace",
