@@ -33,7 +33,7 @@ const speakers: Speaker[] = [
     initials: "GE",
     gradient: "from-sky-blue to-primary",
     isHost: true,
-    photo: "/images/speakers/greg-edwards.png",
+    photo: "/images/speakers/greg-edwards.jpg",
     photoPosition: "zoomout",
     location: "California, USA",
   },
