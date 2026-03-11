@@ -44,6 +44,7 @@ const speakers: Speaker[] = [
     initials: "SL",
     gradient: "from-primary to-soft-green",
     photo: "/images/speakers/scott-lawry.png",
+    photoPosition: "zoom",
     location: "USA",
   },
   {
