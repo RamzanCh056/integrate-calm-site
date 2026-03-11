@@ -65,10 +65,9 @@ const DonateSection = () => {
             // Also save to Firebase donations collection
             if (data?.saved) {
               try {
-                const registeredUser = getRegisteredUser();
                 await addDoc(collection(db, "donations"), {
-                  name: registeredUser?.name || data.donor_name || "Anonymous",
-                  email: registeredUser?.email || data.donor_email || "",
+                  name: data.donor_name || "Anonymous",
+                  email: data.donor_email || "",
                   amount: data.amount || 0,
                   donatedAt: new Date().toISOString(),
                 });
