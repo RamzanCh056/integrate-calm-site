@@ -10,6 +10,7 @@ interface Speaker {
   initials: string;
   gradient: string;
   isHost?: boolean;
+  photo?: string;
 }
 
 const speakers: Speaker[] = [
@@ -105,6 +106,7 @@ const speakers: Speaker[] = [
     topic: "TBA",
     initials: "PI",
     gradient: "from-primary to-donate",
+    photo: "/images/speakers/priti-irani.jpg",
   },
   {
     name: "Ernalee Shannon",
@@ -214,11 +216,15 @@ const SpeakersSection = () => {
                 <Star className="w-3 h-3" /> Host
               </div>
               <div
-                className={`w-24 h-24 rounded-full bg-gradient-to-br ${s.gradient} flex items-center justify-center mx-auto mb-5 shadow-calm`}
+                className={`w-24 h-24 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center mx-auto mb-5 shadow-calm overflow-hidden`}
               >
-                <span className="font-display text-2xl font-bold text-primary-foreground">
-                  {s.initials}
-                </span>
+                {s.photo ? (
+                  <img src={s.photo} alt={s.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="font-display text-2xl font-bold text-primary-foreground">
+                    {s.initials}
+                  </span>
+                )}
               </div>
               <h3 className="font-display text-xl font-bold text-card-foreground">
                 {s.name}
@@ -244,11 +250,15 @@ const SpeakersSection = () => {
             >
               <div className="flex items-start gap-4">
                 <div
-                  className={`w-14 h-14 rounded-full bg-gradient-to-br ${s.gradient} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
+                  className={`w-14 h-14 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform overflow-hidden`}
                 >
-                  <span className="font-display text-base font-bold text-primary-foreground">
-                    {s.initials}
-                  </span>
+                  {s.photo ? (
+                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="font-display text-base font-bold text-primary-foreground">
+                      {s.initials}
+                    </span>
+                  )}
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-display text-base font-semibold text-card-foreground leading-tight">
