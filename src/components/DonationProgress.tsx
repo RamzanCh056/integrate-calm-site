@@ -5,7 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { db, collection, query, orderBy, onSnapshot } from "@/lib/firebase";
 import AllDonorsDialog from "./AllDonorsDialog";
 
-const GOAL = 30000;
+const GOAL = 50000;
 
 interface Donor {
   name: string;
