@@ -1,16 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, Volume2, VolumeX } from "lucide-react";
 
 const YOUTUBE_VIDEO_ID = "jrQRv-gJoqM";
 
 const VideoPopup = () => {
   const [open, setOpen] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setOpen(true), 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Try unmuted first; if browser blocks, fall back to muted
+  const handleIframeLoad = () => {
+    // YouTube iframe API doesn't give us direct access, so we start unmuted
+    // and let the browser decide. We show a mute toggle for user control.
+  };
+
+  const toggleMute = () => {
+    const iframe = iframeRef.current;
+    if (iframe?.contentWindow) {
+      const command = muted ? "unMute" : "mute";
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ event: "command", func: command, args: [] }),
+        "*"
+      );
+      setMuted(!muted);
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -22,14 +42,24 @@ const VideoPopup = () => {
         >
           <X className="w-4 h-4" strokeWidth={3} />
         </button>
+        {/* Mute/Unmute toggle */}
+        <button
+          onClick={toggleMute}
+          className="absolute top-2 left-2 z-50 w-9 h-9 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black/90 transition-colors"
+          title={muted ? "Unmute" : "Mute"}
+        >
+          {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+        </button>
         <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: "56.25%" }}>
           {open && (
             <iframe
+              ref={iframeRef}
               className="absolute inset-0 w-full h-full rounded-xl"
-              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&rel=0`}
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&enablejsapi=1`}
               title="Day of Calm Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              onLoad={handleIframeLoad}
             />
           )}
         </div>
