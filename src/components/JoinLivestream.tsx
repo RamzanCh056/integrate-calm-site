@@ -1,21 +1,13 @@
 import { motion } from "framer-motion";
-import { Video, Youtube, Facebook, Instagram, MonitorPlay, ExternalLink } from "lucide-react";
+import { Youtube, Facebook, Instagram, MonitorPlay, ExternalLink } from "lucide-react";
 
 const platforms = [
-  {
-    name: "Zoom",
-    icon: Video,
-    description: "Join the live interactive sessions",
-    buttonText: "Join on Zoom",
-    href: "#",
-    gradient: "from-sky-blue to-primary",
-  },
   {
     name: "YouTube",
     icon: Youtube,
     description: "Watch the livestream on YouTube",
     buttonText: "Watch on YouTube",
-    href: "#",
+    href: "https://www.youtube.com/@beabetterparentdotcom",
     gradient: "from-destructive to-donate",
   },
   {
@@ -23,7 +15,7 @@ const platforms = [
     icon: Facebook,
     description: "Stream live on Facebook",
     buttonText: "Watch on Facebook",
-    href: "#",
+    href: "https://www.facebook.com/share/18KHYGWdZ4/?mibextid=wwXIfr",
     gradient: "from-sky-blue to-deep-green",
   },
 ];
@@ -57,7 +49,7 @@ const JoinLivestream = () => {
         </motion.div>
 
         {/* Platform cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
+        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16">
           {platforms.map((p, i) => (
             <motion.a
               key={p.name}
