@@ -141,7 +141,7 @@ const DonateSection = () => {
       if (error) throw error;
       if (data?.url) {
         setSuccessAmount(amount);
-        window.open(data.url, '_blank');
+        window.location.href = data.url;
       }
     } catch (err) {
       console.error("Donation error:", err);
