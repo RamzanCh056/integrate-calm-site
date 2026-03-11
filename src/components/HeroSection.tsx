@@ -72,7 +72,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="flex items-center justify-center gap-4 text-primary-foreground/65 font-body text-base mb-4"
+          className="flex items-center justify-center gap-4 text-primary-foreground/85 font-body text-lg font-medium mb-4"
         >
           <span className="flex items-center gap-1.5">
             <CalendarDays className="w-4 h-4" />
@@ -89,7 +89,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="font-display text-lg italic text-primary-foreground/40 mb-14"
+          className="font-display text-xl md:text-2xl italic text-primary-foreground/65 mb-14"
         >
           Different disciplines. One goal.
         </motion.p>
