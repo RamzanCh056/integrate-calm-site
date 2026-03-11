@@ -12,6 +12,7 @@ interface Speaker {
   isHost?: boolean;
   photo?: string;
   photoPosition?: string;
+  location?: string;
 }
 
 const speakers: Speaker[] = [
