@@ -32,6 +32,7 @@ const speakers: Speaker[] = [
     gradient: "from-sky-blue to-primary",
     isHost: true,
     photo: "/images/speakers/greg-edwards.png",
+    photoPosition: "zoomout",
   },
   {
     name: "Dr. Scott Lawry",
@@ -236,7 +237,7 @@ const SpeakersSection = () => {
                 className={`w-24 h-24 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center mx-auto mb-5 shadow-calm overflow-hidden`}
               >
                 {s.photo ? (
-                  <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition ? 'center 15%' : 'center top', transform: s.photoPosition ? 'scale(1.5)' : undefined }} />
+                  <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition === 'zoom' ? 'center 15%' : s.photoPosition === 'zoomout' ? 'center 30%' : 'center top', transform: s.photoPosition === 'zoom' ? 'scale(1.5)' : s.photoPosition === 'zoomout' ? 'scale(0.85)' : undefined }} />
                 ) : (
                   <span className="font-display text-2xl font-bold text-primary-foreground">
                     {s.initials}
@@ -270,7 +271,7 @@ const SpeakersSection = () => {
                   className={`w-14 h-14 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform overflow-hidden`}
                 >
                   {s.photo ? (
-                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition ? 'center 15%' : 'center top', transform: s.photoPosition ? 'scale(1.5)' : undefined }} />
+                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition === 'zoom' ? 'center 15%' : s.photoPosition === 'zoomout' ? 'center 30%' : 'center top', transform: s.photoPosition === 'zoom' ? 'scale(1.5)' : s.photoPosition === 'zoomout' ? 'scale(0.85)' : undefined }} />
                   ) : (
                     <span className="font-display text-base font-bold text-primary-foreground">
                       {s.initials}
