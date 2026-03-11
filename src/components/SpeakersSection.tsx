@@ -113,6 +113,7 @@ const speakers: Speaker[] = [
     topic: "Calm Isn't Quiet: Building a Home Where Kids Feel Safe",
     initials: "CP",
     gradient: "from-soft-green to-deep-green",
+    photo: "/images/speakers/czarina-pasculado.jpg",
   },
   {
     name: "Priti Irani",
