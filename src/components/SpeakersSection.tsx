@@ -130,6 +130,9 @@ const speakers: Speaker[] = [
     topic: "Understanding Reactive Emotions",
     initials: "JP",
     gradient: "from-sky-blue to-soft-green",
+    photo: "/images/speakers/jennie-potter.png",
+    photoPosition: "zoom",
+  },
   },
   {
     name: "Dr. Kailey Buller",
