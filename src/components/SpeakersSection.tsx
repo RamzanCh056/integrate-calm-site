@@ -159,6 +159,7 @@ const speakers: Speaker[] = [
     topic: "F.A.T.H.E.R.H.O.O.D.",
     initials: "CK",
     gradient: "from-deep-green to-sky-blue",
+    photo: "/images/speakers/cl-king.jpg",
   },
   {
     name: "Harry Lopez",
