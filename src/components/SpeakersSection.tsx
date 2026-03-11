@@ -133,7 +133,6 @@ const speakers: Speaker[] = [
     photo: "/images/speakers/jennie-potter.png",
     photoPosition: "zoom",
   },
-  },
   {
     name: "Dr. Kailey Buller",
     role: "Double Board-Certified ER; Labor/Delivery Physician",
