@@ -52,7 +52,7 @@ const speakers: Speaker[] = [
     initials: "RV",
     gradient: "from-deep-green to-soft-green",
     photo: "/images/speakers/robert-vetter.jpeg",
-    photoPosition: "object-[center_25%]",
+    photoPosition: "object-[center_20%]",
   },
   {
     name: "Wendy Ologe",
