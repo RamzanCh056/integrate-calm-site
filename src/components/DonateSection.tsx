@@ -65,10 +65,9 @@ const DonateSection = () => {
             // Also save to Firebase donations collection
             if (data?.saved) {
               try {
-                const registeredUser = getRegisteredUser();
                 await addDoc(collection(db, "donations"), {
-                  name: registeredUser?.name || data.donor_name || "Anonymous",
-                  email: registeredUser?.email || data.donor_email || "",
+                  name: data.donor_name || "Anonymous",
+                  email: data.donor_email || "",
                   amount: data.amount || 0,
                   donatedAt: new Date().toISOString(),
                 });
@@ -116,13 +115,9 @@ const DonateSection = () => {
       toast.error("Minimum donation is $1");
       return;
     }
-    // Re-check localStorage in case state is stale
+    // If user is registered, pass their info; otherwise let Stripe collect it
     const user = registeredUser || getRegisteredUser();
-    if (user) {
-      handleProceedToPayment(user.name, user.email);
-      return;
-    }
-    setShowDonorDialog(true);
+    handleProceedToPayment(user?.name || "", user?.email || "");
   };
 
   const handleProceedToPayment = async (donorName: string, donorEmail: string) => {

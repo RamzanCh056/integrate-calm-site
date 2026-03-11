@@ -29,8 +29,13 @@ serve(async (req) => {
     const session = event.data.object as Stripe.Checkout.Session;
     const metadata = session.metadata || {};
     const amountTotal = session.amount_total || 0;
+    const customerDetails = session.customer_details;
 
-    console.log(`Checkout completed: ${metadata.donor_name} - $${amountTotal / 100}`);
+    // Priority: metadata > Stripe customer_details > fallback
+    const donorName = metadata.donor_name || customerDetails?.name || "Anonymous";
+    const donorEmail = metadata.donor_email || customerDetails?.email || session.customer_email || "";
+
+    console.log(`Checkout completed: ${donorName} - $${amountTotal / 100}`);
 
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -46,8 +51,8 @@ serve(async (req) => {
 
     if (!existing) {
       const { error } = await supabase.from("donations").insert({
-        donor_name: metadata.donor_name || "Anonymous",
-        donor_email: metadata.donor_email || session.customer_email || "",
+        donor_name: donorName,
+        donor_email: donorEmail,
         amount: amountTotal,
         stripe_session_id: session.id,
       });

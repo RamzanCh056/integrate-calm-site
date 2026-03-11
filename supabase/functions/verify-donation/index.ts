@@ -53,10 +53,15 @@ serve(async (req) => {
 
     const metadata = session.metadata || {};
     const amountTotal = session.amount_total || 0;
+    const customerDetails = session.customer_details;
+
+    // Priority: metadata > Stripe customer_details > fallback
+    const donorName = metadata.donor_name || customerDetails?.name || "Anonymous";
+    const donorEmail = metadata.donor_email || customerDetails?.email || session.customer_email || "";
 
     const { error } = await supabase.from("donations").insert({
-      donor_name: metadata.donor_name || "Anonymous",
-      donor_email: metadata.donor_email || session.customer_email || "",
+      donor_name: donorName,
+      donor_email: donorEmail,
       amount: amountTotal,
       stripe_session_id: session.id,
     });
@@ -66,9 +71,9 @@ serve(async (req) => {
       throw error;
     }
 
-    console.log(`Donation verified and saved: ${metadata.donor_name} - $${amountTotal / 100}`);
+    console.log(`Donation verified and saved: ${donorName} - $${amountTotal / 100}`);
 
-    return new Response(JSON.stringify({ saved: true, amount: amountTotal / 100, donor_name: metadata.donor_name || "Anonymous", donor_email: metadata.donor_email || "" }), {
+    return new Response(JSON.stringify({ saved: true, amount: amountTotal / 100, donor_name: donorName, donor_email: donorEmail }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });

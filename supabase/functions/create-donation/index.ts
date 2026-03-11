@@ -23,16 +23,18 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    // Check for existing customer
-    const customers = await stripe.customers.list({ email: donor_email, limit: 1 });
+    // If we have an email, check for existing customer
     let customerId;
-    if (customers.data.length > 0) {
-      customerId = customers.data[0].id;
+    if (donor_email && donor_email !== "anonymous@donor.com") {
+      const customers = await stripe.customers.list({ email: donor_email, limit: 1 });
+      if (customers.data.length > 0) {
+        customerId = customers.data[0].id;
+      }
     }
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : donor_email,
+      customer_email: customerId ? undefined : (donor_email && donor_email !== "anonymous@donor.com" ? donor_email : undefined),
       line_items: [
         {
           price_data: {
@@ -48,8 +50,8 @@ serve(async (req) => {
       success_url: `${req.headers.get("origin")}/?donation=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/?donation=cancelled`,
       metadata: {
-        donor_name,
-        donor_email,
+        donor_name: donor_name || "",
+        donor_email: donor_email || "",
         amount: String(amount),
       },
     });
