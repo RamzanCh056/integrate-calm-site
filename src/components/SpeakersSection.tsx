@@ -250,11 +250,15 @@ const SpeakersSection = () => {
             >
               <div className="flex items-start gap-4">
                 <div
-                  className={`w-14 h-14 rounded-full bg-gradient-to-br ${s.gradient} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
+                  className={`w-14 h-14 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform overflow-hidden`}
                 >
-                  <span className="font-display text-base font-bold text-primary-foreground">
-                    {s.initials}
-                  </span>
+                  {s.photo ? (
+                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="font-display text-base font-bold text-primary-foreground">
+                      {s.initials}
+                    </span>
+                  )}
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-display text-base font-semibold text-card-foreground leading-tight">
