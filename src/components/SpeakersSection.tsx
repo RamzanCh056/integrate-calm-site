@@ -84,6 +84,7 @@ const speakers: Speaker[] = [
     topic: "The Source of Calm Is Not What You Think",
     initials: "DR",
     gradient: "from-soft-green to-primary",
+    photo: "/images/speakers/drasko-raicevic.png",
   },
   {
     name: "Yaakov Andrew Cohen",
