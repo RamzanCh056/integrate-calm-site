@@ -260,7 +260,7 @@ const SpeakersSection = () => {
                   className={`w-14 h-14 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform overflow-hidden`}
                 >
                   {s.photo ? (
-                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition ? 'center 20%' : 'center top' }} />
+                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition ? 'center 15%' : 'center top', transform: s.photoPosition ? 'scale(1.5)' : undefined }} />
                   ) : (
                     <span className="font-display text-base font-bold text-primary-foreground">
                       {s.initials}
