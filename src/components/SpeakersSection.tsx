@@ -173,6 +173,7 @@ const speakers: Speaker[] = [
     topic: "TBA",
     initials: "LM",
     gradient: "from-deep-green to-primary",
+    photo: "/images/speakers/luke-mickelson.jpg",
     location: "USA",
   },
   {
