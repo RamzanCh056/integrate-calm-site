@@ -216,11 +216,15 @@ const SpeakersSection = () => {
                 <Star className="w-3 h-3" /> Host
               </div>
               <div
-                className={`w-24 h-24 rounded-full bg-gradient-to-br ${s.gradient} flex items-center justify-center mx-auto mb-5 shadow-calm`}
+                className={`w-24 h-24 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center mx-auto mb-5 shadow-calm overflow-hidden`}
               >
-                <span className="font-display text-2xl font-bold text-primary-foreground">
-                  {s.initials}
-                </span>
+                {s.photo ? (
+                  <img src={s.photo} alt={s.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="font-display text-2xl font-bold text-primary-foreground">
+                    {s.initials}
+                  </span>
+                )}
               </div>
               <h3 className="font-display text-xl font-bold text-card-foreground">
                 {s.name}
