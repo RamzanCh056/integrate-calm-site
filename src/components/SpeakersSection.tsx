@@ -22,6 +22,7 @@ const speakers: Speaker[] = [
     initials: "CK",
     gradient: "from-primary to-soft-green",
     isHost: true,
+    photo: "/images/speakers/celia-kibler.jpg",
   },
   {
     name: "Greg Edwards",
