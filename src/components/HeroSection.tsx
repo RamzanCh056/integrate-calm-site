@@ -89,7 +89,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="font-display text-lg italic text-primary-foreground/40 mb-14"
+          className="font-display text-xl md:text-2xl italic text-primary-foreground/65 mb-14"
         >
           Different disciplines. One goal.
         </motion.p>
