@@ -9,7 +9,11 @@ const Footer = () => {
           <p className="font-display text-xl font-bold text-primary-foreground mb-2">
             International Day of Calm Summit 2026
           </p>
-          <p className="font-body text-sm mb-4">
+          <div className="flex items-center justify-center gap-4 font-body text-sm mb-4">
+            <Link to="/media-kit" className="hover:text-primary-foreground transition-colors underline underline-offset-2">Media Kit</Link>
+            <span className="opacity-30">·</span>
+            <Link to="/sponsor-kit" className="hover:text-primary-foreground transition-colors underline underline-offset-2">Sponsor Kit</Link>
+          </div>
             April 3–6, 2026 &nbsp;·&nbsp; Global Hybrid Event
           </p>
           <div className="flex items-center justify-center gap-1 font-body text-xs text-primary-foreground/40 mb-2">
