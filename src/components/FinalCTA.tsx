@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const FinalCTA = () => {
@@ -56,12 +57,12 @@ const FinalCTA = () => {
           >
             Donate & Speak
           </a>
-          <a
-            href="#sponsor"
+          <Link
+            to="/sponsor-kit"
             className="px-10 py-4 rounded-full border-2 border-primary-foreground/40 text-primary-foreground font-body font-bold text-lg hover:bg-primary-foreground/10 transition-colors backdrop-blur-sm"
           >
             Sponsor the Summit
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
