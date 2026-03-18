@@ -14,6 +14,7 @@ const Footer = () => {
             <span className="opacity-30">·</span>
             <Link to="/sponsor-kit" className="hover:text-primary-foreground transition-colors underline underline-offset-2">Sponsor Kit</Link>
           </div>
+          <p className="font-body text-sm mb-4">
             April 3–6, 2026 &nbsp;·&nbsp; Global Hybrid Event
           </p>
           <div className="flex items-center justify-center gap-1 font-body text-xs text-primary-foreground/40 mb-2">
