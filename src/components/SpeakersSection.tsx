@@ -38,8 +38,8 @@ const speakers: Speaker[] = [
     location: "California, USA",
   },
   {
-    name: "Dr. Scott Lawry",
-    role: "Family Medicine",
+    name: "Dr. Scott R. Lowry",
+    role: "FNMU Faculty, Family Medicine",
     topic: "Aging Gracefully and Staying Calm Under Fire",
     initials: "SL",
     gradient: "from-primary to-soft-green",
