@@ -36,7 +36,7 @@ const Index = () => {
 
       <SchoolStory />
       <DonateSection />
-      <DonationProgress />
+      
       <HowItWorks />
       <SolutionSection />
       <SpeakersSection />

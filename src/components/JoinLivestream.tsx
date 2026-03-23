@@ -22,7 +22,7 @@ const platforms = [
 ];
 
 const socials = [
-  { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@beabetterparentdotcom" },
+  { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@DayofCalm" },
   { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/share/18KHYGWdZ4/?mibextid=wwXIfr" },
   { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/dayofcalm?igsh=MWZwcXl4N2trZWR4dw==" },
 ];
