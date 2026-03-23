@@ -2,7 +2,7 @@ import StickyHeader from "@/components/StickyHeader";
 import HeroSection from "@/components/HeroSection";
 import RegistrationForm from "@/components/RegistrationForm";
 import DonateSection from "@/components/DonateSection";
-import DonationProgress from "@/components/DonationProgress";
+
 import SchoolStory from "@/components/SchoolStory";
 import HowItWorks from "@/components/HowItWorks";
 import SolutionSection from "@/components/SolutionSection";
