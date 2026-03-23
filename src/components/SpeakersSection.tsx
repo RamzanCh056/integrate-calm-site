@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { motion } from "framer-motion";
 import { Mic2, Star } from "lucide-react";
 
 interface Speaker {
