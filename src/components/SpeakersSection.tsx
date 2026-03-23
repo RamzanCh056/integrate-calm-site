@@ -28,7 +28,7 @@ const speakers: Speaker[] = [
   },
   {
     name: "Greg Edwards",
-    role: "HOST, Comedian & Storyteller",
+    role: "HOST, FNMU Faculty, Professor of Comedy Therapy",
     topic: "Laughter: The Best Medicine",
     initials: "GE",
     gradient: "from-sky-blue to-primary",
