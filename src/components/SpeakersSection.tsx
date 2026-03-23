@@ -49,7 +49,7 @@ const speakers: Speaker[] = [
   },
   {
     name: "Bernetta Cannon",
-    role: "Registered Nurse, FNMU Visiting Faculty",
+    role: "FNMU Faculty, Registered Nurse",
     topic: "What Is Calm & How to Get It",
     initials: "BC",
     gradient: "from-soft-green to-sky-blue",
