@@ -27,8 +27,8 @@ const stats = [
 
 const interviewGuests = [
   { name: "Celia Kibler", role: "Founder, Day of Calm Foundation", image: "/images/speakers/celia-kibler.jpg", highlights: "40+ years working with parents & children, helped over 1 million parents worldwide" },
-  { name: "Dr. Matthew Johnson", role: "Director, Science & Technology", image: "/images/speakers/scott-lawry.png", highlights: "Family Physician, Ecologist, Forest Medicine Specialist" },
-  { name: "Greg Edwards", role: "Summit Co-Host & Comedian", image: "/images/speakers/greg-edwards.jpg", highlights: "Nationally known stand-up comedian bringing warmth & connection" },
+  { name: "Dr. Scott R. Lowry", role: "FNMU Faculty, Family Medicine", image: "/images/speakers/scott-lawry.png", highlights: "Family Physician, Ecologist, Forest Medicine Specialist" },
+  { name: "Greg Edwards", role: "FNMU Faculty, Professor of Comedy Therapy", image: "/images/speakers/greg-edwards.jpg", highlights: "Nationally known stand-up comedian bringing warmth & connection" },
   { name: "Dr. Kailey Buller", role: "ER & Labor & Delivery Physician", image: "/images/speakers/kailey-buller.jpg", highlights: "Double Board Certified, expert on sleep & calm" },
 ];
 

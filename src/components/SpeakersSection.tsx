@@ -28,7 +28,7 @@ const speakers: Speaker[] = [
   },
   {
     name: "Greg Edwards",
-    role: "HOST, Comedian & Storyteller",
+    role: "HOST, FNMU Faculty, Professor of Comedy Therapy",
     topic: "Laughter: The Best Medicine",
     initials: "GE",
     gradient: "from-sky-blue to-primary",
@@ -38,8 +38,8 @@ const speakers: Speaker[] = [
     location: "California, USA",
   },
   {
-    name: "Dr. Scott Lawry",
-    role: "Family Medicine",
+    name: "Dr. Scott R. Lowry",
+    role: "FNMU Faculty, Family Medicine",
     topic: "Aging Gracefully and Staying Calm Under Fire",
     initials: "SL",
     gradient: "from-primary to-soft-green",
@@ -49,7 +49,7 @@ const speakers: Speaker[] = [
   },
   {
     name: "Bernetta Cannon",
-    role: "Registered Nurse, FNMU Visiting Faculty",
+    role: "FNMU Faculty, Registered Nurse",
     topic: "What Is Calm & How to Get It",
     initials: "BC",
     gradient: "from-soft-green to-sky-blue",
