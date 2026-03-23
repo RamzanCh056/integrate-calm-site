@@ -8,7 +8,7 @@ const platforms = [
     icon: Youtube,
     description: "Watch the livestream on YouTube",
     buttonText: "Watch on YouTube",
-    href: "https://www.youtube.com/@beabetterparentdotcom",
+    href: "https://www.youtube.com/@DayofCalm",
     gradient: "from-destructive to-donate",
   },
   {
