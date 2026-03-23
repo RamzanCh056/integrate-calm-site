@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { motion } from "framer-motion";
 import { Mic2, Star } from "lucide-react";
 
