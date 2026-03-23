@@ -30,7 +30,7 @@ const getRegisteredUser = (): { name: string; email: string } | null => {
 const DonateSection = () => {
   const [amount, setAmount] = useState(1);
   const [custom, setCustom] = useState("");
-  const [recurring, setRecurring] = useState(false);
+  const [recurring, setRecurring] = useState(true);
   const [loading, setLoading] = useState(false);
   const [showDonorDialog, setShowDonorDialog] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
