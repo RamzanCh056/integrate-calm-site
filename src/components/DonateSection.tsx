@@ -203,20 +203,6 @@ const DonateSection = () => {
                 ))}
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="p-6 rounded-2xl bg-primary/5 border border-primary/10"
-              >
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                  🌍 Calm Voices of the World
-                </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  Your donation helps amplify voices from every corner of the globe. As part of our mission, community messages submitted by donors are featured during the summit — because true calm begins when everyone is heard.
-                </p>
-              </motion.div>
             </div>
 
             {/* Donation Card */}
