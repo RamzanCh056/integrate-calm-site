@@ -74,7 +74,14 @@ const RegistrationForm = () => {
       localStorage.setItem("registered_user", JSON.stringify({ name: name.trim(), email: email.trim() }));
       window.dispatchEvent(new Event("user-registered"));
       setSubmitted(true);
-      toast.success("Registration successful!");
+      toast.success("Registration successful! Redirecting to donate...");
+      // Scroll to donate section after a brief delay
+      setTimeout(() => {
+        const donateSection = document.getElementById("donate");
+        if (donateSection) {
+          donateSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 800);
     } catch (err) {
       console.error("Registration error:", err);
       toast.error("Something went wrong. Please try again.");
