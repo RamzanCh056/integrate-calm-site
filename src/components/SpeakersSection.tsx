@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Mic2, Star, Heart } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { Mic2, Star } from "lucide-react";
 
 interface Speaker {
   name: string;
