@@ -196,33 +196,9 @@ const speakers: Speaker[] = [
   },
 ];
 
-interface DonorSpeaker {
-  name: string;
-  amount: number;
-}
-
 const SpeakersSection = () => {
   const hosts = speakers.filter((s) => s.isHost);
   const regularSpeakers = speakers.filter((s) => !s.isHost);
-  const [donorSpeakers, setDonorSpeakers] = useState<DonorSpeaker[]>([]);
-
-  // Fetch $20+ donors to show in speakers section
-  useEffect(() => {
-    const fetchDonors = async () => {
-      try {
-        const { data, error } = await supabase.functions.invoke("get-donations");
-        if (error) throw error;
-        if (data?.donors) {
-          setDonorSpeakers(data.donors.filter((d: DonorSpeaker) => d.amount >= 20));
-        }
-      } catch (err) {
-        console.error("Error fetching donor speakers:", err);
-      }
-    };
-    fetchDonors();
-    const interval = setInterval(fetchDonors, 30000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="speakers" className="py-24 md:py-32 bg-background overflow-hidden">
