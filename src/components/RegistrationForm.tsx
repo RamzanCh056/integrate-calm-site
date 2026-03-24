@@ -176,7 +176,7 @@ const RegistrationForm = () => {
 
         <div className="mt-4 flex items-center justify-center gap-2 text-muted-foreground">
           <Users className="w-4 h-4" />
-          <span className="font-body text-xs">{regCount} registered so far</span>
+          <span className="font-body text-xs">{regCount + 1000} registered so far</span>
         </div>
       </div>
     </motion.div>
