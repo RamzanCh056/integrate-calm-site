@@ -37,34 +37,23 @@ const StickyHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-2">
-              {navLinks.map((link) =>
-                link.label === "Donate" ? (
-                  <React.Fragment key="donors-donate">
-                    <DonorsDropdown />
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="px-4 py-2 rounded-full font-body text-sm font-medium transition-all bg-donate text-donate-foreground hover:opacity-90"
-                    >
-                      {link.label}
-                    </a>
-                  </React.Fragment>
-                ) : (
+              {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-all ${
-                      link.primary
-                        ? "bg-primary text-primary-foreground hover:opacity-90"
-                        : link.outline
-                          ? "border border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                          : "text-foreground hover:bg-secondary"
+                      link.donate
+                        ? "bg-donate text-donate-foreground hover:opacity-90"
+                        : link.primary
+                          ? "bg-primary text-primary-foreground hover:opacity-90"
+                          : link.outline
+                            ? "border border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                            : "text-foreground hover:bg-secondary"
                     }`}
                   >
                     {link.label}
                   </a>
-                )
-              )}
+              ))}
             </nav>
 
             {/* Mobile toggle */}
