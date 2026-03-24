@@ -94,7 +94,7 @@ const speakers: Speaker[] = [
   {
     name: "Drasko Raicevic",
     role: "Mindset Coach",
-    topic: "The Source of Calm Is Not What You Think",
+    topic: "Calm as a Superpower: Regulating Yourself Through Chaos and Overwhelm",
     initials: "DR",
     gradient: "from-soft-green to-primary",
     photo: "/images/speakers/drasko-raicevic.png",
@@ -140,7 +140,7 @@ const speakers: Speaker[] = [
   {
     name: "Ernalee Shannon",
     role: "ADHD Thrive Coach",
-    topic: "Unleash Your Inner Happy",
+    topic: "Unleash Your Inner Happy!",
     initials: "ES",
     gradient: "from-donate to-soft-green",
     photo: "/images/speakers/ernalee-shannon.png",
@@ -149,7 +149,7 @@ const speakers: Speaker[] = [
   {
     name: "Jennie Potter",
     role: "Self-Sabotage Coach",
-    topic: "Understanding Reactive Emotions",
+    topic: "Understanding and Neutralizing Reactive Emotions",
     initials: "JP",
     gradient: "from-sky-blue to-soft-green",
     photo: "/images/speakers/jennie-potter.png",
