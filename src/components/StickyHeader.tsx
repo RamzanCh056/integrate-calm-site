@@ -91,13 +91,6 @@ const StickyHeader = () => {
                       {link.label}
                     </a>
                   ))}
-                  <a
-                    href="#donors"
-                    onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 rounded-xl font-body text-sm font-medium text-center transition-all bg-secondary text-secondary-foreground"
-                  >
-                    Donors
-                  </a>
                 </div>
               </motion.div>
             )}
