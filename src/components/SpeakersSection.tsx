@@ -249,12 +249,13 @@ const SpeakersSection = () => {
                 {s.name}
               </h3>
               <p className="font-body text-sm text-muted-foreground mt-1">{s.role}</p>
-              {s.location && (
-                <p className="font-body text-xs text-muted-foreground/70 mt-0.5">📍 {s.location}</p>
-              )}
-              <p className="font-body text-sm font-semibold text-primary mt-3 italic">
+              <p className="font-body text-xs font-semibold text-muted-foreground mt-3 uppercase tracking-wider">Topic:</p>
+              <p className="font-body text-sm font-semibold text-primary italic">
                 "{s.topic}"
               </p>
+              {s.location && (
+                <p className="font-body text-xs text-muted-foreground/70 mt-2">📍 {s.location}</p>
+              )}
             </motion.div>
           ))}
         </div>
