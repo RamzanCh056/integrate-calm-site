@@ -140,7 +140,7 @@ const speakers: Speaker[] = [
   {
     name: "Ernalee Shannon",
     role: "ADHD Thrive Coach",
-    topic: "Unleash Your Inner Happy",
+    topic: "Unleash Your Inner Happy!",
     initials: "ES",
     gradient: "from-donate to-soft-green",
     photo: "/images/speakers/ernalee-shannon.png",
