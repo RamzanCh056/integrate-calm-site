@@ -94,7 +94,7 @@ const speakers: Speaker[] = [
   {
     name: "Drasko Raicevic",
     role: "Mindset Coach",
-    topic: "The Source of Calm Is Not What You Think",
+    topic: "Calm as a Superpower: Regulating Yourself Through Chaos and Overwhelm",
     initials: "DR",
     gradient: "from-soft-green to-primary",
     photo: "/images/speakers/drasko-raicevic.png",
