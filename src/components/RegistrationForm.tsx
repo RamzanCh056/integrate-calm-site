@@ -115,7 +115,7 @@ const RegistrationForm = () => {
         </p>
         <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-body text-sm font-semibold">
           <Users className="w-4 h-4" />
-          {regCount} people registered
+          {regCount + 1000} people registered
         </div>
         <button
           onClick={handleUnregister}
