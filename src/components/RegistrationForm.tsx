@@ -144,7 +144,7 @@ const RegistrationForm = () => {
             Register for the Summit
           </h3>
           <p className="font-body text-sm text-muted-foreground mt-1">
-            Free registration — join {regCount}+ attendees
+            Free registration — join {regCount + 1000}+ attendees
           </p>
         </div>
 
