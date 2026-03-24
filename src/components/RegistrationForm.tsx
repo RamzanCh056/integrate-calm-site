@@ -115,7 +115,7 @@ const RegistrationForm = () => {
         </p>
         <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-body text-sm font-semibold">
           <Users className="w-4 h-4" />
-          {regCount} people registered
+          {regCount + 1000} people registered
         </div>
         <button
           onClick={handleUnregister}
@@ -144,7 +144,7 @@ const RegistrationForm = () => {
             Register for the Summit
           </h3>
           <p className="font-body text-sm text-muted-foreground mt-1">
-            Free registration — join {regCount}+ attendees
+            Free registration — join {regCount + 1000}+ attendees
           </p>
         </div>
 
@@ -176,7 +176,7 @@ const RegistrationForm = () => {
 
         <div className="mt-4 flex items-center justify-center gap-2 text-muted-foreground">
           <Users className="w-4 h-4" />
-          <span className="font-body text-xs">{regCount} registered so far</span>
+          <span className="font-body text-xs">{regCount + 1000} registered so far</span>
         </div>
       </div>
     </motion.div>
