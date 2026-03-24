@@ -1,201 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mic2, Star } from "lucide-react";
-
-interface Speaker {
-  name: string;
-  role: string;
-  topic: string;
-  initials: string;
-  gradient: string;
-  isHost?: boolean;
-  photo?: string;
-  photoPosition?: string;
-  location?: string;
-}
-
-const speakers: Speaker[] = [
-  {
-    name: "Celia Kibler",
-    role: "HOST, Founder, Day of Calm Foundation & BeABetterParent.com, Awarded Author",
-    topic: "Opening Session: Where CALM Lives & Closing Session: Gratitude: The Secret Ingredient",
-    initials: "CK",
-    gradient: "from-primary to-soft-green",
-    isHost: true,
-    photo: "/images/speakers/celia-kibler.jpg",
-    location: "Maryland, USA",
-  },
-  {
-    name: "Greg Edwards",
-    role: "HOST, FNMU Faculty, Professor of Comedy Therapy",
-    topic: "Laughter: The Best Medicine",
-    initials: "GE",
-    gradient: "from-sky-blue to-primary",
-    isHost: true,
-    photo: "/images/speakers/greg-edwards.jpg",
-    photoPosition: "object-[center_20%]",
-    location: "California, USA",
-  },
-  {
-    name: "Dr. Scott R. Lowry",
-    role: "FNMU Faculty, Family Medicine",
-    topic: "Aging Gracefully and Staying Calm Under Fire",
-    initials: "SL",
-    gradient: "from-primary to-soft-green",
-    photo: "/images/speakers/scott-lawry.png",
-    photoPosition: "zoom",
-    location: "USA",
-  },
-  {
-    name: "Bernetta Cannon",
-    role: "FNMU Faculty, Registered Nurse",
-    topic: "What Is Calm & How to Get It",
-    initials: "BC",
-    gradient: "from-soft-green to-sky-blue",
-    photo: "/images/speakers/bernetta-cannon.png",
-    location: "USA",
-  },
-  {
-    name: "Robert Vetter",
-    role: "Healer & Anthropologist",
-    topic: "The Roles Emotions Play in Healing",
-    initials: "RV",
-    gradient: "from-deep-green to-soft-green",
-    photo: "/images/speakers/robert-vetter.jpeg",
-    photoPosition: "object-[center_20%]",
-    location: "New York, USA",
-  },
-  {
-    name: "Wendy Ologe",
-    role: "Intentional Parents Academy",
-    topic: "TBA",
-    initials: "WO",
-    gradient: "from-donate to-primary",
-    photo: "/images/speakers/wendy-ologe.png",
-    location: "Nigeria",
-  },
-  {
-    name: "Maddi Cheers",
-    role: "Storyteller & Wisdom Activist",
-    topic: "The Peacemaker's Journey: Ancient Wisdom for Calm Amid Chaos",
-    initials: "MC",
-    gradient: "from-soft-green to-sky-blue",
-    photo: "/images/speakers/maddi-cheers.jpg",
-    location: "New York, USA",
-  },
-  {
-    name: "Minister Peace",
-    role: "Child Health & Safety",
-    topic: "Breaking the Cycle: Evidence Based Solutions to Prevent Violent Crime",
-    initials: "MP",
-    gradient: "from-primary to-deep-green",
-    photo: "/images/speakers/minister-peace.png",
-    location: "New York, USA",
-  },
-  {
-    name: "Drasko Raicevic",
-    role: "Mindset Coach",
-    topic: "The Source of Calm Is Not What You Think",
-    initials: "DR",
-    gradient: "from-soft-green to-primary",
-    photo: "/images/speakers/drasko-raicevic.png",
-    location: "Canada",
-  },
-  {
-    name: "Yaakov Andrew Cohen",
-    role: "Executive Coach",
-    topic: "Positive Roots. Unbreakable Future.",
-    initials: "YC",
-    gradient: "from-primary to-sky-blue",
-    photo: "/images/speakers/yaakov-cohen.jpg",
-    location: "Florida, USA",
-  },
-  {
-    name: "Karyn Melko-Medeiros",
-    role: "Manifestation Coach",
-    topic: "Rich Girl Money: 5 Changes That Increase Money at Home",
-    initials: "KM",
-    gradient: "from-donate to-sky-blue",
-    photo: "/images/speakers/karyn-melko.jpg",
-    photoPosition: "zoom",
-    location: "Canada",
-  },
-  {
-    name: "Czarina Pasculado",
-    role: "Childhood Trauma Specialist",
-    topic: "Calm Isn't Quiet: Building a Home Where Kids Feel Safe",
-    initials: "CP",
-    gradient: "from-soft-green to-deep-green",
-    photo: "/images/speakers/czarina-pasculado.jpg",
-    location: "Philippines",
-  },
-  {
-    name: "Priti Irani",
-    role: "Human Strengths Expert & Coach",
-    topic: "TBA",
-    initials: "PI",
-    gradient: "from-primary to-donate",
-    photo: "/images/speakers/priti-irani.jpg",
-    location: "India",
-  },
-  {
-    name: "Ernalee Shannon",
-    role: "ADHD Thrive Coach",
-    topic: "Unleash Your Inner Happy",
-    initials: "ES",
-    gradient: "from-donate to-soft-green",
-    photo: "/images/speakers/ernalee-shannon.png",
-    location: "USA",
-  },
-  {
-    name: "Jennie Potter",
-    role: "Self-Sabotage Coach",
-    topic: "Understanding Reactive Emotions",
-    initials: "JP",
-    gradient: "from-sky-blue to-soft-green",
-    photo: "/images/speakers/jennie-potter.png",
-    photoPosition: "zoom",
-    location: "USA",
-  },
-  {
-    name: "Dr. Kailey Buller",
-    role: "Double Board-Certified ER; Labor/Delivery Physician",
-    topic: "Tired or Hangry? Why Calm Can Feel Out of Reach",
-    initials: "KB",
-    gradient: "from-sky-blue to-primary",
-    photo: "/images/speakers/kailey-buller.jpg",
-    photoPosition: "zoom",
-    location: "Canada",
-  },
-  {
-    name: "Luke Mickelson",
-    role: "Founder, Sleep in Heavenly Sleep",
-    topic: "TBA",
-    initials: "LM",
-    gradient: "from-deep-green to-primary",
-    photo: "/images/speakers/luke-mickelson.jpg",
-    location: "USA",
-  },
-  {
-    name: "C.L. King",
-    role: "Best-Selling Author & Impact Motivator",
-    topic: "F.A.T.H.E.R.H.O.O.D.",
-    initials: "CK",
-    gradient: "from-deep-green to-sky-blue",
-    photo: "/images/speakers/cl-king.jpg",
-    location: "North Carolina, USA",
-  },
-  {
-    name: "Harry Lopez",
-    role: "Mindset Coach",
-    topic: "Chanting Your Way to Calm",
-    initials: "HL",
-    gradient: "from-sky-blue to-deep-green",
-    photo: "/images/speakers/harry-lopez.png",
-    location: "Florida, USA",
-  },
-];
+import { speakers, type Speaker } from "@/data/speakers";
+import SpeakerBioDialog from "@/components/SpeakerBioDialog";
 
 const SpeakersSection = () => {
+  const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
   const hosts = speakers.filter((s) => s.isHost);
   const regularSpeakers = speakers.filter((s) => !s.isHost);
 
@@ -229,7 +39,8 @@ const SpeakersSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="relative bg-card rounded-3xl p-8 shadow-calm-lg border border-primary/10 text-center"
+              className="relative bg-card rounded-3xl p-8 shadow-calm-lg border border-primary/10 text-center cursor-pointer hover:shadow-calm-lg transition-all hover:-translate-y-1"
+              onClick={() => setSelectedSpeaker(s)}
             >
               <div className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary font-body text-xs font-bold uppercase tracking-wider">
                 <Star className="w-3 h-3" /> Host
@@ -255,6 +66,7 @@ const SpeakersSection = () => {
               <p className="font-body text-sm font-semibold text-primary mt-3 italic">
                 "{s.topic}"
               </p>
+              <p className="font-body text-xs text-primary/60 mt-2 underline">View Bio</p>
             </motion.div>
           ))}
         </div>
@@ -268,7 +80,8 @@ const SpeakersSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="bg-card rounded-2xl p-6 shadow-calm hover:shadow-calm-lg transition-all hover:-translate-y-1 group"
+              className="bg-card rounded-2xl p-6 shadow-calm hover:shadow-calm-lg transition-all hover:-translate-y-1 group cursor-pointer"
+              onClick={() => setSelectedSpeaker(s)}
             >
               <div className="flex items-start gap-4">
                 <div
@@ -293,13 +106,19 @@ const SpeakersSection = () => {
                   <p className="font-body text-xs font-medium text-primary mt-2 leading-snug">
                     {s.topic}
                   </p>
+                  <p className="font-body text-[11px] text-primary/60 mt-1 underline">View Bio</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
+
+      <SpeakerBioDialog
+        speaker={selectedSpeaker}
+        open={!!selectedSpeaker}
+        onOpenChange={(open) => !open && setSelectedSpeaker(null)}
+      />
     </section>
   );
 };
