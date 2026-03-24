@@ -149,7 +149,7 @@ const speakers: Speaker[] = [
   {
     name: "Jennie Potter",
     role: "Self-Sabotage Coach",
-    topic: "Understanding Reactive Emotions",
+    topic: "Understanding and Neutralizing Reactive Emotions",
     initials: "JP",
     gradient: "from-sky-blue to-soft-green",
     photo: "/images/speakers/jennie-potter.png",
