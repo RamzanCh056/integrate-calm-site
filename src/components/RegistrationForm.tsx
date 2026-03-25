@@ -67,6 +67,7 @@ const RegistrationForm = () => {
       }
 
       // New registration
+      const regId = crypto.randomUUID();
       await addDoc(collection(db, "registrations"), {
         name: name.trim(),
         email: email.trim(),
@@ -76,6 +77,16 @@ const RegistrationForm = () => {
       window.dispatchEvent(new Event("user-registered"));
       setSubmitted(true);
       toast.success("Registration successful! Redirecting to donate...");
+
+      // Send confirmation email
+      supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "registration-confirmation",
+          recipientEmail: email.trim(),
+          idempotencyKey: `reg-confirm-${regId}`,
+          templateData: { name: name.trim() },
+        },
+      }).catch((err) => console.error("Email send error:", err));
       // Scroll to donate section after a brief delay
       setTimeout(() => {
         const donateSection = document.getElementById("donate");
