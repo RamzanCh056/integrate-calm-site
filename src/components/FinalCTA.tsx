@@ -22,8 +22,8 @@ const FinalCTA = () => {
           viewport={{ once: true }}
           className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 max-w-3xl mx-auto leading-tight"
         >
-          Be Part of the{" "}
-          <span className="italic">Calm</span> Movement
+          Don't Miss It — Register{" "}
+          <span className="italic">Free</span> Today
         </motion.h2>
 
         <motion.p
