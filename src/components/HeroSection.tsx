@@ -1,8 +1,30 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { CalendarDays, Globe, Sparkles } from "lucide-react";
+import { CalendarDays, Globe, Sparkles, Users, Clock, ArrowDown } from "lucide-react";
+
+const targetDate = new Date("2026-04-03T00:00:00Z");
+
+const getTimeLeft = () => {
+  const now = new Date();
+  const diff = targetDate.getTime() - now.getTime();
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+};
 
 const HeroSection = () => {
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="register"
@@ -29,50 +51,51 @@ const HeroSection = () => {
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-1/4 right-[12%] w-56 h-56 rounded-full bg-soft-green/8 blur-3xl"
         />
-        <motion.div
-          animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/5 blur-3xl"
-        />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center pt-20 pb-32">
+      <div className="relative z-10 container mx-auto px-6 text-center pt-20 pb-24">
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/15 mb-8"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/15 mb-6"
         >
           <Sparkles className="w-4 h-4 text-primary-foreground/80" />
           <span className="font-body text-sm tracking-wide text-primary-foreground/90">
-            An Integrated Path to Calm
+            100% Free — Register Now & Join Live
           </span>
         </motion.div>
 
+        {/* Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.9 }}
-          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-foreground leading-[1.08] max-w-5xl mx-auto mb-8"
+          className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-[1.08] max-w-5xl mx-auto mb-5"
         >
-          This World Needs More{" "}
-          <span className="italic">Calm</span> — And It Starts With You
+          Free Live Global Summit:{" "}
+          <span className="italic">Discover Real Calm</span> in Just Days
         </motion.h1>
 
+        {/* Subheadline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="font-body text-2xl md:text-3xl text-primary-foreground max-w-2xl mx-auto mb-4 font-medium leading-relaxed"
+          className="font-body text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-6 leading-relaxed"
         >
-          Join the International Day of Calm Summit
+          Practical tools for less stress, reactivity & overwhelm — from 20+ world-class speakers.
+          <br className="hidden md:block" />
+          <span className="font-semibold">Join live online via YouTube & Facebook.</span>
         </motion.p>
 
+        {/* Date & Format */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="flex items-center justify-center gap-4 text-primary-foreground/85 font-body text-lg font-medium mb-4"
+          className="flex flex-wrap items-center justify-center gap-4 text-primary-foreground/85 font-body text-base font-medium mb-6"
         >
           <span className="flex items-center gap-1.5">
             <CalendarDays className="w-4 h-4" />
@@ -81,43 +104,53 @@ const HeroSection = () => {
           <span className="w-1 h-1 rounded-full bg-primary-foreground/30" />
           <span className="flex items-center gap-1.5">
             <Globe className="w-4 h-4" />
-            Global Hybrid Event
+            Global Online Event
+          </span>
+          <span className="w-1 h-1 rounded-full bg-primary-foreground/30" />
+          <span className="flex items-center gap-1.5">
+            <Clock className="w-4 h-4" />
+            Live Only — No Recordings
           </span>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="font-display text-xl md:text-2xl italic text-primary-foreground/65 mb-14"
-        >
-          Different disciplines. One goal.
-        </motion.p>
-
+        {/* Countdown */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ delay: 1 }}
+          className="flex items-center justify-center gap-3 mb-8"
+        >
+          {[
+            { val: timeLeft.days, label: "Days" },
+            { val: timeLeft.hours, label: "Hours" },
+            { val: timeLeft.minutes, label: "Min" },
+            { val: timeLeft.seconds, label: "Sec" },
+          ].map((t, i) => (
+            <div key={i} className="flex flex-col items-center">
+              <span className="font-display text-3xl md:text-4xl font-bold text-primary-foreground bg-primary-foreground/10 backdrop-blur-sm rounded-xl px-4 py-2 min-w-[60px] border border-primary-foreground/15">
+                {String(t.val).padStart(2, "0")}
+              </span>
+              <span className="font-body text-xs text-primary-foreground/60 mt-1">{t.label}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Primary CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1 }}
+          className="flex flex-col items-center gap-3"
         >
           <a
             href="#register-form"
-            className="group px-10 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
+            className="group px-12 py-5 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-xl hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
-            Register Now
+            Register Free Now
           </a>
-          <a
-            href="#donate"
-            className="px-10 py-4 rounded-full bg-donate text-donate-foreground font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
-          >
-            Donate & Share Your Voice
-          </a>
-          <a
-            href="#sponsor"
-            className="px-10 py-4 rounded-full border-2 border-primary-foreground/40 text-primary-foreground font-body font-semibold text-lg hover:bg-primary-foreground/10 transition-colors backdrop-blur-sm"
-          >
-            Become a Sponsor
-          </a>
+          <span className="font-body text-sm text-primary-foreground/60">
+            ↓ Scroll down to register in 30 seconds — it's completely free
+          </span>
         </motion.div>
       </div>
 

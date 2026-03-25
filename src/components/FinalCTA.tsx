@@ -22,8 +22,8 @@ const FinalCTA = () => {
           viewport={{ once: true }}
           className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 max-w-3xl mx-auto leading-tight"
         >
-          Be Part of the{" "}
-          <span className="italic">Calm</span> Movement
+          Don't Miss It — Register{" "}
+          <span className="italic">Free</span> Today
         </motion.h2>
 
         <motion.p
@@ -33,9 +33,9 @@ const FinalCTA = () => {
           transition={{ delay: 0.2 }}
           className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-14 leading-relaxed"
         >
-          Together, we can build a calmer, more connected world.
+          Live only — no recordings. Join thousands registering for the free global calm summit.
           <br />
-          Choose how you'd like to participate.
+          April 3–6, 2026 — your moment of calm is waiting.
         </motion.p>
 
         <motion.div

@@ -1,13 +1,13 @@
 import StickyHeader from "@/components/StickyHeader";
 import HeroSection from "@/components/HeroSection";
 import RegistrationForm from "@/components/RegistrationForm";
-import DonateSection from "@/components/DonateSection";
-
-import SchoolStory from "@/components/SchoolStory";
+import WhatYoullLearn from "@/components/WhatYoullLearn";
+import SpeakersSection from "@/components/SpeakersSection";
 import HowItWorks from "@/components/HowItWorks";
 import SolutionSection from "@/components/SolutionSection";
-import SpeakersSection from "@/components/SpeakersSection";
 import JoinLivestream from "@/components/JoinLivestream";
+import SchoolStory from "@/components/SchoolStory";
+import DonateSection from "@/components/DonateSection";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import VideoPopup from "@/components/VideoPopup";
@@ -19,28 +19,42 @@ const Index = () => {
       <StickyHeader />
       <HeroSection />
 
-      {/* Registration */}
+      {/* Registration — immediately after hero */}
       <section id="register-form" className="py-20 md:py-28 bg-secondary/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Join the <span className="text-gradient-calm">Movement</span>
+              Register <span className="text-gradient-calm">Free</span> — Join Live
             </h2>
             <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto">
-              Register for the International Day of Calm Summit — free and open to all.
+              Secure your spot in 30 seconds. Completely free — instant confirmation with stream links.
             </p>
           </div>
           <RegistrationForm />
         </div>
       </section>
 
-      <SchoolStory />
-      <DonateSection />
-      
+      {/* What You'll Learn — value proposition */}
+      <WhatYoullLearn />
+
+      {/* Speakers — show the lineup early */}
+      <SpeakersSection />
+
       <HowItWorks />
       <SolutionSection />
-      <SpeakersSection />
       <JoinLivestream />
+
+      {/* Donation section — clearly separated and lower */}
+      <div className="bg-secondary/20 py-6">
+        <div className="container mx-auto px-6 text-center">
+          <p className="font-body text-sm text-muted-foreground">
+            Registration is <span className="font-bold text-foreground">completely free</span>. Donations are optional and support rebuilding a school in Uganda and future calm initiatives.
+          </p>
+        </div>
+      </div>
+      <SchoolStory />
+      <DonateSection />
+
       <FinalCTA />
       <Footer />
     </div>

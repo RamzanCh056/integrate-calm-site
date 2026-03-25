@@ -111,7 +111,9 @@ const RegistrationForm = () => {
           You're Registered!
         </h3>
         <p className="font-body text-muted-foreground">
-          Welcome to the Day of Calm Summit, {name}. We'll send details to {email}.
+          You're in, {name}! Check {email} for confirmation with live stream links.
+          <br className="hidden sm:block" />
+          <span className="font-semibold text-foreground">Add April 3–6 to your calendar — we'll send links the day before each session.</span>
         </p>
         <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-body text-sm font-semibold">
           <Users className="w-4 h-4" />
