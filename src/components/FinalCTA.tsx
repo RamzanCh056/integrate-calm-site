@@ -33,9 +33,9 @@ const FinalCTA = () => {
           transition={{ delay: 0.2 }}
           className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-14 leading-relaxed"
         >
-          Together, we can build a calmer, more connected world.
+          Live only — no recordings. Join thousands registering for the free global calm summit.
           <br />
-          Choose how you'd like to participate.
+          April 3–6, 2026 — your moment of calm is waiting.
         </motion.p>
 
         <motion.div
