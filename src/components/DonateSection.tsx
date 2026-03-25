@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Heart, Play, Award, Film, Shield, CreditCard } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -38,19 +37,15 @@ const DonateSection = () => {
   const [registeredUser, setRegisteredUser] = useState<{ name: string; email: string } | null>(getRegisteredUser);
   const isCustom = !presetAmounts.includes(amount);
 
-  // Check for donation success from Stripe redirect and verify/save donation
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("donation") === "success") {
       const sessionId = params.get("session_id");
-      
-      // Clean URL immediately
       const url = new URL(window.location.href);
       url.searchParams.delete("donation");
       url.searchParams.delete("session_id");
       window.history.replaceState({}, "", url.pathname);
 
-      // Verify and save the donation via edge function
       if (sessionId) {
         supabase.functions.invoke("verify-donation", {
           body: { session_id: sessionId },
@@ -62,7 +57,6 @@ const DonateSection = () => {
             if (data?.amount) {
               setSuccessAmount(data.amount);
             }
-            // Also save to Firebase donations collection
             if (data?.saved) {
               try {
                 await addDoc(collection(db, "donations"), {
@@ -71,14 +65,12 @@ const DonateSection = () => {
                   amount: data.amount || 0,
                   donatedAt: new Date().toISOString(),
                 });
-                console.log("Donation saved to Firebase");
               } catch (fbErr) {
                 console.error("Firebase donation save error:", fbErr);
               }
             }
           }
           setShowSuccessDialog(true);
-          // Trigger immediate refresh of donation progress
           window.dispatchEvent(new Event("donation-completed"));
         });
       } else {
@@ -87,13 +79,11 @@ const DonateSection = () => {
     }
   }, []);
 
-  // Listen for registration events from RegistrationForm
   useEffect(() => {
     const handleRegistration = () => {
       setRegisteredUser(getRegisteredUser());
     };
     window.addEventListener("user-registered", handleRegistration);
-    // Also poll localStorage in case event was missed
     const interval = setInterval(() => {
       const user = getRegisteredUser();
       if (user && !registeredUser) setRegisteredUser(user);
@@ -115,7 +105,6 @@ const DonateSection = () => {
       toast.error("Minimum donation is $1");
       return;
     }
-    // If user is registered, pass their info; otherwise let Stripe collect it
     const user = registeredUser || getRegisteredUser();
     handleProceedToPayment(user?.name || "", user?.email || "");
   };
@@ -123,8 +112,6 @@ const DonateSection = () => {
   const handleProceedToPayment = async (donorName: string, donorEmail: string) => {
     setShowDonorDialog(false);
     setLoading(true);
-    
-    // Open a blank window synchronously (from user gesture context) to avoid popup blockers
     const paymentWindow = window.open("about:blank", "_blank");
     
     try {
@@ -143,7 +130,6 @@ const DonateSection = () => {
         if (paymentWindow) {
           paymentWindow.location.href = data.url;
         } else {
-          // Fallback: redirect current window if popup was still blocked
           window.location.href = data.url;
         }
       } else {
@@ -163,15 +149,9 @@ const DonateSection = () => {
       <section id="donate" className="py-24 md:py-32 bg-gradient-sky">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-start">
-            {/* Left column: heading + perks */}
+            {/* Left column */}
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="mb-10"
-              >
+              <div className="mb-10">
                 <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
                   Support the Movement.{" "}
                   <span className="text-gradient-calm">Share Your Voice.</span>
@@ -179,15 +159,9 @@ const DonateSection = () => {
                 <p className="font-body text-lg text-muted-foreground mb-4">
                   Every dollar makes a difference. Donate to receive:
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="space-y-5 mb-8"
-              >
+              <div className="space-y-5 mb-8">
                 {perks.map((perk, i) => (
                   <div
                     key={i}
@@ -201,18 +175,11 @@ const DonateSection = () => {
                     </p>
                   </div>
                 ))}
-              </motion.div>
-
+              </div>
             </div>
 
             {/* Donation Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-card rounded-3xl p-8 shadow-calm-lg"
-            >
+            <div className="bg-card rounded-3xl p-8 shadow-calm-lg">
               {/* Toggle */}
               <div className="flex items-center justify-center gap-1 mb-8 bg-secondary rounded-full p-1 max-w-xs mx-auto">
                 <button
@@ -246,7 +213,7 @@ const DonateSection = () => {
                       setAmount(a);
                       setCustom("");
                     }}
-                    className={`py-3 rounded-xl font-body font-semibold text-lg transition-all ${
+                    className={`py-3 rounded-xl font-body font-semibold text-lg transition-colors ${
                       amount === a && !isCustom
                         ? "bg-primary text-primary-foreground shadow-calm"
                         : "bg-secondary text-secondary-foreground hover:bg-primary/10"
@@ -303,7 +270,7 @@ const DonateSection = () => {
                   Your donation helps amplify voices from every corner of the globe. As part of our mission, community messages submitted by donors are featured during the summit — because true calm begins when everyone is heard.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

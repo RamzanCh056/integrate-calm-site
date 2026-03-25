@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Mic2, Star } from "lucide-react";
 
 interface Speaker {
@@ -195,6 +194,33 @@ const speakers: Speaker[] = [
   },
 ];
 
+const SpeakerImage = ({ speaker, size }: { speaker: Speaker; size: "sm" | "lg" }) => {
+  const dim = size === "lg" ? "w-24 h-24" : "w-14 h-14";
+  const textSize = size === "lg" ? "text-2xl" : "text-base";
+  
+  return (
+    <div className={`${dim} rounded-full ${speaker.photo ? '' : `bg-gradient-to-br ${speaker.gradient}`} flex items-center justify-center overflow-hidden shrink-0`}>
+      {speaker.photo ? (
+        <img
+          src={speaker.photo}
+          alt={speaker.name}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover"
+          style={{
+            objectPosition: speaker.photoPosition === 'zoom' ? 'center 15%' : speaker.photoPosition === 'zoomout' ? 'center 30%' : 'center top',
+            transform: speaker.photoPosition === 'zoom' ? 'scale(1.5)' : speaker.photoPosition === 'zoomout' ? 'scale(0.75)' : undefined,
+          }}
+        />
+      ) : (
+        <span className={`font-display ${textSize} font-bold text-primary-foreground`}>
+          {speaker.initials}
+        </span>
+      )}
+    </div>
+  );
+};
+
 const SpeakersSection = () => {
   const hosts = speakers.filter((s) => s.isHost);
   const regularSpeakers = speakers.filter((s) => !s.isHost);
@@ -202,12 +228,7 @@ const SpeakersSection = () => {
   return (
     <section id="speakers" className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-6"
-        >
+        <div className="text-center mb-6">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             Our Speakers
           </h2>
@@ -218,32 +239,20 @@ const SpeakersSection = () => {
             <Mic2 className="w-4 h-4" />
             + Community Voices Featured Live
           </div>
-        </motion.div>
+        </div>
 
         {/* Hosts */}
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto mt-14 mb-12">
-          {hosts.map((s, i) => (
-            <motion.div
+          {hosts.map((s) => (
+            <div
               key={s.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
               className="relative bg-card rounded-3xl p-8 shadow-calm-lg border border-primary/10 text-center"
             >
               <div className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary font-body text-xs font-bold uppercase tracking-wider">
                 <Star className="w-3 h-3" /> Host
               </div>
-              <div
-                className={`w-24 h-24 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center mx-auto mb-5 shadow-calm overflow-hidden`}
-              >
-                {s.photo ? (
-                  <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition === 'zoom' ? 'center 15%' : s.photoPosition === 'zoomout' ? 'center 30%' : 'center top', transform: s.photoPosition === 'zoom' ? 'scale(1.5)' : s.photoPosition === 'zoomout' ? 'scale(0.75)' : undefined }} />
-                ) : (
-                  <span className="font-display text-2xl font-bold text-primary-foreground">
-                    {s.initials}
-                  </span>
-                )}
+              <div className="flex justify-center mb-5">
+                <SpeakerImage speaker={s} size="lg" />
               </div>
               <h3 className="font-display text-xl font-bold text-card-foreground">
                 {s.name}
@@ -256,33 +265,19 @@ const SpeakersSection = () => {
               {s.location && (
                 <p className="font-body text-xs text-muted-foreground/70 mt-2">📍 {s.location}</p>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Regular speakers */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-          {regularSpeakers.map((s, i) => (
-            <motion.div
+          {regularSpeakers.map((s) => (
+            <div
               key={s.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-card rounded-2xl p-6 shadow-calm hover:shadow-calm-lg transition-all hover:-translate-y-1 group"
+              className="bg-card rounded-2xl p-6 shadow-calm hover:shadow-calm-lg transition-shadow"
             >
               <div className="flex items-start gap-4">
-                <div
-                  className={`w-14 h-14 rounded-full ${s.photo ? '' : `bg-gradient-to-br ${s.gradient}`} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform overflow-hidden`}
-                >
-                  {s.photo ? (
-                    <img src={s.photo} alt={s.name} className="w-full h-full object-cover" style={{ objectPosition: s.photoPosition === 'zoom' ? 'center 15%' : s.photoPosition === 'zoomout' ? 'center 30%' : 'center top', transform: s.photoPosition === 'zoom' ? 'scale(1.5)' : s.photoPosition === 'zoomout' ? 'scale(0.75)' : undefined }} />
-                  ) : (
-                    <span className="font-display text-base font-bold text-primary-foreground">
-                      {s.initials}
-                    </span>
-                  )}
-                </div>
+                <SpeakerImage speaker={s} size="sm" />
                 <div className="min-w-0">
                   <h3 className="font-display text-base font-semibold text-card-foreground leading-tight">
                     {s.name}
@@ -297,10 +292,9 @@ const SpeakersSection = () => {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
       </div>
     </section>
   );

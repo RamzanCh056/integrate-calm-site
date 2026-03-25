@@ -1,50 +1,28 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const FinalCTA = () => {
   return (
     <section id="sponsor" className="relative py-32 md:py-40 overflow-hidden">
-      <motion.div
-        initial={{ scale: 1.05 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 8 }}
+      <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div className="absolute inset-0 bg-gradient-hero" />
 
       <div className="relative z-10 container mx-auto px-6 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 max-w-3xl mx-auto leading-tight"
-        >
+        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 max-w-3xl mx-auto leading-tight">
           Don't Miss It — Register{" "}
           <span className="italic">Free</span> Today
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-14 leading-relaxed"
-        >
+        <p className="font-body text-lg text-primary-foreground/80 max-w-xl mx-auto mb-14 leading-relaxed">
           Live only — no recordings. Join thousands registering for the free global calm summit.
           <br />
           April 3–6, 2026 — your moment of calm is waiting.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#register"
             className="px-10 py-4 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-lg hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
@@ -63,7 +41,7 @@ const FinalCTA = () => {
           >
             Sponsor the Summit
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
