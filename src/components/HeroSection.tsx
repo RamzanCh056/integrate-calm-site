@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { CalendarDays, Globe, Sparkles, Users, Clock, ArrowDown } from "lucide-react";
+import { CalendarDays, Globe, Sparkles, Clock } from "lucide-react";
 
 const targetDate = new Date("2026-04-03T00:00:00Z");
 
@@ -30,73 +29,36 @@ const HeroSection = () => {
       id="register"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <motion.div
-        initial={{ scale: 1.15 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 12, ease: "easeOut" }}
+      <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
       <div className="absolute inset-0 bg-gradient-hero" />
 
-      {/* Floating orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{ y: [0, -30, 0], x: [0, 10, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-[8%] w-48 h-48 rounded-full bg-sky-blue/8 blur-3xl"
-        />
-        <motion.div
-          animate={{ y: [0, 25, 0], x: [0, -15, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-[12%] w-56 h-56 rounded-full bg-soft-green/8 blur-3xl"
-        />
-      </div>
-
       <div className="relative z-10 container mx-auto px-6 text-center pt-20 pb-24">
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/15 mb-6"
-        >
+        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/15 mb-6 animate-fade-in">
           <Sparkles className="w-4 h-4 text-primary-foreground/80" />
           <span className="font-body text-sm tracking-wide text-primary-foreground/90">
             100% Free — Register Now & Join Live
           </span>
-        </motion.div>
+        </div>
 
         {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.9 }}
-          className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-[1.08] max-w-5xl mx-auto mb-5"
-        >
+        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-[1.08] max-w-5xl mx-auto mb-5 animate-fade-in">
           Free Live Global Summit:{" "}
           <span className="italic">Discover Real Calm</span> in Just Days
-        </motion.h1>
+        </h1>
 
         {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="font-body text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-6 leading-relaxed"
-        >
+        <p className="font-body text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-6 leading-relaxed animate-fade-in">
           Practical tools for less stress, reactivity & overwhelm — from 20+ world-class speakers.
           <br className="hidden md:block" />
           <span className="font-semibold">Join live online via YouTube & Facebook.</span>
-        </motion.p>
+        </p>
 
         {/* Date & Format */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="flex flex-wrap items-center justify-center gap-4 text-primary-foreground/85 font-body text-base font-medium mb-6"
-        >
+        <div className="flex flex-wrap items-center justify-center gap-4 text-primary-foreground/85 font-body text-base font-medium mb-6 animate-fade-in">
           <span className="flex items-center gap-1.5">
             <CalendarDays className="w-4 h-4" />
             April 3–6, 2026
@@ -111,15 +73,10 @@ const HeroSection = () => {
             <Clock className="w-4 h-4" />
             Live Only — No Recordings
           </span>
-        </motion.div>
+        </div>
 
         {/* Countdown */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="flex items-center justify-center gap-3 mb-8"
-        >
+        <div className="flex items-center justify-center gap-3 mb-8 animate-fade-in">
           {[
             { val: timeLeft.days, label: "Days" },
             { val: timeLeft.hours, label: "Hours" },
@@ -133,15 +90,10 @@ const HeroSection = () => {
               <span className="font-body text-xs text-primary-foreground/60 mt-1">{t.label}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Primary CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
-          className="flex flex-col items-center gap-3"
-        >
+        <div className="flex flex-col items-center gap-3 animate-fade-in">
           <a
             href="#register-form"
             className="group px-12 py-5 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-xl hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
@@ -151,7 +103,7 @@ const HeroSection = () => {
           <span className="font-body text-sm text-primary-foreground/60">
             ↓ Scroll down to register in 30 seconds — it's completely free
           </span>
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom fade */}

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Youtube, Facebook, Instagram, MonitorPlay, ExternalLink, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -59,12 +58,7 @@ const JoinLivestream = () => {
   return (
     <section id="livestream" className="py-24 md:py-32 bg-gradient-sky">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 text-primary font-body text-sm font-semibold mb-5">
             <MonitorPlay className="w-4 h-4" />
             Live &amp; On-Demand
@@ -75,21 +69,17 @@ const JoinLivestream = () => {
           <p className="font-body text-lg text-muted-foreground max-w-xl mx-auto">
             Tune in from anywhere in the world. Choose your preferred platform to watch live or catch the replay.
           </p>
-        </motion.div>
+        </div>
 
         {/* Platform cards */}
         <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
-          {platforms.map((p, i) => (
-            <motion.a
+          {platforms.map((p) => (
+            <a
               key={p.name}
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="group bg-card rounded-3xl p-8 shadow-calm hover:shadow-calm-lg transition-all hover:-translate-y-1 text-center"
+              className="group bg-card rounded-3xl p-8 shadow-calm hover:shadow-calm-lg transition-shadow text-center"
             >
               <div
                 className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${p.gradient} flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform shadow-calm`}
@@ -106,17 +96,12 @@ const JoinLivestream = () => {
                 {p.buttonText}
                 <ExternalLink className="w-3.5 h-3.5" />
               </span>
-            </motion.a>
+            </a>
           ))}
         </div>
 
         {/* Countdown Timer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-card rounded-3xl p-8 max-w-2xl mx-auto shadow-calm text-center mb-16"
-        >
+        <div className="bg-card rounded-3xl p-8 max-w-2xl mx-auto shadow-calm text-center mb-16">
           <div className="inline-flex items-center gap-2 text-primary font-body text-sm font-semibold mb-4">
             <Clock className="w-4 h-4" />
             Summit starts April 3rd
@@ -133,15 +118,10 @@ const JoinLivestream = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Social follow */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-card rounded-3xl p-8 max-w-2xl mx-auto shadow-calm text-center"
-        >
+        <div className="bg-card rounded-3xl p-8 max-w-2xl mx-auto shadow-calm text-center">
           <h3 className="font-display text-xl font-semibold text-card-foreground mb-2">
             Follow Us &amp; Stay Updated
           </h3>
@@ -162,7 +142,7 @@ const JoinLivestream = () => {
               </a>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
