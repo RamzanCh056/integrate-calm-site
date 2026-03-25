@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { UserPlus, Users, CheckCircle, LogOut } from "lucide-react";
 import { db, collection, addDoc, onSnapshot, query, getDocs } from "@/lib/firebase";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import { toast } from "sonner";
 
 const RegistrationForm = () => {
