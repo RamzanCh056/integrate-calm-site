@@ -35,11 +35,12 @@ const Index = () => {
       {/* What You'll Learn — value proposition */}
       <WhatYoullLearn />
 
-      {/* Speakers — show the lineup early */}
+      <SolutionSection />
+
+      {/* Speakers */}
       <SpeakersSection />
 
       <HowItWorks />
-      <SolutionSection />
       <JoinLivestream />
 
       {/* Donation section — clearly separated and lower */}
