@@ -40,7 +40,7 @@ const Index = () => {
       {/* Speakers */}
       <SpeakersSection />
 
-      <HowItWorks />
+      
       <JoinLivestream />
 
       {/* Donation section — clearly separated and lower */}
