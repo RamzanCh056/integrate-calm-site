@@ -60,7 +60,7 @@ const speakers: Speaker[] = [
     initials: "RV",
     gradient: "from-deep-green to-soft-green",
     photo: "/images/speakers/robert-vetter.jpeg",
-    photoPosition: "object-[center_20%]",
+    photoPosition: "zoom",
     location: "New York, USA",
   },
   {
