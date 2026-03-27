@@ -47,7 +47,7 @@ const Index = () => {
       <div className="bg-secondary/20 py-6">
         <div className="container mx-auto px-6 text-center">
           <p className="font-body text-sm text-muted-foreground">
-            Registration is <span className="font-bold text-foreground">completely free</span>. Donations are optional and support rebuilding a school in Uganda and future calm initiatives.
+            Registration is <span className="font-bold text-foreground">completely free</span>. If you feel moved to help us rebuild a school in Uganda, <span className="font-bold text-foreground">this is why your donation matters</span> — every contribution brings hope to children who walk miles for education.
           </p>
         </div>
       </div>
