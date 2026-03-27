@@ -39,7 +39,9 @@ serve(async (req) => {
         {
           price_data: {
             currency: "usd",
-            product: "prod_U6H6zx4aDv294C",
+            product_data: {
+              name: "Day of Calm Summit Donation",
+            },
             unit_amount: amount,
             ...(recurring ? { recurring: { interval: "month" } } : {}),
           },
