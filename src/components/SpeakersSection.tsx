@@ -151,7 +151,7 @@ const speakers: Speaker[] = [
     topic: "Understanding and Neutralizing Reactive Emotions",
     initials: "JP",
     gradient: "from-sky-blue to-soft-green",
-    photo: "/images/speakers/jennie-potter.png",
+    photo: "/images/speakers/jennie-potter.jpg",
     photoPosition: "zoom",
     location: "USA",
   },
