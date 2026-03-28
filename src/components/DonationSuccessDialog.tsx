@@ -6,7 +6,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { CheckCircle, Heart, Sparkles, Mail, MessageCircle } from "lucide-react";
+import { CheckCircle, Sparkles } from "lucide-react";
 
 interface DonationSuccessDialogProps {
   open: boolean;
