@@ -233,7 +233,7 @@ const SpeakersSection = () => {
             Our Speakers
           </h2>
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
-            World-class educators, healers, coaches, and thought leaders — united by a shared vision of calm.
+            World-class doctors, healers, coaches, and thought leaders — united by a shared vision of calm.
           </p>
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-donate/10 text-donate font-body text-sm font-semibold">
             <Mic2 className="w-4 h-4" />
