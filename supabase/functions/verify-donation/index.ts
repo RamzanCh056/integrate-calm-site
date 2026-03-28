@@ -73,6 +73,23 @@ serve(async (req) => {
 
     console.log(`Donation verified and saved: ${donorName} - $${amountTotal / 100}`);
 
+    // Send donation confirmation email
+    if (donorEmail && donorEmail !== "" && donorEmail !== "anonymous@donor.com") {
+      try {
+        await supabase.functions.invoke("send-transactional-email", {
+          body: {
+            templateName: "donation-confirmation",
+            recipientEmail: donorEmail,
+            idempotencyKey: `donation-confirm-${session.id}`,
+            templateData: { name: donorName !== "Anonymous" ? donorName : undefined },
+          },
+        });
+        console.log(`Donation confirmation email queued for ${donorEmail}`);
+      } catch (emailErr) {
+        console.error("Failed to send donation confirmation email:", emailErr);
+      }
+    }
+
     return new Response(JSON.stringify({ saved: true, amount: amountTotal / 100, donor_name: donorName, donor_email: donorEmail }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
