@@ -78,32 +78,8 @@ const DonationSuccessDialog = ({ open, onOpenChange }: DonationSuccessDialogProp
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55 }}
-          className="space-y-4 mt-4"
+          className="mt-6"
         >
-          <div className="bg-secondary/50 rounded-2xl p-5 space-y-3">
-            <p className="font-body text-sm font-semibold text-foreground">What happens next:</p>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 font-body text-sm text-card-foreground">
-                <div className="w-7 h-7 rounded-full bg-donate/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <Heart className="w-3.5 h-3.5 text-donate" />
-                </div>
-                Your name will appear on the donor wall
-              </li>
-              <li className="flex items-start gap-3 font-body text-sm text-card-foreground">
-                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <Mail className="w-3.5 h-3.5 text-primary" />
-                </div>
-                You'll receive livestream access details via email
-              </li>
-              <li className="flex items-start gap-3 font-body text-sm text-card-foreground">
-                <div className="w-7 h-7 rounded-full bg-accent/50 flex items-center justify-center shrink-0 mt-0.5">
-                  <MessageCircle className="w-3.5 h-3.5 text-primary" />
-                </div>
-                Submit a community message during the event
-              </li>
-            </ul>
-          </div>
-
           <button
             onClick={() => onOpenChange(false)}
             className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-body font-bold text-base hover:scale-[1.02] transition-transform shadow-calm-lg"
