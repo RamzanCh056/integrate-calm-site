@@ -20,7 +20,15 @@ const Footer = () => {
           <div className="flex items-center justify-center gap-1 font-body text-xs text-primary-foreground/40 mb-2">
             Made with <Heart className="w-3 h-3 text-donate fill-donate" /> for a calmer world
           </div>
-          <p className="font-body text-xs text-primary-foreground/35">
+          <div className="mt-6 pt-6 border-t border-primary-foreground/10">
+            <p className="font-body text-sm text-primary-foreground/60 mb-1">
+              Sponsored by the <span className="font-semibold text-primary-foreground/80">Day of Calm Foundation</span>
+            </p>
+            <p className="font-body text-xs text-primary-foreground/50">
+              A registered 501(c)(3) nonprofit organization. All donations are tax-deductible.
+            </p>
+          </div>
+          <p className="font-body text-xs text-primary-foreground/35 mt-4">
             © 2026 International Day of Calm. All rights reserved.
           </p>
         </div>
