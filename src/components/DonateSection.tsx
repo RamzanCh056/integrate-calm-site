@@ -112,7 +112,6 @@ const DonateSection = () => {
   const handleProceedToPayment = async (donorName: string, donorEmail: string) => {
     setShowDonorDialog(false);
     setLoading(true);
-    const paymentWindow = window.open("about:blank", "_blank");
     
     try {
       const { data, error } = await supabase.functions.invoke("create-donation", {
@@ -127,17 +126,10 @@ const DonateSection = () => {
       if (error) throw error;
       if (data?.url) {
         setSuccessAmount(amount);
-        if (paymentWindow) {
-          paymentWindow.location.href = data.url;
-        } else {
-          window.location.href = data.url;
-        }
-      } else {
-        paymentWindow?.close();
+        window.location.href = data.url;
       }
     } catch (err) {
       console.error("Donation error:", err);
-      paymentWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
