@@ -66,7 +66,7 @@ const speakers: Speaker[] = [
   {
     name: "Wendy Ologe",
     role: "Intentional Parents Academy",
-    topic: "TBA",
+    topic: "From Cultural Conditioning to Intentional Parenting: A New Path Forward",
     initials: "WO",
     gradient: "from-donate to-primary",
     photo: "/images/speakers/wendy-ologe.png",
