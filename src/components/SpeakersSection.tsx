@@ -66,7 +66,7 @@ const speakers: Speaker[] = [
   {
     name: "Wendy Ologe",
     role: "Intentional Parents Academy",
-    topic: "TBA",
+    topic: "From Cultural Conditioning to Intentional Parenting: A New Path Forward",
     initials: "WO",
     gradient: "from-donate to-primary",
     photo: "/images/speakers/wendy-ologe.png",
@@ -130,7 +130,7 @@ const speakers: Speaker[] = [
   {
     name: "Priti Irani",
     role: "Human Strengths Expert & Coach",
-    topic: "TBA",
+    topic: "Raising Future-Ready Kids: Confidence, Leadership, and Emotional Strength From Within",
     initials: "PI",
     gradient: "from-primary to-donate",
     photo: "/images/speakers/priti-irani.jpg",
