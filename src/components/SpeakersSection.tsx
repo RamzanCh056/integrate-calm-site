@@ -130,7 +130,7 @@ const speakers: Speaker[] = [
   {
     name: "Priti Irani",
     role: "Human Strengths Expert & Coach",
-    topic: "TBA",
+    topic: "Raising Future-Ready Kids: Confidence, Leadership, and Emotional Strength From Within",
     initials: "PI",
     gradient: "from-primary to-donate",
     photo: "/images/speakers/priti-irani.jpg",
