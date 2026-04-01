@@ -115,6 +115,9 @@ const StickyHeader = () => {
         </motion.header>
       )}
     </AnimatePresence>
+    <RegisterDialog open={showRegister} onOpenChange={setShowRegister} />
+      )}
+    </AnimatePresence>
   );
 };
 
