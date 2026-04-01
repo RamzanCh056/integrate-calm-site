@@ -38,23 +38,31 @@ const StickyHeader = () => {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-2">
-              {navLinks.map((link) => (
+              {navLinks.map((link) =>
+                link.primary ? (
+                  <button
+                    key={link.label}
+                    onClick={() => setShowRegister(true)}
+                    className="px-4 py-2 rounded-full font-body text-sm font-medium transition-all bg-primary text-primary-foreground hover:opacity-90"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
                   <a
                     key={link.label}
                     href={link.href}
                     className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-all ${
                       link.donate
                         ? "bg-donate text-donate-foreground hover:opacity-90"
-                        : link.primary
-                          ? "bg-primary text-primary-foreground hover:opacity-90"
-                          : link.outline
-                            ? "border border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                            : "text-foreground hover:bg-secondary"
+                        : link.outline
+                          ? "border border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                          : "text-foreground hover:bg-secondary"
                     }`}
                   >
                     {link.label}
                   </a>
-              ))}
+                )
+              )}
             </nav>
 
             {/* Mobile toggle */}
