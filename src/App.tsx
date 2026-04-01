@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import MediaKit from "./pages/MediaKit";
 import SponsorKit from "./pages/SponsorKit";
 import Unsubscribe from "./pages/Unsubscribe";
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
