@@ -19,6 +19,7 @@ const getTimeLeft = () => {
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
