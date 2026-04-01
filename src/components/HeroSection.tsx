@@ -95,7 +95,7 @@ const HeroSection = () => {
         {/* Primary CTA */}
         <div className="flex flex-col items-center gap-3 animate-fade-in">
           <a
-            href="#register-form"
+            href="/register"
             className="group px-12 py-5 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-xl hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
             Register Free Now
