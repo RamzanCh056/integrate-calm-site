@@ -84,22 +84,30 @@ const StickyHeader = () => {
                 className="md:hidden overflow-hidden border-t border-border"
               >
                 <div className="flex flex-col gap-2 p-4">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`px-4 py-3 rounded-xl font-body text-sm font-medium text-center transition-all ${
-                        link.donate
-                          ? "bg-donate text-donate-foreground"
-                          : link.primary
-                            ? "bg-primary text-primary-foreground"
+                  {navLinks.map((link) =>
+                    link.primary ? (
+                      <button
+                        key={link.label}
+                        onClick={() => { setMobileOpen(false); setShowRegister(true); }}
+                        className="px-4 py-3 rounded-xl font-body text-sm font-medium text-center transition-all bg-primary text-primary-foreground"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`px-4 py-3 rounded-xl font-body text-sm font-medium text-center transition-all ${
+                          link.donate
+                            ? "bg-donate text-donate-foreground"
                             : "bg-secondary text-secondary-foreground"
-                      }`}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
+                        }`}
+                      >
+                        {link.label}
+                      </a>
+                    )
+                  )}
                 </div>
               </motion.div>
             )}
