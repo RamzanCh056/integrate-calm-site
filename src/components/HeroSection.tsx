@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { CalendarDays, Globe, Sparkles, Clock } from "lucide-react";
+import RegisterDialog from "@/components/RegisterDialog";
 
 const targetDate = new Date("2026-04-03T00:00:00Z");
 
