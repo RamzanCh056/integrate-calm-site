@@ -23,6 +23,7 @@ const App = () => (
           <Route path="/media-kit" element={<MediaKit />} />
           <Route path="/sponsor-kit" element={<SponsorKit />} />
           <Route path="/unsubscribe" element={<Unsubscribe />} />
+          <Route path="/register" element={<Register />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
