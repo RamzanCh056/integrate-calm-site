@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import MediaKit from "./pages/MediaKit";
 import SponsorKit from "./pages/SponsorKit";
 import Unsubscribe from "./pages/Unsubscribe";
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/media-kit" element={<MediaKit />} />
           <Route path="/sponsor-kit" element={<SponsorKit />} />
           <Route path="/unsubscribe" element={<Unsubscribe />} />
+          <Route path="/register" element={<Register />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
