@@ -96,16 +96,18 @@ const HeroSection = () => {
 
         {/* Primary CTA */}
         <div className="flex flex-col items-center gap-3 animate-fade-in">
-          <a
-            href="/register"
+          <button
+            onClick={() => setShowRegister(true)}
             className="group px-12 py-5 rounded-full bg-primary-foreground text-deep-green font-body font-bold text-xl hover:scale-105 transition-all shadow-calm-lg hover:shadow-2xl"
           >
             Register Free Now
-          </a>
+          </button>
           <span className="font-body text-sm text-primary-foreground/60">
-            ↓ Scroll down to register in 30 seconds — it's completely free
+            ↓ Register in 30 seconds — it's completely free
           </span>
         </div>
+
+        <RegisterDialog open={showRegister} onOpenChange={setShowRegister} />
       </div>
 
       {/* Bottom fade */}
