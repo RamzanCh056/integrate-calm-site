@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import StickyHeader from "@/components/StickyHeader";
 import HeroSection from "@/components/HeroSection";
 import RegistrationForm from "@/components/RegistrationForm";
@@ -10,7 +11,19 @@ import SchoolStory from "@/components/SchoolStory";
 import DonateSection from "@/components/DonateSection";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import RegisterDialog from "@/components/RegisterDialog";
+
 const Index = () => {
+  const [showRegister, setShowRegister] = useState(false);
+
+  useEffect(() => {
+    if (window.location.hash === "#register-form" || window.location.hash === "#register") {
+      setShowRegister(true);
+      // Clean up hash
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       
