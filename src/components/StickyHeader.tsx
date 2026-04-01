@@ -13,6 +13,7 @@ const navLinks = [
 const StickyHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 80);
