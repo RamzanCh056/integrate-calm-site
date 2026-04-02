@@ -209,6 +209,16 @@ const day3Speakers: Speaker[] = [
     photo: "/images/speakers/priti-irani.jpg",
     location: "India",
   },
+  {
+    name: "Karyn Melko-Medeiros",
+    role: "Manifestation Coach",
+    topic: "Rich Girl Money: 5 Changes That Increase Money at Home",
+    initials: "KM",
+    gradient: "from-donate to-sky-blue",
+    photo: "/images/speakers/karyn-melko.jpg",
+    photoPosition: "zoom",
+    location: "Canada",
+  },
 ];
 
 const generalSpeakers: Speaker[] = [];
