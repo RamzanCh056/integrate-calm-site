@@ -224,9 +224,9 @@ const day3Speakers: Speaker[] = [
 const generalSpeakers: Speaker[] = [];
 
 const days = [
-  { label: "Day 1", date: "June 7", speakers: day1Speakers },
-  { label: "Day 2", date: "June 8", speakers: day2Speakers },
-  { label: "Day 3", date: "June 9", speakers: day3Speakers },
+  { label: "Day 1", date: "April 3", speakers: day1Speakers },
+  { label: "Day 2", date: "April 4", speakers: day2Speakers },
+  { label: "Day 3", date: "April 5", speakers: day3Speakers },
 ];
 
 const SpeakerImage = ({ speaker, size }: { speaker: Speaker; size: "sm" | "lg" }) => {
