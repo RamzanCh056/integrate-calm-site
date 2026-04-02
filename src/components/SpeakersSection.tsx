@@ -209,9 +209,6 @@ const day3Speakers: Speaker[] = [
     photo: "/images/speakers/priti-irani.jpg",
     location: "India",
   },
-];
-
-const generalSpeakers: Speaker[] = [
   {
     name: "Karyn Melko-Medeiros",
     role: "Manifestation Coach",
@@ -223,6 +220,8 @@ const generalSpeakers: Speaker[] = [
     location: "Canada",
   },
 ];
+
+const generalSpeakers: Speaker[] = [];
 
 const days = [
   { label: "Day 1", date: "June 7", speakers: day1Speakers },
