@@ -211,18 +211,7 @@ const day3Speakers: Speaker[] = [
   },
 ];
 
-const generalSpeakers: Speaker[] = [
-  {
-    name: "Karyn Melko-Medeiros",
-    role: "Manifestation Coach",
-    topic: "Rich Girl Money: 5 Changes That Increase Money at Home",
-    initials: "KM",
-    gradient: "from-donate to-sky-blue",
-    photo: "/images/speakers/karyn-melko.jpg",
-    photoPosition: "zoom",
-    location: "Canada",
-  },
-];
+const generalSpeakers: Speaker[] = [];
 
 const days = [
   { label: "Day 1", date: "June 7", speakers: day1Speakers },
