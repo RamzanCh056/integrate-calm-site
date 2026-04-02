@@ -1,4 +1,5 @@
-import { Mic2, Star } from "lucide-react";
+import { Mic2, Star, Calendar } from "lucide-react";
+import { useState } from "react";
 
 interface Speaker {
   name: string;
@@ -12,7 +13,7 @@ interface Speaker {
   location?: string;
 }
 
-const speakers: Speaker[] = [
+const hosts: Speaker[] = [
   {
     name: "Celia Kibler",
     role: "HOST, Founder, Day of Calm Foundation & BeABetterParent.com, Awarded Author",
@@ -34,6 +35,9 @@ const speakers: Speaker[] = [
     photoPosition: "object-[center_20%]",
     location: "California, USA",
   },
+];
+
+const day1Speakers: Speaker[] = [
   {
     name: "Dr. Scott R. Lowry",
     role: "FNMU Faculty, Family Medicine",
@@ -82,15 +86,6 @@ const speakers: Speaker[] = [
     location: "New York, USA",
   },
   {
-    name: "Minister Peace",
-    role: "Child Health & Safety",
-    topic: "Breaking the Cycle: Evidence Based Solutions to Prevent Violent Crime",
-    initials: "MP",
-    gradient: "from-primary to-deep-green",
-    photo: "/images/speakers/minister-peace.png",
-    location: "New York, USA",
-  },
-  {
     name: "Drasko Raicevic",
     role: "Mindset Coach",
     topic: "Calm as a Superpower: Regulating Yourself Through Chaos and Overwhelm",
@@ -100,24 +95,17 @@ const speakers: Speaker[] = [
     location: "Canada",
   },
   {
-    name: "Yaakov Andrew Cohen",
-    role: "Executive Coach",
-    topic: "Positive Roots. Unbreakable Future.",
-    initials: "YC",
-    gradient: "from-primary to-sky-blue",
-    photo: "/images/speakers/yaakov-cohen.jpg",
-    location: "Florida, USA",
+    name: "Ernalee Shannon",
+    role: "ADHD Thrive Coach",
+    topic: "Unleash Your Inner Happy!",
+    initials: "ES",
+    gradient: "from-donate to-soft-green",
+    photo: "/images/speakers/ernalee-shannon.png",
+    location: "USA",
   },
-  {
-    name: "Karyn Melko-Medeiros",
-    role: "Manifestation Coach",
-    topic: "Rich Girl Money: 5 Changes That Increase Money at Home",
-    initials: "KM",
-    gradient: "from-donate to-sky-blue",
-    photo: "/images/speakers/karyn-melko.jpg",
-    photoPosition: "zoom",
-    location: "Canada",
-  },
+];
+
+const day2Speakers: Speaker[] = [
   {
     name: "Czarina Pasculado",
     role: "Childhood Trauma Specialist",
@@ -126,24 +114,6 @@ const speakers: Speaker[] = [
     gradient: "from-soft-green to-deep-green",
     photo: "/images/speakers/czarina-pasculado.jpg",
     location: "Philippines",
-  },
-  {
-    name: "Priti Irani",
-    role: "Human Strengths Expert & Coach",
-    topic: "Raising Future-Ready Kids: Confidence, Leadership, and Emotional Strength From Within",
-    initials: "PI",
-    gradient: "from-primary to-donate",
-    photo: "/images/speakers/priti-irani.jpg",
-    location: "India",
-  },
-  {
-    name: "Ernalee Shannon",
-    role: "ADHD Thrive Coach",
-    topic: "Unleash Your Inner Happy!",
-    initials: "ES",
-    gradient: "from-donate to-soft-green",
-    photo: "/images/speakers/ernalee-shannon.png",
-    location: "USA",
   },
   {
     name: "Jennie Potter",
@@ -175,6 +145,44 @@ const speakers: Speaker[] = [
     location: "USA",
   },
   {
+    name: "Cynthia Smith",
+    role: "Calm Science Speaker",
+    topic: "Calm Isn't Quiet: Building a Home Where Kids Feel Safe",
+    initials: "CS",
+    gradient: "from-primary to-soft-green",
+    location: "USA",
+  },
+];
+
+const day3Speakers: Speaker[] = [
+  {
+    name: "Dr. Matthew T. Johnson",
+    role: "FNMU Faculty",
+    topic: "Calm Via Nature and Alternative Mind-Body Sciences",
+    initials: "MJ",
+    gradient: "from-deep-green to-sky-blue",
+    photo: "/images/speakers/matthew-johnson.jpg",
+    location: "USA",
+  },
+  {
+    name: "Minister Peace",
+    role: "Child Health & Safety",
+    topic: "Breaking the Cycle: Evidence Based Solutions to Prevent Violent Crime",
+    initials: "MP",
+    gradient: "from-primary to-deep-green",
+    photo: "/images/speakers/minister-peace.png",
+    location: "New York, USA",
+  },
+  {
+    name: "Yaakov Andrew Cohen",
+    role: "Executive Coach",
+    topic: "Positive Roots. Unbreakable Future.",
+    initials: "YC",
+    gradient: "from-primary to-sky-blue",
+    photo: "/images/speakers/yaakov-cohen.jpg",
+    location: "Florida, USA",
+  },
+  {
     name: "C.L. King",
     role: "Best-Selling Author & Impact Motivator",
     topic: "F.A.T.H.E.R.H.O.O.D.",
@@ -192,12 +200,40 @@ const speakers: Speaker[] = [
     photo: "/images/speakers/harry-lopez.png",
     location: "Florida, USA",
   },
+  {
+    name: "Priti Irani",
+    role: "Human Strengths Expert & Coach",
+    topic: "Raising Future-Ready Kids: Confidence, Leadership, and Emotional Strength From Within",
+    initials: "PI",
+    gradient: "from-primary to-donate",
+    photo: "/images/speakers/priti-irani.jpg",
+    location: "India",
+  },
+];
+
+const generalSpeakers: Speaker[] = [
+  {
+    name: "Karyn Melko-Medeiros",
+    role: "Manifestation Coach",
+    topic: "Rich Girl Money: 5 Changes That Increase Money at Home",
+    initials: "KM",
+    gradient: "from-donate to-sky-blue",
+    photo: "/images/speakers/karyn-melko.jpg",
+    photoPosition: "zoom",
+    location: "Canada",
+  },
+];
+
+const days = [
+  { label: "Day 1", date: "June 7", speakers: day1Speakers },
+  { label: "Day 2", date: "June 8", speakers: day2Speakers },
+  { label: "Day 3", date: "June 9", speakers: day3Speakers },
 ];
 
 const SpeakerImage = ({ speaker, size }: { speaker: Speaker; size: "sm" | "lg" }) => {
   const dim = size === "lg" ? "w-24 h-24" : "w-14 h-14";
   const textSize = size === "lg" ? "text-2xl" : "text-base";
-  
+
   return (
     <div className={`${dim} rounded-full ${speaker.photo ? '' : `bg-gradient-to-br ${speaker.gradient}`} flex items-center justify-center overflow-hidden shrink-0`}>
       {speaker.photo ? (
@@ -221,9 +257,29 @@ const SpeakerImage = ({ speaker, size }: { speaker: Speaker; size: "sm" | "lg" }
   );
 };
 
+const SpeakerCard = ({ speaker }: { speaker: Speaker }) => (
+  <div className="bg-card rounded-2xl p-6 shadow-calm hover:shadow-calm-lg transition-shadow">
+    <div className="flex items-start gap-4">
+      <SpeakerImage speaker={speaker} size="sm" />
+      <div className="min-w-0">
+        <h3 className="font-display text-base font-semibold text-card-foreground leading-tight">
+          {speaker.name}
+        </h3>
+        <p className="font-body text-xs text-muted-foreground mt-0.5">{speaker.role}</p>
+        <p className="font-body text-[10px] font-semibold text-muted-foreground mt-2 uppercase tracking-wider">Topic:</p>
+        <p className="font-body text-xs font-medium text-primary leading-snug">
+          {speaker.topic}
+        </p>
+        {speaker.location && (
+          <p className="font-body text-[11px] text-muted-foreground/70 mt-1.5">📍 {speaker.location}</p>
+        )}
+      </div>
+    </div>
+  </div>
+);
+
 const SpeakersSection = () => {
-  const hosts = speakers.filter((s) => s.isHost);
-  const regularSpeakers = speakers.filter((s) => !s.isHost);
+  const [activeDay, setActiveDay] = useState(0);
 
   return (
     <section id="speakers" className="py-24 md:py-32 bg-background overflow-hidden">
@@ -269,32 +325,44 @@ const SpeakersSection = () => {
           ))}
         </div>
 
-        {/* Regular speakers */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-          {regularSpeakers.map((s) => (
-            <div
-              key={s.name}
-              className="bg-card rounded-2xl p-6 shadow-calm hover:shadow-calm-lg transition-shadow"
+        {/* Day Tabs */}
+        <div className="flex justify-center gap-3 mb-10">
+          {days.map((day, idx) => (
+            <button
+              key={day.label}
+              onClick={() => setActiveDay(idx)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-body text-sm font-semibold transition-all ${
+                activeDay === idx
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-card text-muted-foreground hover:bg-secondary border border-border"
+              }`}
             >
-              <div className="flex items-start gap-4">
-                <SpeakerImage speaker={s} size="sm" />
-                <div className="min-w-0">
-                  <h3 className="font-display text-base font-semibold text-card-foreground leading-tight">
-                    {s.name}
-                  </h3>
-                  <p className="font-body text-xs text-muted-foreground mt-0.5">{s.role}</p>
-                  <p className="font-body text-[10px] font-semibold text-muted-foreground mt-2 uppercase tracking-wider">Topic:</p>
-                  <p className="font-body text-xs font-medium text-primary leading-snug">
-                    {s.topic}
-                  </p>
-                  {s.location && (
-                    <p className="font-body text-[11px] text-muted-foreground/70 mt-1.5">📍 {s.location}</p>
-                  )}
-                </div>
-              </div>
-            </div>
+              <Calendar className="w-4 h-4" />
+              {day.label} — {day.date}
+            </button>
           ))}
         </div>
+
+        {/* Active Day Speakers */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          {days[activeDay].speakers.map((s) => (
+            <SpeakerCard key={s.name} speaker={s} />
+          ))}
+        </div>
+
+        {/* General / Additional Speakers */}
+        {generalSpeakers.length > 0 && (
+          <div className="mt-16 max-w-6xl mx-auto">
+            <h3 className="font-display text-2xl font-bold text-foreground text-center mb-8">
+              Additional Speakers
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {generalSpeakers.map((s) => (
+                <SpeakerCard key={s.name} speaker={s} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
