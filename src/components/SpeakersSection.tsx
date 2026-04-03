@@ -336,7 +336,8 @@ const SpeakerImage = ({ speaker, size }: { speaker: Speaker; size: "sm" | "lg" }
           ? speaker.photoPosition
               .replace("object-[", "")
               .replace("]", "")
-              .replaceAll("_", " ")
+              .split("_")
+              .join(" ")
           : "center top";
 
   const imageTransform =
