@@ -71,6 +71,7 @@ const Index = () => {
       <FinalCTA />
       <Footer />
       <RegisterDialog open={showRegister} onOpenChange={setShowRegister} />
+      <VideoPopup />
     </div>
   );
 };
