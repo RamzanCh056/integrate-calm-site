@@ -346,7 +346,7 @@ const SpeakerCard = ({ speaker }: { speaker: Speaker }) => (
         </h3>
         <p className="font-body text-xs text-muted-foreground mt-0.5">{speaker.role}</p>
         {speaker.time && (
-          <p className="font-body text-[11px] font-semibold text-accent-foreground mt-1">🕐 {speaker.time} EST</p>
+          <p className="font-body text-[12px] font-bold text-foreground mt-1.5 bg-secondary/50 inline-block px-2 py-0.5 rounded">🕐 {speaker.time} EST</p>
         )}
         <p className="font-body text-[10px] font-semibold text-muted-foreground mt-2 uppercase tracking-wider">Topic:</p>
         <p className="font-body text-xs font-medium text-primary leading-snug">
