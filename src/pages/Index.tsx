@@ -12,6 +12,7 @@ import DonateSection from "@/components/DonateSection";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import RegisterDialog from "@/components/RegisterDialog";
+import VideoPopup from "@/components/VideoPopup";
 
 const Index = () => {
   const [showRegister, setShowRegister] = useState(false);
