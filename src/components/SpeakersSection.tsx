@@ -309,28 +309,64 @@ const days = [
   { label: "Day 4", date: "April 6", speakers: day4Speakers, isRecorded: false },
 ];
 
+const bundledSpeakerImages = import.meta.glob("/src/assets/speakers/*.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+
+const resolveSpeakerPhoto = (photo?: string) => {
+  if (!photo) return undefined;
+  const fileName = photo.split("/").pop();
+  if (!fileName) return photo;
+  return bundledSpeakerImages[`/src/assets/speakers/${fileName}`] ?? photo;
+};
+
 const SpeakerImage = ({ speaker, size }: { speaker: Speaker; size: "sm" | "lg" }) => {
+  const [imageError, setImageError] = useState(false);
   const dim = size === "lg" ? "w-24 h-24" : "w-14 h-14";
   const textSize = size === "lg" ? "text-2xl" : "text-base";
+  const photoSrc = imageError ? undefined : resolveSpeakerPhoto(speaker.photo);
+
+  const objectPosition =
+    speaker.photoPosition === "zoom"
+      ? "center 15%"
+      : speaker.photoPosition === "zoomout"
+        ? "center 30%"
+        : speaker.photoPosition?.startsWith("object-[")
+          ? speaker.photoPosition
+              .replace("object-[", "")
+              .replace("]", "")
+              .replaceAll("_", " ")
+          : "center top";
+
+  const imageTransform =
+    speaker.photoPosition === "zoom"
+      ? "scale(1.5)"
+      : speaker.photoPosition === "zoomout"
+        ? "scale(0.75)"
+        : undefined;
 
   return (
-    <div className={`${dim} rounded-full ${speaker.photo ? '' : `bg-gradient-to-br ${speaker.gradient}`} flex items-center justify-center overflow-hidden shrink-0`}>
-      {speaker.photo ? (
+    <div className={`${dim} rounded-full bg-muted/30 ring-1 ring-border/40 flex items-center justify-center overflow-hidden shrink-0`}>
+      {photoSrc ? (
         <img
-          src={speaker.photo}
+          src={photoSrc}
           alt={speaker.name}
-          loading="lazy"
+          loading="eager"
           decoding="async"
-          className="w-full h-full object-cover"
+          onError={() => setImageError(true)}
+          className="block h-full w-full object-cover"
           style={{
-            objectPosition: speaker.photoPosition === 'zoom' ? 'center 15%' : speaker.photoPosition === 'zoomout' ? 'center 30%' : 'center top',
-            transform: speaker.photoPosition === 'zoom' ? 'scale(1.5)' : speaker.photoPosition === 'zoomout' ? 'scale(0.75)' : undefined,
+            objectPosition,
+            transform: imageTransform,
           }}
         />
       ) : (
-        <span className={`font-display ${textSize} font-bold text-primary-foreground`}>
-          {speaker.initials}
-        </span>
+        <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${speaker.gradient}`}>
+          <span className={`font-display ${textSize} font-bold text-primary-foreground`}>
+            {speaker.initials}
+          </span>
+        </div>
       )}
     </div>
   );
@@ -436,7 +472,7 @@ const SpeakersSection = () => {
         )}
 
         {/* VIP Breakroom note */}
-        {days[activeDay].speakers.some(s => s.time && parseInt(s.time) >= 3) && (
+        {days[activeDay].speakers.some((s) => s.time && parseInt(s.time, 10) >= 3) && (
           <div className="flex justify-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary font-body text-xs font-semibold">
               ⭐ VIP Breakroom (Speakers & Donors) between afternoon sessions
@@ -445,9 +481,17 @@ const SpeakersSection = () => {
         )}
 
         {/* Active Day Speakers */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-          {days[activeDay].speakers.map((s, i) => (
-            <SpeakerCard key={`${s.name}-${i}`} speaker={s} />
+        <div className="max-w-6xl mx-auto">
+          {days.map((day, idx) => (
+            <div
+              key={day.label}
+              className={idx === activeDay ? "grid sm:grid-cols-2 lg:grid-cols-3 gap-5" : "hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-5"}
+              aria-hidden={idx !== activeDay}
+            >
+              {day.speakers.map((s, i) => (
+                <SpeakerCard key={`${day.label}-${s.name}-${i}`} speaker={s} />
+              ))}
+            </div>
           ))}
         </div>
       </div>

@@ -94,11 +94,6 @@ const HeroSection = () => {
           ))}
         </div>
 
-        {/* Urgency */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-destructive/90 text-destructive-foreground font-body text-sm font-bold mb-4 animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-destructive-foreground animate-pulse" />
-          Only 50 Seats Left — Register Before It's Full!
-        </div>
 
         {/* Primary CTA */}
         <div className="flex flex-col items-center gap-3 animate-fade-in">
