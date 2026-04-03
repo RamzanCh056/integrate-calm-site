@@ -473,7 +473,7 @@ const SpeakersSection = () => {
         )}
 
         {/* VIP Breakroom note */}
-        {days[activeDay].speakers.some((s) => s.time && parseInt(s.time, 10) >= 3) && (
+        {!days[activeDay].isRecorded && days[activeDay].speakers.some((s) => s.time && parseInt(s.time, 10) >= 3) && (
           <div className="flex justify-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary font-body text-xs font-semibold">
               ⭐ VIP Breakroom (Speakers & Donors) between afternoon sessions
