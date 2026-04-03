@@ -467,7 +467,7 @@ const SpeakersSection = () => {
           <div className="flex justify-center mb-6">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-100 text-amber-800 font-body text-sm font-semibold border border-amber-200">
               <Film className="w-4 h-4" />
-              📹 Recordings Only — Pre-recorded sessions available all day
+              📹 Recordings Only — Pre-recorded sessions played at scheduled times
             </div>
           </div>
         )}
