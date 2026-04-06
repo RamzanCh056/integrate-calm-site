@@ -283,8 +283,8 @@ const day4Speakers: Speaker[] = [
   },
   {
     name: "John Ploof",
-    role: "Speaker",
-    topic: "TBD",
+    role: "Eco Activist & Environmental Leader",
+    topic: "Calm Through Service Through Nature",
     initials: "JP",
     gradient: "from-sky-blue to-donate",
     location: "USA",
